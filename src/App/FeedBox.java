@@ -26,6 +26,7 @@ import jdk.jshell.EvalException;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 public class FeedBox extends Region {
@@ -57,17 +58,23 @@ public class FeedBox extends Region {
                 editEntryWindow.initOwner(feedbox.getScene().getWindow());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("EditEntryDialog.fxml"));
-                EditEntryController editEntryController = new EditEntryController(this.id);
+                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                EditEntryController editEntryController = new EditEntryController(this.id,editEntryWindow);
                 loader.setController(editEntryController);
                 editEntryWindow.getDialogPane().setContent(loader.load());
 
-                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-                editEntryWindow.show();
+                //editEntryWindow.show();
+
+                Optional<ButtonType> res = editEntryWindow.showAndWait();
+                if(res.isPresent() && res.get()==ButtonType.OK){
+                    editEntryController.OnClick_OKButton();
+                }
 
             }catch (IOException ex){
                 ex.printStackTrace();
             }
+
 
         });
 
