@@ -11,8 +11,10 @@ public class ConnectionClass {
         String dbName = "journal_app";
         String userName = "root";
         String password = "root";
+        String driverName = "com.mysql.jdbc.Driver";
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/"+dbName,userName,password);
+            Class.forName(driverName);
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName,userName,password);
         }catch (Exception e){
             e.printStackTrace();
         }

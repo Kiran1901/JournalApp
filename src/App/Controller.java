@@ -2,11 +2,19 @@ package App;
 
 import Connectivity.ConnectionClass;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -15,11 +23,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.YearMonth;
 import java.util.*;
 
 
 public class Controller {
 
+    @FXML
+    VBox feedVBox;
+    @FXML
+    Pane calendarPane;
+    @FXML
+    VBox calendarVBox;
+    int calendarCount;
 
     @FXML
     VBox entriesList;
@@ -80,5 +96,16 @@ public class Controller {
 //    }
 
 
+    public void loadCalendar(Event event) {
+        calendarCount++;
+        if(calendarCount==1) {
+            System.out.println("onClick:Pane@Calendar");
+            VBox vb = new FullCalendarView(YearMonth.now()).getView();
+            calendarVBox.getChildren().add(vb);
+        }
+    }
 
+//    public void closeCalendar(Event event) {
+//        System.out.println("Calendar Closed");
+//    }
 }
