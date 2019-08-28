@@ -12,16 +12,19 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
+<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
     <children>
+
         <MenuBar VBox.vgrow="NEVER">
             <menus>
+
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem mnemonicParsing="false" text="New" />
                         <MenuItem mnemonicParsing="false" text="Quit" />
                     </items>
                 </Menu>
+
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Edit Entry" />
@@ -37,17 +40,31 @@
 <!--                        <MenuItem mnemonicParsing="false" text="Unselect All" />-->
                     </items>
                 </Menu>
+
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
                         <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
                     </items>
                 </Menu>
+
             </menus>
         </MenuBar>
-      <TabPane tabClosingPolicy="UNAVAILABLE">
+
+        <TabPane tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Timeline">
+
+            <Tab text="Timeline">
                <content>
+                  <VBox fx:id="feedVBox" alignment="CENTER" prefHeight="550.0" prefWidth="720.0" />
+               </content>
+            </Tab>
+
+            <Tab onSelectionChanged="#loadCalendar" text="Calender">
+               <content>
+                  <VBox fx:id="calendarVBox" prefHeight="200.0" prefWidth="100.0"/>
+               </content>
+            </Tab>
+
                   <ScrollPane prefHeight="550.0" prefWidth="720.0">
 <!--                     <content>-->
 <!--                        <ListView fx:id="entriesList">-->
@@ -69,9 +86,11 @@
                   <ScrollPane prefHeight="550.0" prefWidth="720.0" />
               </content>
             </Tab>
+
         </tabs>
       </TabPane>
-      <ButtonBar fx:id="Buttonbar" prefHeight="40.0" prefWidth="200.0">
+
+        <ButtonBar fx:id="Buttonbar" prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button fx:id="newEntryButton" alignment="CENTER" mnemonicParsing="false" onAction="#OnClick_newEntryButton" text="New Entry" textAlignment="JUSTIFY" />
         </buttons>
