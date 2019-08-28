@@ -57,9 +57,10 @@ public class FeedBox extends Region {
                 editEntryWindow.initOwner(feedbox.getScene().getWindow());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("EditEntryDialog.fxml"));
+                EditEntryController editEntryController = new EditEntryController(this.id);
+                loader.setController(editEntryController);
                 editEntryWindow.getDialogPane().setContent(loader.load());
-                EditEntryController editEntryController = loader.getController();
-                editEntryController.setId(id);
+
                 editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
                 editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
                 editEntryWindow.show();

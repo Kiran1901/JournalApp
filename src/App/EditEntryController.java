@@ -22,12 +22,16 @@ import java.time.format.DateTimeFormatter;
 public class EditEntryController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public String id;
+    public String id="1";
 
     @FXML
     public Text timeText,dateText;
 //    public Button submitButton;
     public TextArea textArea;
+
+    public EditEntryController(String ID){
+        this.id = ID;
+    }
 
     public void initialize(){
 
@@ -35,12 +39,11 @@ public class EditEntryController {
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' AND ID="+ id +";" );
+            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' AND id="+ Integer.parseInt(id) +";" );
             list.next();
             timeText.setText(list.getString("time"));
             dateText.setText(list.getString("date"));
             textArea.setText(list.getString("text"));
-            id=list.getString("ID");
 
             statement.close();
             conn.close();
@@ -86,7 +89,7 @@ public class EditEntryController {
     }
 
     public void setId(String ID){
-        id=ID;
+        this.id=ID;
     }
 
 }
