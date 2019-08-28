@@ -1,24 +1,16 @@
 package App;
 
 import Connectivity.ConnectionClass;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.awt.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,8 +21,7 @@ import java.util.*;
 
 public class Controller {
 
-    @FXML
-    VBox feedVBox;
+
     @FXML
     Pane calendarPane;
     @FXML
@@ -47,7 +38,7 @@ public class Controller {
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran';" );
+            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
             while (list.next()){
                 entriesList.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
@@ -58,42 +49,31 @@ public class Controller {
             System.out.println("SQLException");
         }
 
-
     }
 
     @FXML
-    public void OnClick_newEntryButton(ActionEvent event) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("newEntryWindow.fxml"));
-        Stage newEntryWindow = new Stage();
-        newEntryWindow.setTitle("New Entry");
-        newEntryWindow.setScene(new Scene(root, 600, 433));
-        newEntryWindow.setResizable(false);
+    public void OnClick_newEntryButton(){
+        try {
+            Dialog<ButtonType> newEntryWindow = new Dialog<>();
+            newEntryWindow.initOwner(entriesList.getScene().getWindow());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("NewEntryDialog.fxml"));
+            newEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            newEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            NewEntryController newEntryController = new NewEntryController(newEntryWindow);
+            loader.setController(newEntryController);
+            newEntryWindow.getDialogPane().setContent(loader.load());
 
-        newEntryWindow.show();
+            Optional<ButtonType> res = newEntryWindow.showAndWait();
+            if(res.isPresent() && res.get()==ButtonType.OK){
+                newEntryController.OnClick_OKButton();
+            }
 
-        newEntryWindow.setOnCloseRequest(e -> {
-            newEntryWindow.close();
-            System.out.println("NewEntry Window Exited with X button");
-        });
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
         System.out.println("onClick:Button@newEntryButton");
     }
-
-//    @FXML
-//    public void OnClick_editEntryButton(ActionEvent event) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("editEntryWindow.fxml"));
-//        Stage editEntryWindow = new Stage();
-//        editEntryWindow.setTitle("Edit Entry");
-//        editEntryWindow.setScene(new Scene(root, 600, 433));
-//        editEntryWindow.setResizable(false);
-//
-//        editEntryWindow.show();
-//
-//        editEntryWindow.setOnCloseRequest(e -> {
-//            editEntryWindow.close();
-//            System.out.println("EditEntry Window Exited with X button");
-//        });
-//        System.out.println("onClick:Button@EditEntryButton");
-//    }
 
 
     public void loadCalendar(Event event) {

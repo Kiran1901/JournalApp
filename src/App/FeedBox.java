@@ -1,15 +1,9 @@
 package App;
 
 
-import com.sun.javafx.scene.control.skin.FXVK;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.ParallelCamera;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -20,12 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import jdk.jshell.EvalException;
 
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 public class FeedBox extends Region {
@@ -57,13 +50,16 @@ public class FeedBox extends Region {
                 editEntryWindow.initOwner(feedbox.getScene().getWindow());
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("EditEntryDialog.fxml"));
-                EditEntryController editEntryController = new EditEntryController(this.id);
+                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                EditEntryController editEntryController = new EditEntryController(this.id,editEntryWindow);
                 loader.setController(editEntryController);
                 editEntryWindow.getDialogPane().setContent(loader.load());
 
-                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
-                editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-                editEntryWindow.show();
+                Optional<ButtonType> res = editEntryWindow.showAndWait();
+                if(res.isPresent() && res.get()==ButtonType.OK){
+                    editEntryController.OnClick_OKButton();
+                }
 
             }catch (IOException ex){
                 ex.printStackTrace();
@@ -109,11 +105,5 @@ public class FeedBox extends Region {
     public void setEditEntryVisibility(boolean flag){
         editEntry.setVisible(flag);
     }
-
-    /*public void onClick_editEntry(MouseEvent event){
-            public void handle(MouseEvent event){
-
-        }
-    }*/
 
 }

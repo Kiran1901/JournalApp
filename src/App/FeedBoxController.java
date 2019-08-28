@@ -38,7 +38,7 @@ public class FeedBoxController implements Initializable {
             System.out.println("SQLException");
         }
 
-        System.out.println("BoxController execed");
+        System.out.println("BoxController executed");
     }
 
 }
