@@ -3,11 +3,11 @@ import Connectivity.ConnectionClass;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,33 +19,35 @@ import java.time.format.DateTimeFormatter;
 public class NewEntryController {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private Button okButton;
 
     @FXML
     public Text timeText,dateText;
-    public Button submitButton,alertYes,alertNo;
     public TextArea textArea;
-    public AnchorPane alertBox;
-    public VBox newEntryBox;
+
+    public NewEntryController(Dialog dialog){
+        okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        okButton.setDisable(true);
+    }
 
     public void initialize(){
         dateText.setText(LocalDate.now().toString());
         timeText.setText(formatter.format(LocalTime.now()));
-        submitButton.setDisable(true);
+        textArea.addEventHandler(KeyEvent.KEY_RELEASED, e->OnKeyReleaseCheckText());
     }
 
     public void OnKeyReleaseCheckText(){
         String text = textArea.getText();
         boolean disableButton = text.isEmpty();
-        submitButton.setDisable(disableButton);
+        okButton.setDisable(disableButton);
     }
 
-    public void OnClick_submitButton(){
+    public void OnClick_OKButton(){
         String TABLE_NAME="timeline";
         String USER_NAME="Kiran";
-        String TEXT_DATA;
+        String TEXT_DATA=textArea.getText();
         String DATE= LocalDate.now().toString();
         String TIME = formatter.format(LocalTime.now());
-        TEXT_DATA = textArea.getText();
 
         try {
             ConnectionClass connectionClass = new ConnectionClass();
@@ -58,10 +60,8 @@ public class NewEntryController {
             System.out.println("MySQL db conn error");
             e.printStackTrace();
         }
-        System.out.println("onClick:Button@submitButton");
-        Stage stage = (Stage)submitButton.getScene().getWindow();
-        stage.close();
-        System.out.println("NewEntry Window closed with submit button");
+
+        System.out.println("NewEntry Window closed with OK button");
     }
 
 }
