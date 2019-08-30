@@ -1,6 +1,10 @@
 package App;
 
 import Connectivity.ConnectionClass;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,7 @@ import java.util.*;
 
 public class Controller {
 
+    ObservableList<FeedBox> entries;
 
     @FXML
     Pane calendarPane;
@@ -34,20 +39,41 @@ public class Controller {
     @FXML
     public void initialize(){
 
+        entries = FXCollections.observableArrayList();
+
+
         try {
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
             ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
             while (list.next()){
-                entriesList.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
+
+            entries.addListener(new ListChangeListener<FeedBox>(){
+                @Override
+                public void onChanged(Change<? extends FeedBox> c){
+                    while (c.next()){
+                        if(c.wasAdded()){
+                            //add
+                        }else if(c.wasRemoved()){
+                            //remove
+                        }else if(c.wasUpdated()){
+                            //update
+                        }
+                    }
+                }
+            });
+
+            entriesList.getChildren().addAll(entries);     // needs update
             statement.close();
             conn.close();
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("SQLException");
         }
+
 
     }
 
@@ -66,7 +92,7 @@ public class Controller {
 
             Optional<ButtonType> res = newEntryWindow.showAndWait();
             if(res.isPresent() && res.get()==ButtonType.OK){
-                newEntryController.OnClick_OKButton();
+                newEntryController.OnClick_OKButton(entries);
             }
 
         }catch (IOException ex){

@@ -1,6 +1,7 @@
 package App;
 import Connectivity.ConnectionClass;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -42,7 +44,7 @@ public class NewEntryController {
         okButton.setDisable(disableButton);
     }
 
-    public void OnClick_OKButton(){
+    public void OnClick_OKButton(ObservableList<FeedBox> entries){
         String TABLE_NAME="timeline";
         String USER_NAME="Kiran";
         String TEXT_DATA=textArea.getText();
@@ -54,13 +56,16 @@ public class NewEntryController {
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
             statement.execute("INSERT INTO "+ TABLE_NAME + " (user,date,time,text) VALUES('" + USER_NAME + "','" + DATE + "','"+ TIME + "','" + TEXT_DATA + "')" );
+            statement.execute("SELECT * FROM "+ TABLE_NAME + " WHERE date='"+DATE+"' AND time='"+ TIME + "';");
+            ResultSet res = statement.getResultSet();
+            res.next();
+            entries.add(new FeedBox(res.getString("ID"), res.getString("date"), res.getString("time"), res.getString("text")));
             statement.close();
             conn.close();
         }catch (SQLException e){
             System.out.println("MySQL db conn error");
             e.printStackTrace();
         }
-
         System.out.println("NewEntry Window closed with OK button");
     }
 

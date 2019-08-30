@@ -1,6 +1,8 @@
 package App;
 
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +23,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class FeedBox extends Region {
+public class FeedBox extends Region{
 
     private String id;
     private VBox feedbox;
@@ -105,5 +107,6 @@ public class FeedBox extends Region {
     public void setEditEntryVisibility(boolean flag){
         editEntry.setVisible(flag);
     }
+
 
 }
