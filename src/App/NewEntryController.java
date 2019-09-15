@@ -44,7 +44,7 @@ public class NewEntryController {
         okButton.setDisable(disableButton);
     }
 
-    public void OnClick_OKButton(ObservableList<FeedBox> entries){
+    public void OnClick_OKButton(){
         String TABLE_NAME="timeline";
         String USER_NAME="Kiran";
         String TEXT_DATA=textArea.getText();

@@ -52,23 +52,6 @@ public class Controller {
             while (list.next()){
                 entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
-
-            entries.addListener(new ListChangeListener<FeedBox>(){
-                @Override
-                public void onChanged(Change<? extends FeedBox> c){
-                    while (c.next()){
-                        if(c.wasAdded()){
-                            //add
-                        }else if(c.wasRemoved()){
-                            //remove
-                        }else if(c.wasUpdated()){
-                            //update
-                        }
-                    }
-                }
-            });
-
-            entriesList.getChildren().addAll(entries);     // needs update
             statement.close();
             conn.close();
 
@@ -100,7 +83,7 @@ public class Controller {
 
             Optional<ButtonType> res = newEntryWindow.showAndWait();
             if(res.isPresent() && res.get()==ButtonType.OK){
-                newEntryController.OnClick_OKButton(entries);
+                newEntryController.OnClick_OKButton();
             }
 
         }catch (IOException ex){
