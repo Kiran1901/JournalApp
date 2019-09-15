@@ -1,10 +1,18 @@
 package App;
 
 import Connectivity.ConnectionClass;
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
@@ -21,6 +29,7 @@ import java.util.*;
 
 public class Controller {
 
+    public static ObservableList<Node> entries;
 
     @FXML
     Pane calendarPane;
@@ -33,17 +42,24 @@ public class Controller {
 
     @FXML
     public void initialize(){
-
+        entries = FXCollections.observableArrayList();
         try {
+
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
             ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
             while (list.next()){
-                entriesList.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
             statement.close();
             conn.close();
+
+            entriesList.getChildren().addAll(entries);
+            Bindings.bindContentBidirectional(entriesList.getChildren(),entries);
+
+            System.out.println(entriesList.getChildren());
+
         }catch (SQLException e){
             e.printStackTrace();
             System.out.println("SQLException");
@@ -57,7 +73,7 @@ public class Controller {
             Dialog<ButtonType> newEntryWindow = new Dialog<>();
             newEntryWindow.initOwner(entriesList.getScene().getWindow());
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("NewEntryDialog.fxml"));
+            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntryDialog.fxml"));
             newEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
             newEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             NewEntryController newEntryController = new NewEntryController(newEntryWindow);

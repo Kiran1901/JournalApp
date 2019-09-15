@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -48,20 +49,26 @@ public class NewEntryController {
         String TEXT_DATA=textArea.getText();
         String DATE= LocalDate.now().toString();
         String TIME = formatter.format(LocalTime.now());
+        String ID;
 
         try {
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
             statement.execute("INSERT INTO "+ TABLE_NAME + " (user,date,time,text) VALUES('" + USER_NAME + "','" + DATE + "','"+ TIME + "','" + TEXT_DATA + "')" );
+            ResultSet res = statement.executeQuery("SELECT ID FROM timeline WHERE DATE='"+DATE+"' AND TIME='"+TIME+"' AND USER='"+USER_NAME+"';");
+            res.next();
+            ID = res.getString("ID");
+            Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
+            System.out.println(Controller.entries);
             statement.close();
             conn.close();
         }catch (SQLException e){
             System.out.println("MySQL db conn error");
             e.printStackTrace();
         }
-
         System.out.println("NewEntry Window closed with OK button");
+
     }
 
 }
