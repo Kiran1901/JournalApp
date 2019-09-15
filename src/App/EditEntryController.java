@@ -61,7 +61,7 @@ public class EditEntryController {
         okButton.setDisable(disableButton);
     }
 
-    public void OnClick_OKButton(){
+    public void OnClick_OKButton(FeedBox feedBox){
         String TABLE_NAME="timeline";
         String USER_NAME="Kiran";
         String TEXT_DATA = textArea.getText();
@@ -77,8 +77,12 @@ public class EditEntryController {
             System.out.println("MySQL db conn error");
             e.printStackTrace();
         }
+        int index=Controller.entries.indexOf(feedBox);
+        Controller.entries.add(index,new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
+        Controller.entries.remove(index+1);
         System.out.println("onClick:Button@OKButton");
         System.out.println("EditEntry Dialog closed with OK button");
+        System.out.println(Controller.entries);
     }
 
 }

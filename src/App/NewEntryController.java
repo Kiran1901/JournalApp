@@ -50,16 +50,18 @@ public class NewEntryController {
         String TEXT_DATA=textArea.getText();
         String DATE= LocalDate.now().toString();
         String TIME = formatter.format(LocalTime.now());
+        String ID;
 
         try {
             ConnectionClass connectionClass = new ConnectionClass();
             Connection conn = connectionClass.getConnection();
             Statement statement = conn.createStatement();
             statement.execute("INSERT INTO "+ TABLE_NAME + " (user,date,time,text) VALUES('" + USER_NAME + "','" + DATE + "','"+ TIME + "','" + TEXT_DATA + "')" );
-            statement.execute("SELECT * FROM "+ TABLE_NAME + " WHERE date='"+DATE+"' AND time='"+ TIME + "';");
-            ResultSet res = statement.getResultSet();
+            ResultSet res = statement.executeQuery("SELECT ID FROM timeline WHERE DATE='"+DATE+"' AND TIME='"+TIME+"' AND USER='"+USER_NAME+"';");
             res.next();
-            entries.add(new FeedBox(res.getString("ID"), res.getString("date"), res.getString("time"), res.getString("text")));
+            ID = res.getString("ID");
+            Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
+            System.out.println(Controller.entries);
             statement.close();
             conn.close();
         }catch (SQLException e){
@@ -67,6 +69,7 @@ public class NewEntryController {
             e.printStackTrace();
         }
         System.out.println("NewEntry Window closed with OK button");
+
     }
 
 }
