@@ -107,30 +107,8 @@ public class Controller {
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
-        Bindings.bindContentBidirectional(internalVBox.getChildren(),datewiseEntry);
+        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
 
     }
-
-   /* public void showEntry()
-    {
-//        System.out.println("Date is "+date);
-        try {
-            System.out.println("Datednkwqjdjkkqwjd is"+date);
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection conn = connectionClass.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE date='"+date+"';");
-            while (list.next()){
-                System.out.println("text "+list.getString("text"));
-                internalVBox.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
-            }
-            statement.close();
-            conn.close();
-        }catch (SQLException s){
-            s.printStackTrace();
-            System.out.println("SQLException");
-        }
-
-    }*/
 
 }

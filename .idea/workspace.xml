@@ -51,14 +51,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
-              <folding>
-                <element signature="method#showEntry#0;class#Controller#0" />
-              </folding>
+            <state relative-caret-position="-154">
+              <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -66,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="91">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2622#3513#0" />
@@ -76,11 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1221">
+              <caret line="79" selection-start-line="79" selection-end-line="79" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="40" column="152" selection-start-line="40" selection-start-column="152" selection-end-line="40" selection-end-column="152" />
+            <state>
+              <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
               <folding>
                 <element signature="e#1812#1813#0" expanded="true" />
                 <element signature="e#1887#1888#0" expanded="true" />
@@ -92,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App/FullCalendarView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1343">
+            <state relative-caret-position="-1551">
               <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
             </state>
           </provider>
@@ -110,7 +119,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
+            <state relative-caret-position="256">
               <caret line="69" column="69" lean-forward="true" selection-start-line="69" selection-start-column="69" selection-end-line="69" selection-end-column="81" />
               <folding>
                 <element signature="n#items#0;n#Menu#1;n#menus#0;n#MenuBar#0;n#children#0;n#VBox#0;n#!!top" />
@@ -135,8 +144,8 @@
       <find>fx:c</find>
       <find>.fxml</find>
       <find>Item</find>
-      <find>cal</find>
       <find>entries</find>
+      <find>cal</find>
     </findStrings>
     <replaceStrings>
       <replace>FeedBox</replace>
@@ -155,15 +164,15 @@
         <option value="$PROJECT_DIR$/src/App/fullcalendar.fxml" />
         <option value="$PROJECT_DIR$/src/App/Main.fxml" />
         <option value="$PROJECT_DIR$/src/App/FeedBoxController.java" />
-        <option value="$PROJECT_DIR$/src/App/FeedBox.java" />
-        <option value="$PROJECT_DIR$/src/App/EditEntryController.java" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController.java" />
         <option value="$PROJECT_DIR$/src/App/Main.java" />
         <option value="$PROJECT_DIR$/src/App/CalendarController.java" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/Main.fxml" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/CalendarLoad.fxml" />
-        <option value="$PROJECT_DIR$/src/App/Controller.java" />
         <option value="$PROJECT_DIR$/src/App/AnchorPaneNode.java" />
+        <option value="$PROJECT_DIR$/src/App/FeedBox.java" />
+        <option value="$PROJECT_DIR$/src/App/Controller.java" />
+        <option value="$PROJECT_DIR$/src/App/EditEntryController.java" />
       </list>
     </option>
   </component>
@@ -281,7 +290,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38581000" />
+    <option name="totallyTimeSpent" value="42723000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -526,16 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1811">
-          <caret line="87" column="1" selection-start-line="87" selection-start-column="1" selection-end-line="87" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/CalendarController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
@@ -559,13 +558,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/FullCalendarView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1343">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -575,7 +567,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
+        <state relative-caret-position="256">
           <caret line="69" column="69" lean-forward="true" selection-start-line="69" selection-start-column="69" selection-end-line="69" selection-end-column="81" />
           <folding>
             <element signature="n#items#0;n#Menu#1;n#menus#0;n#MenuBar#0;n#children#0;n#VBox#0;n#!!top" />
@@ -584,20 +576,38 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+        <state>
+          <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
           <folding>
-            <element signature="method#showEntry#0;class#Controller#0" />
+            <element signature="e#1812#1813#0" expanded="true" />
+            <element signature="e#1887#1888#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/FullCalendarView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1551">
+          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1221">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        <state relative-caret-position="91">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2622#3513#0" />
@@ -605,14 +615,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
+    <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="40" column="152" selection-start-line="40" selection-start-column="152" selection-end-line="40" selection-end-column="152" />
-          <folding>
-            <element signature="e#1812#1813#0" expanded="true" />
-            <element signature="e#1887#1888#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-154">
+          <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
         </state>
       </provider>
     </entry>
