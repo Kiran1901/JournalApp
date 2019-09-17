@@ -23,6 +23,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -30,11 +31,15 @@ import java.util.*;
 public class Controller {
 
     public static ObservableList<Node> entries;
+    public static ObservableList<Node> datewiseEntry;
+    public static LocalDate date;
 
     @FXML
     Pane calendarPane;
     @FXML
     VBox calendarVBox;
+    @FXML
+    VBox internalVBox;
     int calendarCount;
 
     @FXML
@@ -43,6 +48,7 @@ public class Controller {
     @FXML
     public void initialize(){
         entries = FXCollections.observableArrayList();
+        datewiseEntry = FXCollections.observableArrayList();
         try {
 
             ConnectionClass connectionClass = new ConnectionClass();
@@ -94,15 +100,37 @@ public class Controller {
 
 
     public void loadCalendar(Event event) {
+        datewiseEntry.clear();
         calendarCount++;
         if(calendarCount==1) {
             System.out.println("onClick:Pane@Calendar");
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
+        Bindings.bindContentBidirectional(internalVBox.getChildren(),datewiseEntry);
+
     }
 
-//    public void closeCalendar(Event event) {
-//        System.out.println("Calendar Closed");
-//    }
+   /* public void showEntry()
+    {
+//        System.out.println("Date is "+date);
+        try {
+            System.out.println("Datednkwqjdjkkqwjd is"+date);
+            ConnectionClass connectionClass = new ConnectionClass();
+            Connection conn = connectionClass.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE date='"+date+"';");
+            while (list.next()){
+                System.out.println("text "+list.getString("text"));
+                internalVBox.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+            }
+            statement.close();
+            conn.close();
+        }catch (SQLException s){
+            s.printStackTrace();
+            System.out.println("SQLException");
+        }
+
+    }*/
+
 }
