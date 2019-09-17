@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.SplitPane?>
 <VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
     <children>
         <MenuBar VBox.vgrow="NEVER">
@@ -49,11 +50,6 @@
                 <Tab text="Timeline">
                     <content>
                         <ScrollPane prefHeight="550.0" prefWidth="720.0">
-                            <!--                     <content>-->
-                            <!--                        <ListView fx:id="entriesList">-->
-
-                            <!--                        </ListView>-->
-                            <!--                     </content>-->
                             <content>
                                 <VBox fx:id="entriesList" />
                             </content>
@@ -62,7 +58,23 @@
 
                 <Tab onSelectionChanged="#loadCalendar" text="Calender">
                     <content>
-                        <VBox fx:id="calendarVBox" prefHeight="200.0" prefWidth="100.0"/>
+                        <VBox fx:id="mainVBox" prefHeight="100.0" prefWidth="100.0">
+                            <children>
+                                <SplitPane fx:id="splitPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="500.0" prefWidth="160.0">
+                                    <items>
+                                        <VBox fx:id="calendarVBox" prefHeight="200.0" prefWidth="100.0" />
+                                        <VBox fx:id="externalVBox" prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0">
+                                                    <content>
+                                                        <VBox fx:id="internalVBox" prefHeight="200.0" prefWidth="100.0" />
+                                                    </content>
+                                                </ScrollPane>
+                                            </children></VBox>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </VBox>
                     </content>
                 </Tab>
 

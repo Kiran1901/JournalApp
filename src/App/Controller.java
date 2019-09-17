@@ -23,6 +23,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -30,11 +31,15 @@ import java.util.*;
 public class Controller {
 
     public static ObservableList<Node> entries;
+    public static ObservableList<Node> datewiseEntry;
+    public static LocalDate date;
 
     @FXML
     Pane calendarPane;
     @FXML
     VBox calendarVBox;
+    @FXML
+    VBox internalVBox;
     int calendarCount;
 
     @FXML
@@ -43,6 +48,7 @@ public class Controller {
     @FXML
     public void initialize(){
         entries = FXCollections.observableArrayList();
+        datewiseEntry = FXCollections.observableArrayList();
         try {
 
             ConnectionClass connectionClass = new ConnectionClass();
@@ -64,6 +70,7 @@ public class Controller {
             e.printStackTrace();
             System.out.println("SQLException");
         }
+
 
     }
 
@@ -93,12 +100,15 @@ public class Controller {
 
 
     public void loadCalendar(Event event) {
+        datewiseEntry.clear();
         calendarCount++;
         if(calendarCount==1) {
             System.out.println("onClick:Pane@Calendar");
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
+        Bindings.bindContentBidirectional(internalVBox.getChildren(),datewiseEntry);
+
     }
 
 }
