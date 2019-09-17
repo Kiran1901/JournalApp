@@ -101,7 +101,4 @@ public class Controller {
         }
     }
 
-//    public void closeCalendar(Event event) {
-//        System.out.println("Calendar Closed");
-//    }
 }
