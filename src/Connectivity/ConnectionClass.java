@@ -10,7 +10,7 @@ public class ConnectionClass {
     public Connection getConnection(){
         String dbName = "journal_app";
         String userName = "root";
-        String password = "root";
+        String password = "";
         String driverName = "com.mysql.jdbc.Driver";
         try{
             Class.forName(driverName);
