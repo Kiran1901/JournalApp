@@ -8,7 +8,6 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
@@ -26,8 +25,8 @@ import java.util.*;
 
 public class Controller {
 
-    public static ObservableMap<String,Node> entriesMap;
-    public static ObservableList<Node> datewiseEntry;
+    public static ObservableMap<String,VBox> entriesMap;
+    public static ObservableList<VBox> datewiseEntry;
     public static LocalDate date;
 
     @FXML
@@ -58,15 +57,14 @@ public class Controller {
             conn.close();
 
             entriesList.getChildren().addAll(entriesMap.values());
-            entriesMap.addListener((MapChangeListener<String,Node>) CHANGE -> {
+            entriesMap.addListener((MapChangeListener<String,VBox >) CHANGE -> {
                 if (CHANGE.wasAdded()) {
                     entriesList.getChildren().add(0,CHANGE.getValueAdded());
                 }
                 else if(CHANGE.wasRemoved()) {
-                    Platform.runLater(() -> entriesList.getChildren().remove(CHANGE.getValueRemoved()));
+                    entriesList.getChildren().remove(CHANGE.getValueRemoved());
                 }
             });
-
             System.out.println(entriesList.getChildren());
 
         }catch (SQLException e){

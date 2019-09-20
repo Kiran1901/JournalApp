@@ -8,7 +8,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -20,10 +19,9 @@ import java.io.IOException;
 import java.util.Optional;
 
 
-public class FeedBox extends Region{
+public class FeedBox extends VBox{
 
     private String id;
-    private VBox feedbox;
     private Text dateField,timeField;
     private TextArea textField;
     private Button editEntry;
@@ -49,15 +47,16 @@ public class FeedBox extends Region{
         header.setPadding(new Insets(5,15,5,10));
         header.fillHeightProperty();
         header.setAlignment(Pos.TOP_RIGHT);
+//        textField.setPrefHeight(100);
 
-        feedbox = new VBox(10,header,textField);
-        feedbox.setPadding(new Insets(10,10,10,10));
-        feedbox.setPrefSize(700,150);
-        feedbox.addEventHandler(MouseEvent.MOUSE_ENTERED,e->setEditEntryVisibility(true));
-        feedbox.addEventHandler(MouseEvent.MOUSE_EXITED,e->setEditEntryVisibility(false));
-        feedbox.setId(id);
+//        feedbox = new VBox(10,header,textField);
+        this.setPadding(new Insets(10,10,10,10));
+        this.setPrefSize(700,150);
+        this.addEventHandler(MouseEvent.MOUSE_ENTERED,e->setEditEntryVisibility(true));
+        this.addEventHandler(MouseEvent.MOUSE_EXITED,e->setEditEntryVisibility(false));
+        this.setId(id);
 
-        getChildren().add(feedbox);
+        getChildren().addAll(header,textField);
     }
 
     public String getDateField() {
@@ -73,7 +72,7 @@ public class FeedBox extends Region{
     }
 
     public String get_id(){
-        return id;
+        return this.id;
     }
 
     public String toString(){
@@ -87,7 +86,7 @@ public class FeedBox extends Region{
     public void OnClick_editEntry(){
         try {
             Dialog<ButtonType> editEntryWindow = new Dialog<>();
-            editEntryWindow.initOwner(feedbox.getScene().getWindow());
+            editEntryWindow.initOwner(this.getScene().getWindow());
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/FXMLFiles/EditEntryDialog.fxml"));
             editEntryWindow.getDialogPane().getButtonTypes().add(ButtonType.OK);
@@ -106,9 +105,19 @@ public class FeedBox extends Region{
         }
     }
 
-    public void setTextField(String text){
-        textField.setText(text);
+    public void set_Id(String id) {
+        this.id = id;
     }
 
+    public void setDateField(String date) {
+        this.dateField.setText(date);
+    }
 
+    public void setTimeField(String time) {
+        this.timeField.setText(time);
+    }
+
+    public void setTextField(String text) {
+        this.textField.setText(text);
+    }
 }
