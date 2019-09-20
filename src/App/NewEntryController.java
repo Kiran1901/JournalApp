@@ -1,7 +1,6 @@
 package App;
 import Connectivity.ConnectionClass;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -60,8 +59,8 @@ public class NewEntryController {
             ResultSet res = statement.executeQuery("SELECT ID FROM timeline WHERE DATE='"+DATE+"' AND TIME='"+TIME+"' AND USER='"+USER_NAME+"';");
             res.next();
             ID = res.getString("ID");
-            Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
-            System.out.println(Controller.entries);
+            Controller.entriesMap.put(ID,new FeedBox(ID,DATE,TIME,TEXT_DATA));
+            System.out.println(Controller.entriesMap);
             statement.close();
             conn.close();
         }catch (SQLException e){

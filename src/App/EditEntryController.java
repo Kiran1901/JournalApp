@@ -12,9 +12,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 
 public class EditEntryController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -77,12 +76,11 @@ public class EditEntryController {
             System.out.println("MySQL db conn error");
             e.printStackTrace();
         }
-        int index=Controller.entries.indexOf(feedBox);
-        Controller.entries.add(index,new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
-        Controller.entries.remove(index+1);
+        //Controller.entriesMap.remove(id);
+        Controller.entriesMap.replace(id,new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
         System.out.println("onClick:Button@OKButton");
         System.out.println("EditEntry Dialog closed with OK button");
-        System.out.println(Controller.entries);
+        System.out.println(Controller.entriesMap);
     }
 
 }

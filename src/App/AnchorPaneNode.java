@@ -38,7 +38,7 @@ public class AnchorPaneNode extends AnchorPane {
                 ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' and date='"+ date + "' ORDER BY ID DESC;" );
                 Controller.datewiseEntry.clear();
                 while (list.next()){
-                    Controller.datewiseEntry.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                    Controller.datewiseEntry.add(Controller.entriesMap.get(list.getString("ID")));
                 }
                 statement.close();
                 conn.close();

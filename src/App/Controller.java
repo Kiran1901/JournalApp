@@ -1,13 +1,9 @@
 package App;
 
 import Connectivity.ConnectionClass;
-import javafx.beans.binding.Binding;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +26,7 @@ import java.util.*;
 
 public class Controller {
 
-    public static ObservableList<Node> entries;
+    public static ObservableMap<String,Node> entriesMap;
     public static ObservableList<Node> datewiseEntry;
     public static LocalDate date;
 
@@ -47,7 +43,7 @@ public class Controller {
 
     @FXML
     public void initialize(){
-        entries = FXCollections.observableArrayList();
+        entriesMap = FXCollections.observableHashMap();
         datewiseEntry = FXCollections.observableArrayList();
         try {
 
@@ -56,13 +52,20 @@ public class Controller {
             Statement statement = conn.createStatement();
             ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
             while (list.next()){
-                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                entriesMap.put(list.getString("ID"),new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
             statement.close();
             conn.close();
 
-            entriesList.getChildren().addAll(entries);
-            Bindings.bindContentBidirectional(entriesList.getChildren(),entries);
+            entriesList.getChildren().addAll(entriesMap.values());
+            entriesMap.addListener((MapChangeListener<String,Node>) CHANGE -> {
+                if (CHANGE.wasAdded()) {
+                    entriesList.getChildren().add(0,CHANGE.getValueAdded());
+                }
+                else if(CHANGE.wasRemoved()) {
+                    Platform.runLater(() -> entriesList.getChildren().remove(CHANGE.getValueRemoved()));
+                }
+            });
 
             System.out.println(entriesList.getChildren());
 
