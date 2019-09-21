@@ -25,8 +25,8 @@ import java.util.*;
 
 public class Controller {
 
-    public static ObservableMap<String,VBox> entriesMap;
-    public static ObservableList<VBox> datewiseEntry;
+    public static ObservableList<FeedBox> entries;
+    public static ObservableList<FeedBox> datewiseEntry;
     public static LocalDate date;
 
     @FXML
@@ -42,7 +42,7 @@ public class Controller {
 
     @FXML
     public void initialize(){
-        entriesMap = FXCollections.observableHashMap();
+        entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
         try {
 
@@ -51,21 +51,29 @@ public class Controller {
             Statement statement = conn.createStatement();
             ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
             while (list.next()){
-                entriesMap.put(list.getString("ID"),new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
             }
             statement.close();
             conn.close();
 
-            entriesList.getChildren().addAll(entriesMap.values());
-            entriesMap.addListener((MapChangeListener<String,VBox >) CHANGE -> {
-                if (CHANGE.wasAdded()) {
-                    entriesList.getChildren().add(0,CHANGE.getValueAdded());
-                }
-                else if(CHANGE.wasRemoved()) {
-                    entriesList.getChildren().remove(CHANGE.getValueRemoved());
+
+            entries.addListener(new ListChangeListener<FeedBox>(){
+                @Override
+                public void onChanged(Change<?extends FeedBox> c){
+                    while (c.next()){
+                        if(c.wasUpdated()){
+                            entriesList.getChildren().clear();
+                            entriesList.getChildren().addAll(entries);
+                        }else if(c.wasRemoved()){
+                            entriesList.getChildren().remove(c.getRemoved());
+                        }else if(c.wasAdded()){
+                            entriesList.getChildren().add(c.getAddedSubList().get(0));
+                        }
+                    }
                 }
             });
-            System.out.println(entriesList.getChildren());
+            entriesList.getChildren().addAll(entries);
+            System.out.println("entriesList:"+entriesList.getChildren());
 
         }catch (SQLException e){
             e.printStackTrace();

@@ -59,8 +59,10 @@ public class NewEntryController {
             ResultSet res = statement.executeQuery("SELECT ID FROM timeline WHERE DATE='"+DATE+"' AND TIME='"+TIME+"' AND USER='"+USER_NAME+"';");
             res.next();
             ID = res.getString("ID");
-            Controller.entriesMap.put(ID,new FeedBox(ID,DATE,TIME,TEXT_DATA));
-            System.out.println(Controller.entriesMap);
+//            Controller.entriesMap.put(ID,new FeedBox(ID,DATE,TIME,TEXT_DATA));
+            Controller.entries.add(new FeedBox(ID,DATE,TIME,TEXT_DATA));
+
+            System.out.println(Controller.entries);
             statement.close();
             conn.close();
         }catch (SQLException e){
