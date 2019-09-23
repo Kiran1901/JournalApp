@@ -47,9 +47,7 @@ public class FeedBox extends VBox{
         header.setPadding(new Insets(5,15,5,10));
         header.fillHeightProperty();
         header.setAlignment(Pos.TOP_RIGHT);
-//        textField.setPrefHeight(100);
 
-//        feedbox = new VBox(10,header,textField);
         this.setPadding(new Insets(10,10,10,10));
         this.setPrefSize(700,150);
         this.addEventHandler(MouseEvent.MOUSE_ENTERED,e->setEditEntryVisibility(true));

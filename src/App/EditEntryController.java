@@ -80,9 +80,17 @@ public class EditEntryController {
 //        Controller.entriesMap.put(id,new FeedBox(id,dateText.getText(),timeText.getText(),TEXT_DATA));
         //((FeedBox) Controller.entriesMap.get(id)).setTextField(TEXT_DATA);
 
-        int index=Controller.entries.indexOf(feedBox);
-        Controller.entries.add(index,new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
-        Controller.entries.remove(index+1);
+        for (FeedBox boxes:Controller.entries){
+            if(boxes.get_id().equals(id)){
+                boxes.setTextField(TEXT_DATA);break;
+            }
+        }
+        if(Controller.datewiseEntry.contains(feedBox)){
+            Controller.datewiseEntry.get(Controller.datewiseEntry.indexOf(feedBox)).setTextField(TEXT_DATA);
+        }
+//        int index=Controller.entries.indexOf(feedBox);
+//        Controller.entries.get(index).setTextField(TEXT_DATA);
+//        Controller.entries.remove(index+1);
 
         System.out.println("onClick:Button@OKButton");
         System.out.println("EditEntry Dialog closed with OK button");

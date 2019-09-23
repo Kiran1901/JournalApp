@@ -1,6 +1,7 @@
 package App;
 
 import Connectivity.ConnectionClass;
+import com.mysql.jdbc.exceptions.MySQLQueryInterruptedException;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.*;
@@ -26,6 +27,7 @@ import java.util.*;
 public class Controller {
 
     public static ObservableList<FeedBox> entries;
+    public static ObservableMap<String,FeedBox> entriesMap;
     public static ObservableList<FeedBox> datewiseEntry;
     public static LocalDate date;
 
@@ -56,22 +58,30 @@ public class Controller {
             statement.close();
             conn.close();
 
+            /*entriesMap.addListener((MapChangeListener.Change<? extends String,?extends FeedBox> changes)->{
+                if (changes.wasAdded()){
+                    System.out.println("Added");
+                }else if (changes.wasRemoved()){
+                    System.out.println("Removed");
+                }
+            });
+*/
 
-            entries.addListener(new ListChangeListener<FeedBox>(){
-                @Override
-                public void onChanged(Change<?extends FeedBox> c){
-                    while (c.next()){
-                        if(c.wasUpdated()){
-                            entriesList.getChildren().clear();
-                            entriesList.getChildren().addAll(entries);
-                        }else if(c.wasRemoved()){
-                            entriesList.getChildren().remove(c.getRemoved());
-                        }else if(c.wasAdded()){
-                            entriesList.getChildren().add(c.getAddedSubList().get(0));
-                        }
+            entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+                while (change.next()) {
+                    if (change.wasAdded()) {
+                        entriesList.getChildren().add(change.getAddedSubList().get(0));
+                        System.out.println("Added");
+                    }else if (change.wasRemoved()) {
+                        entriesList.getChildren().remove(change.getRemoved().get(0));
+                        System.out.println("Removed");
+                    }else if(change.wasUpdated()){
+                        entriesList.getChildren().set(change.getFrom(),change.getList().get(change.getFrom()));
+                        System.out.println("Updated");
                     }
                 }
             });
+
             entriesList.getChildren().addAll(entries);
             System.out.println("entriesList:"+entriesList.getChildren());
 
