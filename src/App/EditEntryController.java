@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
@@ -38,12 +39,13 @@ public class EditEntryController {
     public void initialize(){
 
         TimelineDao dao = new TimelineDao();
-        List<TimelineBean> list = dao.selectEntryByNameId(Integer.parseInt(id));
-            list.get(0);
-            timeText.setText(list.get(0).getTime());
-            dateText.setText(list.get(0).getDate());
-            textArea.setText(list.get(0).getText());
-            oldText=list.get(0).getText();
+        TimelineBean timelineBean = new TimelineBean();
+                timelineBean = dao.selectEntryByNameId(Integer.parseInt(id));
+//            timelineBean.get(0);
+            timeText.setText(timelineBean.getTime());
+            dateText.setText(timelineBean.getDate());
+            textArea.setText(timelineBean.getText());
+            oldText=timelineBean.getText();
             textArea.addEventHandler(KeyEvent.KEY_RELEASED, e->OnKeyReleaseCheckText());
 
     }
