@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 
 public class ConnectionClass {
 
-    public Connection connection;
+    public static Connection connection;
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
         String dbName = "journal_app";
         String userName = "root";
-        String password = "root";
+        String password = "";
         String driverName = "com.mysql.jdbc.Driver";
         try{
             Class.forName(driverName);

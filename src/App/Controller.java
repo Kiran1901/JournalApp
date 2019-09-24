@@ -1,10 +1,12 @@
 package App;
 
-import Connectivity.ConnectionClass;
-import com.mysql.jdbc.exceptions.MySQLQueryInterruptedException;
-import javafx.application.Platform;
+import Bean.TimelineBean;
+import Connectivity.TimelineDao;
 import javafx.beans.binding.Bindings;
-import javafx.collections.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
@@ -43,53 +41,36 @@ public class Controller {
     VBox entriesList;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
-        try {
 
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection conn = connectionClass.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
-            while (list.next()){
-                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
-            }
-            statement.close();
-            conn.close();
+//        Connection conn = ConnectionClass.getConnection();
+//            Statement statement = conn.createStatement();
+        TimelineDao dao = new TimelineDao();
+        List<TimelineBean> list = dao.selectEntryByName();
+        for (TimelineBean x : list) {
+//                int i=x.getId();
+//                Integer.toString(i);
+            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
 
-            /*entriesMap.addListener((MapChangeListener.Change<? extends String,?extends FeedBox> changes)->{
-                if (changes.wasAdded()){
-                    System.out.println("Added");
-                }else if (changes.wasRemoved()){
-                    System.out.println("Removed");
-                }
-            });
-*/
-
-            entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
-                while (change.next()) {
-                    if (change.wasAdded()) {
-                        entriesList.getChildren().add(change.getAddedSubList().get(0));
-                        System.out.println("Added");
-                    }else if (change.wasRemoved()) {
-                        entriesList.getChildren().remove(change.getRemoved().get(0));
-                        System.out.println("Removed");
-                    }else if(change.wasUpdated()){
-                        entriesList.getChildren().set(change.getFrom(),change.getList().get(change.getFrom()));
-                        System.out.println("Updated");
-                    }
-                }
-            });
-
-            entriesList.getChildren().addAll(entries);
-            System.out.println("entriesList:"+entriesList.getChildren());
-
-        }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException");
         }
-
+        entriesList.getChildren().addAll(entries);
+        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
+                    System.out.println("Added");
+                } else if (change.wasRemoved()) {
+                    entriesList.getChildren().remove(change.getRemoved().get(0));
+                    System.out.println("Removed");
+                } else if (change.wasUpdated()) {
+                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("Updated");
+                }
+            }
+        });
+        System.out.println("entriesList:" + entriesList.getChildren());
 
     }
 
