@@ -65,8 +65,9 @@ public class TimelineDao {
         return list;
     }
 
-    public List<TimelineBean> selectEntryByNameId(int id){
-        List<TimelineBean> list = new ArrayList<>();
+    public TimelineBean selectEntryByNameId(int id){
+//        List<TimelineBean> list = new ArrayList<>();
+        TimelineBean bean = new TimelineBean();
         try {
             con = ConnectionClass.getConnection();
             PreparedStatement statement = con.prepareStatement("SELECT * FROM timeline WHERE user=? AND id=? ORDER BY ID DESC");
@@ -76,13 +77,13 @@ public class TimelineDao {
 //            List<TimelineBean> list = null;
 
             while (rs.next()) {
-                TimelineBean bean = new TimelineBean();
+
                 bean.setId(rs.getInt("ID"));
                 bean.setDate(rs.getDate("date"));
                 bean.setTime(rs.getTime("time"));
                 bean.setUser(rs.getString("user"));
                 bean.setText(rs.getString("text"));
-                list.add(bean);
+//                list.add(bean);
             }
             statement.close();
             con.close();
@@ -90,7 +91,7 @@ public class TimelineDao {
         {
             System.out.println("Sql Exception");
         }
-        return list;
+        return bean;
     }
 
     public void updateEntryByIdUser(TimelineBean timelineBean)
@@ -144,10 +145,10 @@ public class TimelineDao {
         try{
             con = ConnectionClass.getConnection();
             PreparedStatement statement = con.prepareStatement("SELECT ID FROM timeline WHERE DATE=? AND TIME=? AND USER=?");
-            statement.setString(4, timelineBean.getUser());
-            statement.setString(1,tableName);
-            statement.setDate(2, Date.valueOf(timelineBean.getDate()));
-            statement.setTime(3,Time.valueOf(timelineBean.getTime()));
+            statement.setString(3, timelineBean.getUser());
+//            statement.setString(1,tableName);
+            statement.setDate(1, Date.valueOf(timelineBean.getDate()));
+            statement.setTime(2,Time.valueOf(timelineBean.getTime()));
             statement.executeQuery();
             ResultSet rs = statement.executeQuery();
             rs.next();
