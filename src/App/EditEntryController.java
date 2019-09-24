@@ -14,10 +14,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Collections;
 
 public class EditEntryController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -89,11 +88,39 @@ public class EditEntryController {
 //            e.printStackTrace();
 //        }
 //        int index=Controller.entries.indexOf(feedBox);
-        Controller.entries.add(new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
-        Controller.entries.remove(id+1);
+        // Controller.entries.add(new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
+        // Controller.entries.remove(id+1);
+        // try {
+        //     ConnectionClass connectionClass = new ConnectionClass();
+        //     Connection conn = connectionClass.getConnection();
+        //     Statement statement = conn.createStatement();
+        //     statement.execute("UPDATE timeline SET text=" + "'" + TEXT_DATA + "'" + " WHERE ID=" + id + " AND user=" + "'"+USER_NAME + "';");
+        //     statement.close();
+        //     conn.close();
+        // }catch (SQLException e){
+        //     System.out.println("MySQL db conn error");
+        //     e.printStackTrace();
+        // }
+//        Controller.entriesMap.remove(id);
+//        Controller.entriesMap.put(id,new FeedBox(id,dateText.getText(),timeText.getText(),TEXT_DATA));
+        //((FeedBox) Controller.entriesMap.get(id)).setTextField(TEXT_DATA);
+
+        for (FeedBox boxes:Controller.entries){
+            if(boxes.get_id().equals(id)){
+                boxes.setTextField(TEXT_DATA);break;
+            }
+        }
+        if(Controller.datewiseEntry.contains(feedBox)){
+            Controller.datewiseEntry.get(Controller.datewiseEntry.indexOf(feedBox)).setTextField(TEXT_DATA);
+        }
+//        int index=Controller.entries.indexOf(feedBox);
+//        Controller.entries.get(index).setTextField(TEXT_DATA);
+//        Controller.entries.remove(index+1);
+
         System.out.println("onClick:Button@OKButton");
         System.out.println("EditEntry Dialog closed with OK button");
-        System.out.println(Controller.entries);
+        System.out.println("list:"+ Controller.entries);
+        System.out.println("datewise:" + Controller.datewiseEntry);
     }
 
 }
