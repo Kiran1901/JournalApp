@@ -1,6 +1,8 @@
 package App;
 
+import Bean.TimelineBean;
 import Connectivity.ConnectionClass;
+import Connectivity.TimelineDao;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Create an anchor pane that can store additional data.
@@ -30,22 +33,28 @@ public class AnchorPaneNode extends AnchorPane {
         this.setOnMouseClicked(e -> {
             System.out.println("This pane's date is: " + date);
             Controller.date = date;
-            try {
-
-                ConnectionClass connectionClass = new ConnectionClass();
-                Connection conn = connectionClass.getConnection();
-                Statement statement = conn.createStatement();
-                ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' and date='"+ date + "' ORDER BY ID DESC;" );
+//                ConnectionClass connectionClass = new ConnectionClass();
+//                Connection conn = connectionClass.getConnection();
+//                Statement statement = conn.createStatement();
+//                ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' and date='"+ date + "' ORDER BY ID DESC;" );
+                TimelineDao dao = new TimelineDao();
+                List<TimelineBean> list = dao.selectEntryByNameDate(date);
                 Controller.datewiseEntry.clear();
-                while (list.next()){
-                    Controller.datewiseEntry.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+                for(TimelineBean x:list) {
+//                int i=x.getId();
+//                Integer.toString(i);
+                    Controller.datewiseEntry.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
                 }
-                statement.close();
-                conn.close();
-            }catch (SQLException ex){
-                ex.printStackTrace();
-                System.out.println("SQLException");
-            }
+//                Controller.datewiseEntry.clear();
+//                while (list.next()){
+//                    Controller.datewiseEntry.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+//                }
+//                statement.close();
+//                conn.close();
+//            }catch (SQLException ex){
+//                ex.printStackTrace();
+//                System.out.println("SQLException");
+//            }
         });
     }
 

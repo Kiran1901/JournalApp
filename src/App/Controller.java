@@ -1,6 +1,8 @@
 package App;
 
+import Bean.TimelineBean;
 import Connectivity.ConnectionClass;
+import Connectivity.TimelineDao;
 import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -8,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +33,10 @@ import java.util.*;
 
 public class Controller {
 
-    public static ObservableList<Node> entries;
-    public static ObservableList<Node> datewiseEntry;
+//    public static ObservableList<Node> entries;
+//    public static ObservableList<Node> datewiseEntry;
+        public static ObservableList<Node> entries;
+        public static ObservableList<Node> datewiseEntry;
     public static LocalDate date;
 
     @FXML
@@ -46,33 +51,51 @@ public class Controller {
     VBox entriesList;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
-        try {
 
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection conn = connectionClass.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' ORDER BY ID DESC;" );
-            while (list.next()){
-                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
-            }
-            statement.close();
-            conn.close();
+//        datewiseEntry.addListener(new ListChangeListener<Node>() {
+//            @Override
+//            public void onChanged(Change<? extends Node> c) {
+//                if (c.next()) {
+//
+//                }
+//            }
+//        });
 
-            entriesList.getChildren().addAll(entries);
-            Bindings.bindContentBidirectional(entriesList.getChildren(),entries);
-
-            System.out.println(entriesList.getChildren());
-
-        }catch (SQLException e){
-            e.printStackTrace();
-            System.out.println("SQLException");
+//            ConnectionClass connectionClass = new ConnectionClass();
+        Connection conn = ConnectionClass.getConnection();
+//            Statement statement = conn.createStatement();
+        TimelineDao dao = new TimelineDao();
+        List<TimelineBean> list = dao.selectEntryByName();
+        for (TimelineBean x : list) {
+//                int i=x.getId();
+//                Integer.toString(i);
+            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
         }
+        entriesList.getChildren().addAll(entries);
+        Bindings.bindContentBidirectional(entriesList.getChildren(), entries);
+        System.out.println(entriesList.getChildren());
 
+//            while (list.next()){
+//                entries.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
+//            }
+//            statement.close();
+//            conn.close();
+//
+//            entriesList.getChildren().addAll(entries);
+//            Bindings.bindContentBidirectional(entriesList.getChildren(), entries);
+//
+//            System.out.println(entriesList.getChildren());
+
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//            System.out.println("SQLException");
+//        }
 
     }
+
 
     @FXML
     public void OnClick_newEntryButton(){
@@ -107,8 +130,8 @@ public class Controller {
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
-        Bindings.bindContentBidirectional(internalVBox.getChildren(),datewiseEntry);
-
+        Bindings.bindContentBidirectional(internalVBox.getChildren(),(ObservableList<Node>) datewiseEntry);
+//        Bindings.bindContentBidirectional();
     }
 
 }
