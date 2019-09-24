@@ -1,18 +1,14 @@
 package App;
 
 import Connectivity.ConnectionClass;
-import javafx.beans.binding.Binding;
+import com.mysql.jdbc.exceptions.MySQLQueryInterruptedException;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
@@ -30,8 +26,9 @@ import java.util.*;
 
 public class Controller {
 
-    public static ObservableList<Node> entries;
-    public static ObservableList<Node> datewiseEntry;
+    public static ObservableList<FeedBox> entries;
+    public static ObservableMap<String,FeedBox> entriesMap;
+    public static ObservableList<FeedBox> datewiseEntry;
     public static LocalDate date;
 
     @FXML
@@ -61,10 +58,32 @@ public class Controller {
             statement.close();
             conn.close();
 
-            entriesList.getChildren().addAll(entries);
-            Bindings.bindContentBidirectional(entriesList.getChildren(),entries);
+            /*entriesMap.addListener((MapChangeListener.Change<? extends String,?extends FeedBox> changes)->{
+                if (changes.wasAdded()){
+                    System.out.println("Added");
+                }else if (changes.wasRemoved()){
+                    System.out.println("Removed");
+                }
+            });
+*/
 
-            System.out.println(entriesList.getChildren());
+            entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+                while (change.next()) {
+                    if (change.wasAdded()) {
+                        entriesList.getChildren().add(change.getAddedSubList().get(0));
+                        System.out.println("Added");
+                    }else if (change.wasRemoved()) {
+                        entriesList.getChildren().remove(change.getRemoved().get(0));
+                        System.out.println("Removed");
+                    }else if(change.wasUpdated()){
+                        entriesList.getChildren().set(change.getFrom(),change.getList().get(change.getFrom()));
+                        System.out.println("Updated");
+                    }
+                }
+            });
+
+            entriesList.getChildren().addAll(entries);
+            System.out.println("entriesList:"+entriesList.getChildren());
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -107,30 +126,8 @@ public class Controller {
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
-        Bindings.bindContentBidirectional(internalVBox.getChildren(),datewiseEntry);
+        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
 
     }
-
-   /* public void showEntry()
-    {
-//        System.out.println("Date is "+date);
-        try {
-            System.out.println("Datednkwqjdjkkqwjd is"+date);
-            ConnectionClass connectionClass = new ConnectionClass();
-            Connection conn = connectionClass.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE date='"+date+"';");
-            while (list.next()){
-                System.out.println("text "+list.getString("text"));
-                internalVBox.getChildren().add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
-            }
-            statement.close();
-            conn.close();
-        }catch (SQLException s){
-            s.printStackTrace();
-            System.out.println("SQLException");
-        }
-
-    }*/
 
 }
