@@ -60,24 +60,8 @@ public class NewEntryController {
         TimelineDao dao = new TimelineDao();
         dao.insertEntry(timelineBean,TABLE_NAME);
         ID = Integer.toString(dao.getIdFromAll(timelineBean,TABLE_NAME));
-        Controller.entries.add(new FeedBox(ID,DATE,TIME,TEXT_DATA));
+        Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
         System.out.println(Controller.entries);
-//        try {
-//            ConnectionClass connectionClass = new ConnectionClass();
-//            Connection conn = connectionClass.getConnection();
-//            Statement statement = conn.createStatement();
-//            statement.execute("INSERT INTO "+ TABLE_NAME + " (user,date,time,text) VALUES('" + USER_NAME + "','" + DATE + "','"+ TIME + "','" + TEXT_DATA + "')" );
-//            ResultSet res = statement.executeQuery("SELECT ID FROM timeline WHERE DATE='"+DATE+"' AND TIME='"+TIME+"' AND USER='"+USER_NAME+"';");
-//            res.next();
-//            ID = res.getString("ID");
-//            Controller.entries.add(new FeedBox(ID,DATE,TIME,TEXT_DATA));
-//            System.out.println(Controller.entries);
-//            statement.close();
-//            conn.close();
-//        }catch (SQLException e){
-//            System.out.println("MySQL db conn error");
-//            e.printStackTrace();
-//        }
         System.out.println("NewEntry Window closed with OK button");
 
     }

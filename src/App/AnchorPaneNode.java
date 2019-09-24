@@ -1,7 +1,6 @@
 package App;
 
 import Bean.TimelineBean;
-import Connectivity.ConnectionClass;
 import Connectivity.TimelineDao;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Node;
@@ -26,28 +25,12 @@ public class AnchorPaneNode extends AnchorPane {
         this.setOnMouseClicked(e -> {
             System.out.println("This pane's date is: " + date);
             Controller.date = date;
-//                ConnectionClass connectionClass = new ConnectionClass();
-//                Connection conn = connectionClass.getConnection();
-//                Statement statement = conn.createStatement();
-//                ResultSet list = statement.executeQuery("SELECT * FROM timeline WHERE user='Kiran' and date='"+ date + "' ORDER BY ID DESC;" );
                 TimelineDao dao = new TimelineDao();
                 List<TimelineBean> list = dao.selectEntryByNameDate(date);
                 Controller.datewiseEntry.clear();
                 for(TimelineBean x:list) {
-//                int i=x.getId();
-//                Integer.toString(i);
                     Controller.datewiseEntry.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
                 }
-//                Controller.datewiseEntry.clear();
-//                while (list.next()){
-//                    Controller.datewiseEntry.add(new FeedBox(list.getString("ID"),list.getString("date"),list.getString("time"),list.getString("text")));
-//                }
-//                statement.close();
-//                conn.close();
-//            }catch (SQLException ex){
-//                ex.printStackTrace();
-//                System.out.println("SQLException");
-//            }
         });
     }
 

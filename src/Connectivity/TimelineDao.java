@@ -143,7 +143,7 @@ public class TimelineDao {
         int id = 0;
         try{
             con = ConnectionClass.getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT ID FROM ? WHERE DATE=? AND TIME=? AND USER=?");
+            PreparedStatement statement = con.prepareStatement("SELECT ID FROM timeline WHERE DATE=? AND TIME=? AND USER=?");
             statement.setString(4, timelineBean.getUser());
             statement.setString(1,tableName);
             statement.setDate(2, Date.valueOf(timelineBean.getDate()));
@@ -152,15 +152,6 @@ public class TimelineDao {
             ResultSet rs = statement.executeQuery();
             rs.next();
             id = rs.getInt("ID");
-//            while (rs.next()) {
-//                TimelineBean bean = new TimelineBean();
-//                bean.setId(rs.getInt("ID"));
-//                bean.setDate(rs.getDate("date"));
-//                bean.setTime(rs.getTime("time"));
-//                bean.setUser(rs.getString("user"));
-//                bean.setText(rs.getString("text"));
-//                list.add(bean);
-//            }
             statement.close();
             con.close();
         }catch(SQLException e) {

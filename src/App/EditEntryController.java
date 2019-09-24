@@ -37,10 +37,6 @@ public class EditEntryController {
 
     public void initialize(){
 
-//        try {
-//            ConnectionClass connectionClass = new ConnectionClass();
-//            Connection conn = connectionClass.getConnection();
-//            Statement statement = conn.createStatement();
         TimelineDao dao = new TimelineDao();
         List<TimelineBean> list = dao.selectEntryByNameId(Integer.parseInt(id));
             list.get(0);
@@ -49,12 +45,6 @@ public class EditEntryController {
             textArea.setText(list.get(0).getText());
             oldText=list.get(0).getText();
             textArea.addEventHandler(KeyEvent.KEY_RELEASED, e->OnKeyReleaseCheckText());
-//            statement.close();
-//            conn.close();
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//            System.out.println("SQLException");
-//        }
 
     }
 
@@ -76,31 +66,7 @@ public class EditEntryController {
         timelineBean.setId(Integer.parseInt(id));
         TimelineDao dao = new TimelineDao();
         dao.updateEntryByIdUser(timelineBean);
-//        try {
-//            ConnectionClass connectionClass = new ConnectionClass();
-//            Connection conn = connectionClass.getConnection();
-//            Statement statement = conn.createStatement();
-//            statement.execute("UPDATE timeline SET text=" + "'" + TEXT_DATA + "'" + " WHERE ID=" + id + " AND user=" + "'"+USER_NAME + "';");
-//            statement.close();
-//            conn.close();
-//        }catch (SQLException e){
-//            System.out.println("MySQL db conn error");
-//            e.printStackTrace();
-//        }
-//        int index=Controller.entries.indexOf(feedBox);
-        // Controller.entries.add(new FeedBox(id,dateText.getText(),timeText.getText(),textArea.getText()));
-        // Controller.entries.remove(id+1);
-        // try {
-        //     ConnectionClass connectionClass = new ConnectionClass();
-        //     Connection conn = connectionClass.getConnection();
-        //     Statement statement = conn.createStatement();
-        //     statement.execute("UPDATE timeline SET text=" + "'" + TEXT_DATA + "'" + " WHERE ID=" + id + " AND user=" + "'"+USER_NAME + "';");
-        //     statement.close();
-        //     conn.close();
-        // }catch (SQLException e){
-        //     System.out.println("MySQL db conn error");
-        //     e.printStackTrace();
-        // }
+
 //        Controller.entriesMap.remove(id);
 //        Controller.entriesMap.put(id,new FeedBox(id,dateText.getText(),timeText.getText(),TEXT_DATA));
         //((FeedBox) Controller.entriesMap.get(id)).setTextField(TEXT_DATA);
