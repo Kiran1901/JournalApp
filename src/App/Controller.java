@@ -11,8 +11,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -35,23 +35,26 @@ public class Controller {
     VBox calendarVBox;
     @FXML
     VBox internalVBox;
-    int calendarCount;
+    @FXML
+    ComboBox typeComboBox;
+
+    private int calendarCount;
 
     @FXML
     VBox entriesList;
 
     @FXML
     public void initialize() {
+        typeComboBox.getItems().addAll("New Journal Entry","New Account Entry");
+        typeComboBox.setPromptText("New Entry");
+        typeComboBox.setOnAction(e-> OnSelectNewEnry());
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
 
-//        Connection conn = ConnectionClass.getConnection();
-//            Statement statement = conn.createStatement();
+
         TimelineDao dao = new TimelineDao();
         List<TimelineBean> list = dao.selectEntryByName();
         for (TimelineBean x : list) {
-//                int i=x.getId();
-//                Integer.toString(i);
             entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
 
         }
@@ -109,6 +112,18 @@ public class Controller {
         }
         Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
 
+    }
+
+    void OnSelectNewEnry(){
+        if(typeComboBox.getSelectionModel().isSelected(0)){
+            System.out.println("1st clicked");
+            OnClick_newEntryButton();
+        }else{
+            if(typeComboBox.getSelectionModel().isSelected(1)) {
+                System.out.println("2nd clicked");
+
+            }
+        }
     }
 
 }
