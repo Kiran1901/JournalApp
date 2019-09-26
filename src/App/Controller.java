@@ -7,12 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -46,7 +46,6 @@ public class Controller {
     @FXML
     public void initialize() {
         typeChoiceBox.getItems().addAll("New Journal Entry","New Account Entry");
-//        typeChoiceBox.
         typeChoiceBox.setOnAction(e-> OnSelectNewEnry());
         typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
         entries = FXCollections.observableArrayList();
@@ -116,17 +115,21 @@ public class Controller {
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
             loader.setController(newEntryController2);
+            Button okButton = ((Button) newEntry2Window.getDialogPane().lookupButton(ButtonType.OK));
+            okButton.addEventFilter(ActionEvent.ACTION, e->{
+                if (!newEntryController2.checkIsEmpty()) {
+                    e.consume();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You forgot something!!!");
+                    alert.showAndWait();
+                }else {
+                    System.out.println("Everything good");
+                }
+            });
             newEntry2Window.getDialogPane().setContent(loader.load());
-
-            Optional<ButtonType> res = newEntry2Window.showAndWait();
-            if(res.isPresent() && res.get()==ButtonType.OK ){
-                System.out.println("?????");
-//                Alert alert=new Alert(Alert.AlertType.WARNING);
-//                alert.show();
-//                System.out.println("Alert");
-            }
-
-
+            newEntry2Window.showAndWait();
         }catch(IOException e){
             e.printStackTrace();
         }
