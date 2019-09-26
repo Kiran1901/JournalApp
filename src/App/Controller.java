@@ -111,14 +111,19 @@ public class Controller {
             loader.setLocation(getClass().getResource("/FXMLFiles/NewEntry2Dialog.fxml"));
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.OK);
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-            NewEntryController newEntryController = new NewEntryController(newEntry2Window);
-            loader.setController(newEntryController);
+            NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
+            loader.setController(newEntryController2);
             newEntry2Window.getDialogPane().setContent(loader.load());
 
             Optional<ButtonType> res = newEntry2Window.showAndWait();
-            if(res.isPresent() && res.get()==ButtonType.OK){
-                newEntryController.OnClick_OKButton();
+            if(res.isPresent() && res.get()==ButtonType.OK ){
+                System.out.println("?????");
+//                Alert alert=new Alert(Alert.AlertType.WARNING);
+//                alert.show();
+//                System.out.println("Alert");
             }
+
+
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -139,12 +144,12 @@ public class Controller {
         if(typeComboBox.getSelectionModel().isSelected(0)){
             System.out.println("1st clicked");
             OnClick_newEntryButton();
-        }else{
-            if(typeComboBox.getSelectionModel().isSelected(1)) {
-                System.out.println("2nd clicked");
-
-            }
         }
+            else if(typeComboBox.getSelectionModel().isSelected(1)) {
+                System.out.println("2nd clicked");
+                onClick_NewEntryButton2();
+            }
+
     }
 
 }
