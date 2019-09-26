@@ -36,7 +36,7 @@ public class Controller {
     @FXML
     VBox internalVBox;
     @FXML
-    ComboBox typeComboBox;
+    ChoiceBox typeChoiceBox;
 
     private int calendarCount;
 
@@ -45,9 +45,10 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        typeComboBox.getItems().addAll("New Journal Entry","New Account Entry");
-        typeComboBox.setPromptText("New Entry");
-        typeComboBox.setOnAction(e-> OnSelectNewEnry());
+        typeChoiceBox.getItems().addAll("New Journal Entry","New Account Entry");
+//        typeChoiceBox.
+        typeChoiceBox.setOnAction(e-> OnSelectNewEnry());
+        typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
 
@@ -101,6 +102,8 @@ public class Controller {
         System.out.println("onClick:Button@newEntryButton");
     }
 
+
+
     public void onClick_NewEntryButton2()
     {
         try
@@ -111,13 +114,13 @@ public class Controller {
             loader.setLocation(getClass().getResource("/FXMLFiles/NewEntry2Dialog.fxml"));
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.OK);
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-            NewEntryController newEntryController = new NewEntryController(newEntry2Window);
-            loader.setController(newEntryController);
+            NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
+            loader.setController(newEntryController2);
             newEntry2Window.getDialogPane().setContent(loader.load());
 
             Optional<ButtonType> res = newEntry2Window.showAndWait();
             if(res.isPresent() && res.get()==ButtonType.OK){
-                newEntryController.OnClick_OKButton();
+//                newEntryController2.OnClick_OKButton();
             }
         }catch(IOException e){
             e.printStackTrace();
@@ -136,13 +139,15 @@ public class Controller {
     }
 
     void OnSelectNewEnry(){
-        if(typeComboBox.getSelectionModel().isSelected(0)){
+        if(typeChoiceBox.getSelectionModel().isSelected(0)){
             System.out.println("1st clicked");
+            typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
             OnClick_newEntryButton();
         }else{
-            if(typeComboBox.getSelectionModel().isSelected(1)) {
+            if(typeChoiceBox.getSelectionModel().isSelected(1)) {
                 System.out.println("2nd clicked");
-
+                typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
+                onClick_NewEntryButton2();
             }
         }
     }
