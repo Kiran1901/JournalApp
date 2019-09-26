@@ -143,18 +143,18 @@ public class Controller {
 
     }
 
-    void OnSelectNewEnry(){
-        if(typeChoiceBox.getSelectionModel().isSelected(0)){
+    void OnSelectNewEnry() {
+        if (typeChoiceBox.getSelectionModel().isSelected(0)) {
             System.out.println("1st clicked");
             typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
             OnClick_newEntryButton();
-        }else{
-            if(typeChoiceBox.getSelectionModel().isSelected(1)) {
+        } else {
+            if (typeChoiceBox.getSelectionModel().isSelected(1)) {
                 System.out.println("2nd clicked");
                 typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
                 onClick_NewEntryButton2();
             }
 
+        }
     }
-
 }
