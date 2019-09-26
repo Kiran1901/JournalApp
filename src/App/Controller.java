@@ -119,9 +119,14 @@ public class Controller {
             newEntry2Window.getDialogPane().setContent(loader.load());
 
             Optional<ButtonType> res = newEntry2Window.showAndWait();
-            if(res.isPresent() && res.get()==ButtonType.OK){
-//                newEntryController2.OnClick_OKButton();
+            if(res.isPresent() && res.get()==ButtonType.OK ){
+                System.out.println("?????");
+//                Alert alert=new Alert(Alert.AlertType.WARNING);
+//                alert.show();
+//                System.out.println("Alert");
             }
+
+
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -149,7 +154,7 @@ public class Controller {
                 typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
                 onClick_NewEntryButton2();
             }
-        }
+
     }
 
 }

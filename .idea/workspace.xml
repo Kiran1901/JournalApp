@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a747582c-65be-44e4-9bd1-6a83dde2a0fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/AccountEntryBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/AccountEntryBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/NewEntryController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/NewEntryController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +61,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
+        <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/Optional.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
               <caret line="113" column="79" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
@@ -91,7 +95,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
+        <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1012">
               <caret line="66" selection-start-line="66" selection-end-line="66" />
@@ -203,6 +207,7 @@
         <option value="$PROJECT_DIR$/src/Connectivity/TimelineDao.java" />
         <option value="$PROJECT_DIR$/src/App/EditEntryController.java" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController.java" />
+        <option value="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml" />
         <option value="$PROJECT_DIR$/src/App/AccountEntryBox.java" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController2.java" />
@@ -212,7 +217,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="950" />
     <option name="y" value="-10" />
     <option name="width" value="980" />
@@ -360,7 +365,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.11930295" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -408,18 +412,6 @@
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="SHOW_OTHER_BRANCHES" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/App/NewEntryController2.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -630,7 +622,7 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
+    <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/Optional.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="113" column="79" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
