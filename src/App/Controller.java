@@ -98,7 +98,28 @@ public class Controller {
         System.out.println("onClick:Button@newEntryButton");
     }
 
+    public void onClick_NewEntryButton2()
+    {
+        try
+        {
+            Dialog<ButtonType> newEntry2Window = new Dialog<>();
+            newEntry2Window.initOwner(entriesList.getScene().getWindow());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntry2Dialog.fxml"));
+            newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            NewEntryController newEntryController = new NewEntryController(newEntry2Window);
+            loader.setController(newEntryController);
+            newEntry2Window.getDialogPane().setContent(loader.load());
 
+            Optional<ButtonType> res = newEntry2Window.showAndWait();
+            if(res.isPresent() && res.get()==ButtonType.OK){
+                newEntryController.OnClick_OKButton();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     public void loadCalendar(Event event) {
         datewiseEntry.clear();
         calendarCount++;
