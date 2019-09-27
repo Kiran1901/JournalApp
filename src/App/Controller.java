@@ -7,12 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -36,7 +36,7 @@ public class Controller {
     @FXML
     VBox internalVBox;
     @FXML
-    ComboBox typeComboBox;
+    ChoiceBox typeChoiceBox;
 
     private int calendarCount;
 
@@ -45,9 +45,9 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        typeComboBox.getItems().addAll("New Journal Entry","New Account Entry");
-        typeComboBox.setPromptText("New Entry");
-        typeComboBox.setOnAction(e-> OnSelectNewEnry());
+        typeChoiceBox.getItems().addAll("New Journal Entry","New Account Entry");
+        typeChoiceBox.setOnAction(e-> OnSelectNewEnry());
+        typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
 
@@ -101,6 +101,8 @@ public class Controller {
         System.out.println("onClick:Button@newEntryButton");
     }
 
+
+
     public void onClick_NewEntryButton2()
     {
         try
@@ -113,17 +115,21 @@ public class Controller {
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
             loader.setController(newEntryController2);
+            Button okButton = ((Button) newEntry2Window.getDialogPane().lookupButton(ButtonType.OK));
+            okButton.addEventFilter(ActionEvent.ACTION, e->{
+                if (!newEntryController2.checkIsEmpty()) {
+                    e.consume();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You forgot something!!!");
+                    alert.showAndWait();
+                }else {
+                    System.out.println("Everything good");
+                }
+            });
             newEntry2Window.getDialogPane().setContent(loader.load());
-
-            Optional<ButtonType> res = newEntry2Window.showAndWait();
-            if(res.isPresent() && res.get()==ButtonType.OK ){
-                System.out.println("?????");
-//                Alert alert=new Alert(Alert.AlertType.WARNING);
-//                alert.show();
-//                System.out.println("Alert");
-            }
-
-
+            newEntry2Window.showAndWait();
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -140,17 +146,18 @@ public class Controller {
 
     }
 
-    void OnSelectNewEnry(){
-        if(typeComboBox.getSelectionModel().isSelected(0)){
-//            typeComboBox.setValue(t);
+    void OnSelectNewEnry() {
+        if (typeChoiceBox.getSelectionModel().isSelected(0)) {
             System.out.println("1st clicked");
+            typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
             OnClick_newEntryButton();
-        }
-            else if(typeComboBox.getSelectionModel().isSelected(1)) {
+        } else {
+            if (typeChoiceBox.getSelectionModel().isSelected(1)) {
                 System.out.println("2nd clicked");
+                typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
                 onClick_NewEntryButton2();
             }
 
+        }
     }
-
 }

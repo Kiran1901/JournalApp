@@ -60,7 +60,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/Optional.java">
+        <entry file="file://$PROJECT_DIR$/src/App/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="704">
               <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
@@ -148,12 +148,13 @@
       <find>Item</find>
       <find>entriesMap</find>
       <find>combo</find>
-      <find>Dial</find>
-      <find>paddin</find>
+      <find>typeComboBox</find>
+      <find>okbutton</find>
     </findStrings>
     <replaceStrings>
       <replace>datewiseEntry</replace>
       <replace>FeedBox</replace>
+      <replace>typeChoiceBox</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -174,17 +175,19 @@
         <option value="$PROJECT_DIR$/src/App/AnchorPaneNode.java" />
         <option value="$PROJECT_DIR$/src/Connectivity/TimelineDao.java" />
         <option value="$PROJECT_DIR$/src/App/EditEntryController.java" />
-        <option value="$PROJECT_DIR$/src/FXMLFiles/Main.fxml" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController.java" />
         <option value="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml" />
-        <option value="$PROJECT_DIR$/src/App/AccountEntryBox.java" />
+        <option value="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" />
+        <option value="$PROJECT_DIR$/src/FXMLFiles/Main.fxml" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController2.java" />
+        <option value="$PROJECT_DIR$/src/App/AccountEntryBox.java" />
         <option value="$PROJECT_DIR$/src/App/Controller.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="y" value="-10" />
     <option name="width" value="980" />
@@ -238,6 +241,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,7 +249,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/mysql-connector-java-5.1.16.jar.zip!/" />
+    <property name="last_opened_file_path" value="E:/Softwares/JAVA libs/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -332,17 +336,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1767473" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" weight="0.32954547" />
-      <window_info id="Designer" order="3" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="UI Designer" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32952926" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.19543509" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -355,7 +352,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" weight="0.32956153" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32952926" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3281471" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="16" weight="0.32956153" />
@@ -508,69 +505,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/List.java">
+    <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/List.java" />
+    <entry file="file://$PROJECT_DIR$/src/Connectivity/TimelineDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="16" />
+        <state relative-caret-position="66">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/AccountBox.java" />
     <entry file="file://$PROJECT_DIR$/src/Connectivity/ConnectionClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="396">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Connectivity/TimelineDao.java">
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="2332">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
+    <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/Optional.java" />
+    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="24" />
+        <state relative-caret-position="374">
+          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="54" column="60" lean-forward="true" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+        <state relative-caret-position="198">
+          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="726">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="class#1480:1993" />
+            <element signature="e#2030#2128#0" />
+            <element signature="class#2184:2701" />
+            <element signature="e#3052#3284#1" />
+            <element signature="e#3291#3427#1" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -581,7 +577,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController.java">
+    <entry file="file://$PROJECT_DIR$/src/Connectivity/ConnectionClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
@@ -695,7 +691,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>mysql-connector-java-5.1.16</last-edited>
+          <last-edited>mysql-connector-java-5.1.48-bin</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

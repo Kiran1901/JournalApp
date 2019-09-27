@@ -95,14 +95,6 @@ public class AccountEntryBox extends HBox {
         this.desc.setPromptText("-Description-");
         this.desc.setEditable(true);
 
-//        this.type.setAlignment(Pos.BASELINE_CENTER);
-
-
-//        this.type.setPadding(new Insets(5,5,5,5));
-//        this.type.setPrefSize(50,30);
-
-
-//        this.type.setEditable(true);
         getChildren().addAll(this.personName,this.amount,this.desc,this.type);
     }
     public AccountEntryBox(int hboxType, String id,String personName,String amount, String desc,String type)

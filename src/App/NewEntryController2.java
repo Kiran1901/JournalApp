@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class NewEntryController2 {
@@ -24,9 +25,8 @@ public class NewEntryController2 {
 
     @FXML
     public Text timeText2, dateText2;
-    //    public TextArea textArea;
     @FXML
-    public VBox bottomVBox2, outerVBox, internalTopVBox, mainVBox2, internalBottomVBox;
+    public VBox internalTopVBox, internalBottomVBox;
     @FXML
     public CheckBox checkBox1, checkBox2;
     @FXML
@@ -34,7 +34,6 @@ public class NewEntryController2 {
 
     public NewEntryController2(Dialog dialog) {
         okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
-//        okButton.setDisable(true);
     }
 
     public void initialize() {
@@ -69,7 +68,6 @@ public class NewEntryController2 {
                 } else {
                     button2.setDisable(true);
                     internalBottomVBox.getChildren().clear();
-
                 }
             }
         });
@@ -80,16 +78,19 @@ public class NewEntryController2 {
     }
 
     public boolean checkIsEmpty() {
-        boolean f=true;
-        System.out.println("size:="+internalTopVBox.getChildren().size());
-        while (internalTopVBox.getChildren().iterator().hasNext()) {
-            AccountEntryBox abox = ((AccountEntryBox) internalTopVBox.getChildren().iterator().next());
-             f = f && abox.checkIsAboxEmpty();
-            System.out.println("!|!");
-            if(f==false) break;
+        boolean flag=true;
+        Iterator iterator1 = internalTopVBox.getChildren().iterator();
+        Iterator iterator2 = internalBottomVBox.getChildren().iterator();
+        while (iterator1.hasNext() && flag) {
+            AccountEntryBox abox = ((AccountEntryBox) iterator1.next());
+             flag = flag && abox.checkIsAboxEmpty();
         }
-        System.out.println("f value : "+f);
-        return f;
+        while (flag && iterator2.hasNext()){
+            AccountEntryBox abox = ((AccountEntryBox) iterator2.next());
+            flag = flag && abox.checkIsAboxEmpty();
+        }
+        System.out.println("f value : "+flag);
+        return flag;
     }
 }
 
