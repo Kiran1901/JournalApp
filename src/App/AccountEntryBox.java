@@ -143,7 +143,7 @@ public class AccountEntryBox extends HBox {
 
 
     public boolean checkIsAboxEmpty(){
-        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && amount.getText().matches("[^-]\\d?"));
+        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && !amount.getText().matches("^-\\d?"));
     }
 
 }

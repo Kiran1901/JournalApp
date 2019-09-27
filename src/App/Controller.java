@@ -128,6 +128,7 @@ public class Controller {
                     alert.showAndWait();
                 }else {
                     System.out.println("Everything good");
+                    newEntryController2.OnClick_OKButton();
 //      method here
                 }
             });

@@ -3,6 +3,7 @@ package App;
 import Bean.AccountEntryBean;
 import Bean.DataConversion;
 import Bean.TimelineBean;
+import Connectivity.AccountEntryDao;
 import Connectivity.TimelineDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -131,12 +132,14 @@ public class NewEntryController2 {
         }
         finalJsonObject.put("count",cnt);
         finalJsonObject.put("data",jsonArray);
+        System.out.println("yo we are in Onclick");
         AccountEntryBean accountEntryBean = new AccountEntryBean();
         accountEntryBean.setDate(DATE);
         accountEntryBean.setTime(TIME);
         accountEntryBean.setJson(finalJsonObject);
         accountEntryBean.setUser(USER_NAME);
-
+        AccountEntryDao accountEntryDao = new AccountEntryDao();
+        accountEntryDao.insertEntry(accountEntryBean);
 
 //        TimelineDao dao = new TimelineDao();
 //        dao.insertEntry(timelineBean,TABLE_NAME);
