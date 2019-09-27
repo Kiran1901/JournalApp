@@ -1,5 +1,10 @@
 package App;
 
+import Bean.AccountEntryBean;
+import Bean.DataConversion;
+import Bean.TimelineBean;
+import Connectivity.AccountEntryDao;
+import Connectivity.TimelineDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -11,7 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -92,6 +101,54 @@ public class NewEntryController2 {
         }
         System.out.println("f value : "+flag);
         return flag;
+    }
+    public void OnClick_OKButton(){
+        String TABLE_NAME="timeline";
+        String USER_NAME="Kiran";
+        String DATE= LocalDate.now().toString();
+        String TIME = formatter.format(LocalTime.now());
+        String ID;
+        Iterator iterator1 = internalTopVBox.getChildren().iterator();
+        Iterator iterator2 = internalBottomVBox.getChildren().iterator();
+        int t_type=0;
+        AccountEntryBox abox=null;
+        String pName;
+        float amt;
+        String desc;
+        String type;
+        int cnt=0;
+        JSONArray jsonArray = new JSONArray();
+        JSONObject finalJsonObject = new JSONObject();
+        while(iterator1.hasNext())
+        {
+             abox = (AccountEntryBox) iterator1.next();
+            pName = abox.getPersonName().getText();
+            amt = Integer.parseInt(abox.getAmount().getText());
+            desc = abox.getDesc().getText();
+            type = abox.getType().getValue();
+            t_type = type.equals("Give")?0:1;
+            DataConversion dataConversion = new DataConversion(pName,amt,desc,0,t_type);
+            cnt++;
+            jsonArray.add(dataConversion.convertToJson());
+        }
+        finalJsonObject.put("count",cnt);
+        finalJsonObject.put("data",jsonArray);
+        System.out.println("yo we are in Onclick");
+        AccountEntryBean accountEntryBean = new AccountEntryBean();
+        accountEntryBean.setDate(DATE);
+        accountEntryBean.setTime(TIME);
+        accountEntryBean.setJson(finalJsonObject);
+        accountEntryBean.setUser(USER_NAME);
+        AccountEntryDao accountEntryDao = new AccountEntryDao();
+        accountEntryDao.insertEntry(accountEntryBean);
+
+//        TimelineDao dao = new TimelineDao();
+//        dao.insertEntry(timelineBean,TABLE_NAME);
+//        ID = Integer.toString(dao.getIdFromAll(timelineBean,TABLE_NAME));
+//        Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
+//        System.out.println(Controller.entries);
+//        System.out.println("NewEntry Window closed with OK button");
+
     }
 }
 
