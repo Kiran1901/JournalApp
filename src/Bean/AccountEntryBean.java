@@ -1,7 +1,6 @@
 package Bean;
 
-import netscape.javascript.JSObject;
-import org.json.simple.JSONObject;
+import org.json.*;
 
 public class AccountEntryBean {
     int id;

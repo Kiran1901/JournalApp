@@ -1,5 +1,6 @@
 package App;
 
+import Bean.DataConversion;
 import Bean.TimelineBean;
 import Connectivity.ConnectionClass;
 import Connectivity.TimelineDao;
@@ -13,12 +14,20 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
@@ -45,7 +54,11 @@ public class Controller {
     @FXML
     VBox entriesList;
     @FXML
+    VBox accountsList;
+    @FXML
     VBox mailListVBox;
+    @FXML
+    Button mailSubmitButton;
 
     @FXML
     public void initialize() {
@@ -149,7 +162,6 @@ public class Controller {
             calendarVBox.getChildren().add(vb);
         }
         Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
-
     }
 
 
@@ -169,6 +181,75 @@ public class Controller {
     }
 
     public void loadMailList(){
-        Connection conn = ConnectionClass.getConnection();
+        mailListVBox.setSpacing(10);
+        mailListVBox.setPadding(new Insets(20,20,20,20));
+        try{
+            Statement statement = ConnectionClass.getConnection().createStatement();
+            ResultSet res = statement.executeQuery("SELECT NAME FROM empty_mail");
+            while (res.next()){
+                mailListVBox.getChildren().add(new HBox(15,new Text(res.getString("name")),new TextField()));
+                System.out.println("something..."+mailListVBox.getChildren());
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        mailSubmitButton.setOnAction(e->{
+            Iterator iterator = mailListVBox.getChildren().iterator();
+            HBox hBox;
+            String name,email;
+            while (iterator.hasNext()){
+                hBox=((HBox) iterator.next());
+                name=((Text) hBox.getChildren().get(0)).getText();
+                email=((TextField) hBox.getChildren().get(1)).getText();
+                if (!email.isEmpty()){
+                    try {
+                        Statement statement=ConnectionClass.getConnection().createStatement();
+                        statement.executeUpdate("INSERT INTO mailing_list (name, email) VALUES ('"+ name + "','" +email+"');");
+                        statement.executeUpdate("DELETE from empty_mail where name='" + name +"';");
+                        iterator.remove();
+                    }catch (SQLException ex){
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    public void loadAccountLogs(){
+        try{
+            Statement statement = ConnectionClass.getConnection().createStatement();
+            ResultSet res1 = statement.executeQuery("SELECT * FROM account_log where user='Kiran';");
+//            ResultSet res2 = statement.executeQuery("SELECT * FROM expenses where user='Kiran'");
+            List<AccountEntryBox> boxes1=new ArrayList<>();
+            List<AccountEntryBox> boxes2=new ArrayList<>();
+            int count;
+            JSONObject json;
+            JSONArray arr;
+            DataConversion dataConversion;
+            AccountEntryBox accountEntryBox;
+            while (res1.next()){
+                try {
+                    json=new JSONObject(res1.getString("data"));
+                    System.out.println("JASON:"+json);
+                    count= json.getInt("count");
+                    arr=json.getJSONArray("data");
+                    int i1=0;
+                    while (i1<count){
+                        dataConversion=new DataConversion(arr.getJSONObject(i1));
+                        accountEntryBox = new AccountEntryBox(dataConversion);
+                        accountEntryBox.disableAllFields();
+                        boxes1.add(accountEntryBox);
+                        i1+=1;
+                    }
+                    accountsList.getChildren().add(new TransactionBox(res1.getString("date"),res1.getString("time"),boxes1,boxes2));
+                    System.out.println(accountsList.getChildren());
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        accountsList.getChildren().addAll();
     }
 }

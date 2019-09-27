@@ -1,5 +1,6 @@
 package App;
 
+import Bean.DataConversion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
@@ -11,6 +12,7 @@ public class AccountEntryBox extends HBox {
     private int hboxType;
     private int id;
     private TextField personName,amount,desc;
+    private ChoiceBox<String> type;
 
     public ChoiceBox<String> getType() {
         return type;
@@ -20,7 +22,6 @@ public class AccountEntryBox extends HBox {
         this.type = type;
     }
 
-    private ChoiceBox<String> type;
     public int get_id() {
         return id;
     }
@@ -54,11 +55,9 @@ public class AccountEntryBox extends HBox {
     }
 
 
-    public AccountEntryBox(int hboxType)
-    {
+    public AccountEntryBox(int hboxType) {
         this.setPadding(new Insets(0,10,0,10));
 
-//        this.ac_id = new String(id);
         this.setSpacing(15);
         this.personName = new TextField();
         this.amount = new TextField();
@@ -69,44 +68,21 @@ public class AccountEntryBox extends HBox {
         if(this.hboxType==0) {
             type.getItems().addAll("Give", "Take");
             this.type.setValue(this.type.getItems().get(0));
-            this.type.setPadding(new Insets(5,5,5,5));
             this.type.setPrefSize(50,30);
         }else{
-//            type.setDisable(true);
             type.setVisible(false);
         }
-
-
-        this.personName.setPadding(new Insets(5,5,5,5));
-        this.personName.setAlignment(Pos.BASELINE_LEFT);
-        this.personName.setPrefSize(150,30);
-        this.personName.setPromptText("-Name-");
-        this.personName.setEditable(true);
-
-//        this.amount.setAlignment(Pos.BASELINE_CENTER);
-        this.amount.setPadding(new Insets(5,5,5,5));
-        this.amount.setPrefSize(100,30);
-        this.amount.setPromptText("-Amount-");
-        this.amount.setEditable(true);
-
-//        this.desc.setAlignment(Pos.BASELINE_CENTER);
-        this.desc.setPadding(new Insets(5,5,5,5));
-        this.desc.setPrefSize(200,30);
-        this.desc.setPromptText("-Description-");
-        this.desc.setEditable(true);
-
-        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
+        init();
     }
 
-    public AccountEntryBox(int hboxType, int id,String personName,String amount, String desc,String type)
-    {
+    public AccountEntryBox(DataConversion dataConversion){
         this.setPadding(new Insets(0,10,0,10));
         this.id = id;
-        this.personName = new TextField(personName);
-        this.amount = new TextField(amount);
-        this.desc = new TextField(type);
+        this.personName = new TextField(dataConversion.getPersonName());
+        this.amount = new TextField((String.valueOf(dataConversion.getAmount())));
+        this.desc = new TextField(dataConversion.getDescription());
 
-        this.hboxType=hboxType;
+        this.hboxType=dataConversion.getType();
 
         if(this.hboxType==0) {
             this.type = new ChoiceBox<>();
@@ -115,30 +91,9 @@ public class AccountEntryBox extends HBox {
             this.type.setDisable(true);
         }
         this.type.setValue(this.type.getItems().get(0));
-
-        this.personName.setPadding(new Insets(5,5,5,5));
-        this.personName.setAlignment(Pos.BASELINE_LEFT);
-        this.personName.setPrefSize(150,30);
-        this.personName.setPromptText("-Name-");
-        this.personName.setEditable(true);
-
-//        this.amount.setAlignment(Pos.BASELINE_CENTER);
-        this.amount.setPadding(new Insets(5,5,5,5));
-        this.amount.setPrefSize(100,30);
-        this.amount.setPromptText("-Amount-");
-        this.amount.setEditable(true);
-
-//        this.desc.setAlignment(Pos.BASELINE_CENTER);
-        this.desc.setPadding(new Insets(5,5,5,5));
-        this.desc.setPrefSize(200,30);
-        this.desc.setPromptText("-Description-");
-        this.desc.setEditable(true);
-
-//        this.type.setAlignment(Pos.BASELINE_CENTER);
-        this.type.setPadding(new Insets(5,5,5,5));
         this.type.setPrefSize(50,30);
-//        this.type.setEditable(true);
-        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
+
+        init();
     }
 
 
@@ -146,4 +101,29 @@ public class AccountEntryBox extends HBox {
         return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && !amount.getText().matches("^-\\d?"));
     }
 
+    public void disableAllFields(){
+        personName.setDisable(true);
+        amount.setDisable(true);
+        desc.setDisable(true);
+        type.setDisable(true);
+    }
+
+    public void init(){
+        this.personName.setAlignment(Pos.BASELINE_LEFT);
+        this.personName.setPrefSize(150,30);
+        this.personName.setPromptText("-Name-");
+        this.personName.setEditable(true);
+
+        this.amount.setPrefSize(100,30);
+        this.amount.setPromptText("-Amount-");
+        this.amount.setEditable(true);
+
+        this.desc.setPrefSize(200,30);
+        this.desc.setPromptText("-Description-");
+        this.desc.setEditable(true);
+
+        this.setSpacing(10);
+
+        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
+    }
 }

@@ -1,5 +1,6 @@
 package App;
 
+import Bean.DataConversion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,12 +18,12 @@ public class TransactionBox extends VBox {
     private Text dateField,timeField,giveTake,expenses;
     private Button editTransactionBox;
 
-    public TransactionBox(String date, String time, List<AccountEntryBox> accountEntryBoxList,List<AccountEntryBox> expenseList){
+    public TransactionBox(String date, String time, List<AccountEntryBox> accountEntryBoxList, List<AccountEntryBox> expenseList){
 
-        dateField.setText(date);
-        timeField.setText(time);
-        giveTake.setText("Account Entries: ");
-        expenses.setText("Expenses: ");
+        dateField=new Text(date);
+        timeField=new Text(time);
+        giveTake=new Text("Account Entries: ");
+        expenses=new Text("Expenses: ");
         editTransactionBox = new Button("Edit");
 
         this.setPadding(new Insets(10,10,10,10));

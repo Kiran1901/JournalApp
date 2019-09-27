@@ -16,8 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.*;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -129,10 +128,15 @@ public class NewEntryController2 {
             t_type = type.equals("Give")?0:1;
             DataConversion dataConversion = new DataConversion(pName,amt,desc,0,t_type);
             cnt++;
-            jsonArray.add(dataConversion.convertToJson());
+            jsonArray.put(dataConversion.convertToJson());
         }
-        finalJsonObject.put("count",cnt);
-        finalJsonObject.put("data",jsonArray);
+        try {
+            finalJsonObject.put("count",cnt);
+            finalJsonObject.put("data",jsonArray);
+        }catch (JSONException e){
+            System.out.println("exception in building elements of json object");
+        }
+
         System.out.println("yo we are in Onclick");
         AccountEntryBean accountEntryBean = new AccountEntryBean();
         accountEntryBean.setDate(DATE);
