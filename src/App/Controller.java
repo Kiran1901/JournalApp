@@ -142,6 +142,7 @@ public class Controller {
 
     void OnSelectNewEnry(){
         if(typeComboBox.getSelectionModel().isSelected(0)){
+//            typeComboBox.setValue(t);
             System.out.println("1st clicked");
             OnClick_newEntryButton();
         }

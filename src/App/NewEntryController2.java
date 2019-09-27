@@ -85,7 +85,7 @@ public class NewEntryController2 {
         while (internalTopVBox.getChildren().iterator().hasNext()) {
             AccountEntryBox abox = ((AccountEntryBox) internalTopVBox.getChildren().iterator().next());
              f = f && abox.checkIsAboxEmpty();
-            System.out.println("!!");
+            System.out.println("!|!");
             if(f==false) break;
         }
         System.out.println("f value : "+f);
