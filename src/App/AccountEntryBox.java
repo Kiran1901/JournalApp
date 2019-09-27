@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 public class AccountEntryBox extends HBox {
 
     private int hboxType;
-    private String ac_id;
+    private int id;
     private TextField personName,amount,desc;
 
     public ChoiceBox<String> getType() {
@@ -21,12 +21,12 @@ public class AccountEntryBox extends HBox {
     }
 
     private ChoiceBox<String> type;
-    public String getAc_id() {
-        return ac_id;
+    public int get_id() {
+        return id;
     }
 
-    public void setAc_id(String ac_id) {
-        this.ac_id = ac_id;
+    public void set_id(int id) {
+        this.id = id;
     }
 
     public TextField getPersonName() {
@@ -97,10 +97,11 @@ public class AccountEntryBox extends HBox {
 
         getChildren().addAll(this.personName,this.amount,this.desc,this.type);
     }
-    public AccountEntryBox(int hboxType, String id,String personName,String amount, String desc,String type)
+
+    public AccountEntryBox(int hboxType, int id,String personName,String amount, String desc,String type)
     {
         this.setPadding(new Insets(0,10,0,10));
-        this.ac_id = new String(id);
+        this.id = id;
         this.personName = new TextField(personName);
         this.amount = new TextField(amount);
         this.desc = new TextField(type);
@@ -140,8 +141,9 @@ public class AccountEntryBox extends HBox {
         getChildren().addAll(this.personName,this.amount,this.desc,this.type);
     }
 
+
     public boolean checkIsAboxEmpty(){
-        return (!personName.getText().isEmpty() && !amount.getText().isEmpty());
+        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && amount.getText().matches("[^-]\\d?"));
     }
 
 }

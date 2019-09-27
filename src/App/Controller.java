@@ -1,6 +1,7 @@
 package App;
 
 import Bean.TimelineBean;
+import Connectivity.ConnectionClass;
 import Connectivity.TimelineDao;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
@@ -42,6 +44,8 @@ public class Controller {
 
     @FXML
     VBox entriesList;
+    @FXML
+    VBox mailListVBox;
 
     @FXML
     public void initialize() {
@@ -102,9 +106,7 @@ public class Controller {
     }
 
 
-
-    public void onClick_NewEntryButton2()
-    {
+    public void onClick_NewEntryButton2(){
         try
         {
             Dialog<ButtonType> newEntry2Window = new Dialog<>();
@@ -134,6 +136,8 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+
     public void loadCalendar(Event event) {
         datewiseEntry.clear();
         calendarCount++;
@@ -145,6 +149,7 @@ public class Controller {
         Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
 
     }
+
 
     void OnSelectNewEnry() {
         if (typeChoiceBox.getSelectionModel().isSelected(0)) {
@@ -159,5 +164,9 @@ public class Controller {
             }
 
         }
+    }
+
+    public void loadMailList(){
+        Connection conn = ConnectionClass.getConnection();
     }
 }
