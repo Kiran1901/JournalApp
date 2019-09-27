@@ -81,13 +81,14 @@ public class NewEntryController2 {
         boolean flag=true;
         Iterator iterator1 = internalTopVBox.getChildren().iterator();
         Iterator iterator2 = internalBottomVBox.getChildren().iterator();
+        AccountEntryBox abox,bbox;
         while (iterator1.hasNext() && flag) {
-            AccountEntryBox abox = ((AccountEntryBox) iterator1.next());
+            abox = ((AccountEntryBox) iterator1.next());
              flag = flag && abox.checkIsAboxEmpty();
         }
         while (flag && iterator2.hasNext()){
-            AccountEntryBox abox = ((AccountEntryBox) iterator2.next());
-            flag = flag && abox.checkIsAboxEmpty();
+            bbox = ((AccountEntryBox) iterator2.next());
+            flag = flag && bbox.checkIsAboxEmpty();
         }
         System.out.println("f value : "+flag);
         return flag;
