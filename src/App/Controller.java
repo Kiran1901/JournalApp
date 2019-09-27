@@ -126,6 +126,7 @@ public class Controller {
                     alert.showAndWait();
                 }else {
                     System.out.println("Everything good");
+//      method here
                 }
             });
             newEntry2Window.getDialogPane().setContent(loader.load());
