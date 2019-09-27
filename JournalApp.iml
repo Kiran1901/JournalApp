@@ -10,7 +10,7 @@
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="javafx-swt1" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.48-bin" level="project" />
     <orderEntry type="library" name="json-simple-1.1" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
   </component>
 </module>
