@@ -72,7 +72,7 @@ public class AccountEntryBox extends HBox {
         }else{
             type.setVisible(false);
         }
-        init();
+        initHBoxLayout();
     }
 
     public AccountEntryBox(DataConversion dataConversion){
@@ -81,7 +81,7 @@ public class AccountEntryBox extends HBox {
         this.personName = new TextField(dataConversion.getPersonName());
         this.amount = new TextField((String.valueOf(dataConversion.getAmount())));
         this.desc = new TextField(dataConversion.getDescription());
-
+        this.setId(this.personName.getText());
         this.hboxType=dataConversion.getType();
 
         if(this.hboxType==0) {
@@ -93,7 +93,7 @@ public class AccountEntryBox extends HBox {
         this.type.setValue(this.type.getItems().get(0));
         this.type.setPrefSize(50,30);
 
-        init();
+        initHBoxLayout();
     }
 
 
@@ -108,7 +108,7 @@ public class AccountEntryBox extends HBox {
         type.setDisable(true);
     }
 
-    public void init(){
+    public void initHBoxLayout(){
         this.personName.setAlignment(Pos.BASELINE_LEFT);
         this.personName.setPrefSize(150,30);
         this.personName.setPromptText("-Name-");

@@ -4,6 +4,7 @@ import Bean.DataConversion;
 import Bean.TimelineBean;
 import Connectivity.ConnectionClass;
 import Connectivity.TimelineDao;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -38,6 +39,7 @@ public class Controller {
     public static ObservableList<FeedBox> entries;
     public static ObservableMap<String,FeedBox> entriesMap;
     public static ObservableList<FeedBox> datewiseEntry;
+    public static ObservableList<String> mailRequiredList;
     public static LocalDate date;
 
     @FXML
@@ -62,35 +64,17 @@ public class Controller {
 
     @FXML
     public void initialize() {
+
         typeChoiceBox.getItems().addAll("New Journal Entry","New Account Entry");
         typeChoiceBox.setOnAction(e-> OnSelectNewEnry());
         typeChoiceBox.setValue(typeChoiceBox.getItems().get(0));
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
+        mailRequiredList = FXCollections.observableArrayList();
 
-
-        TimelineDao dao = new TimelineDao();
-        List<TimelineBean> list = dao.selectEntryByName();
-        for (TimelineBean x : list) {
-            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
-
-        }
-        entriesList.getChildren().addAll(entries);
-        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
-            while (change.next()) {
-                if (change.wasAdded()) {
-                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
-                    System.out.println("Added");
-                } else if (change.wasRemoved()) {
-                    entriesList.getChildren().remove(change.getRemoved().get(0));
-                    System.out.println("Removed");
-                } else if (change.wasUpdated()) {
-                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
-                    System.out.println("Updated");
-                }
-            }
-        });
-        System.out.println("entriesList:" + entriesList.getChildren());
+        initTimelineTab();
+        Platform.runLater(()->initAccountLogsTab());
+        Platform.runLater(()->initMailTab());
 
     }
 
@@ -142,7 +126,6 @@ public class Controller {
                 }else {
                     System.out.println("Everything good");
                     newEntryController2.OnClick_OKButton();
-//      method here
                 }
             });
             newEntry2Window.getDialogPane().setContent(loader.load());
@@ -180,15 +163,23 @@ public class Controller {
         }
     }
 
-    public void loadMailList(){
+    public void initMailTab(){
+
+        mailRequiredList.addListener((ListChangeListener.Change<? extends String> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    mailListVBox.getChildren().add((new HBox(15,new Text(change.getAddedSubList().get(0)),new TextField())));
+                }
+            }
+        });
+
         mailListVBox.setSpacing(10);
         mailListVBox.setPadding(new Insets(20,20,20,20));
         try{
             Statement statement = ConnectionClass.getConnection().createStatement();
             ResultSet res = statement.executeQuery("SELECT NAME FROM empty_mail");
             while (res.next()){
-                mailListVBox.getChildren().add(new HBox(15,new Text(res.getString("name")),new TextField()));
-                System.out.println("something..."+mailListVBox.getChildren());
+                Controller.mailRequiredList.add(res.getString("name"));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -207,6 +198,7 @@ public class Controller {
                         statement.executeUpdate("INSERT INTO mailing_list (name, email) VALUES ('"+ name + "','" +email+"');");
                         statement.executeUpdate("DELETE from empty_mail where name='" + name +"';");
                         iterator.remove();
+                        Controller.mailRequiredList.remove(name);
                     }catch (SQLException ex){
                         ex.printStackTrace();
                     }
@@ -215,7 +207,7 @@ public class Controller {
         });
     }
 
-    public void loadAccountLogs(){
+    public void initAccountLogsTab(){
         try{
             Statement statement = ConnectionClass.getConnection().createStatement();
             ResultSet res1 = statement.executeQuery("SELECT * FROM account_log where user='Kiran';");
@@ -252,4 +244,30 @@ public class Controller {
         }
         accountsList.getChildren().addAll();
     }
+
+    public void initTimelineTab(){
+        TimelineDao dao = new TimelineDao();
+        List<TimelineBean> list = dao.selectEntryByName();
+        for (TimelineBean x : list) {
+            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
+
+        }
+        entriesList.getChildren().addAll(entries);
+        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
+                    System.out.println("Added");
+                } else if (change.wasRemoved()) {
+                    entriesList.getChildren().remove(change.getRemoved().get(0));
+                    System.out.println("Removed");
+                } else if (change.wasUpdated()) {
+                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("Updated");
+                }
+            }
+        });
+        System.out.println("entriesList:" + entriesList.getChildren());
+    }
+
 }

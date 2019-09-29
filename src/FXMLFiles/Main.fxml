@@ -55,7 +55,7 @@
                             </content>
                         </ScrollPane>
                     </content></Tab>
-            <Tab text="Account logs" onSelectionChanged="#loadAccountLogs">
+            <Tab text="Account logs">
                <content>
                   <ScrollPane prefHeight="550.0" prefWidth="720.0">
                      <content>
@@ -87,7 +87,7 @@
                     </content>
                 </Tab>
 
-                <Tab onSelectionChanged="#loadMailList" text="Mail">
+                <Tab text="Mail">
                     <content>
                         <ScrollPane prefHeight="550.0" prefWidth="720.0">
                              <content>
