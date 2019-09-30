@@ -7,107 +7,87 @@ import Connectivity.AccountEntryDao;
 import Connectivity.ConnectionClass;
 import Connectivity.TimelineDao;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import org.json.*;
+import jdk.security.jarsigner.JarSignerException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class NewEntryController2 {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    private Button okButton;
+
+public class EditEntryController2 {
 
     @FXML
-    public Text timeText2, dateText2;
+    public Button addAccountEntriesButton,addExpensesButton;
     @FXML
-    public VBox internalTopVBox, internalBottomVBox;
+    public VBox topVBox,bottomVBox;
     @FXML
-    public CheckBox checkBox1, checkBox2;
-    @FXML
-    public Button button1, button2;
+    Text dateText,timeText;
 
-    public NewEntryController2(Dialog dialog) {
-        okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+//    private Button okButton;
+    private TransactionBox transactionBox;
+
+    public EditEntryController2(TransactionBox transactionBox,Dialog dialog){
+//        okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        this.transactionBox=transactionBox;
     }
 
-    public void initialize() {
-        dateText2.setText(LocalDate.now().toString());
-        timeText2.setText(formatter.format(LocalTime.now()));
-        button1.setDisable(true);
-        button2.setDisable(true);
-        okButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> checkIsEmpty());
-        checkBox1.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> ov,
-                                Boolean old_val, Boolean new_val) {
-                System.out.println(checkBox1.isSelected());
-                if (checkBox1.isSelected()) {
-                    button1.setDisable(false);
-                } else {
-                    button1.setDisable(true);
-                    internalTopVBox.getChildren().clear();
-                }
-            }
-        });
-        button1.setOnMouseClicked((MouseEvent e)->{
-            internalTopVBox.getChildren().add(new AccountEntryBox(0));
-        });
-        checkBox2.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> ov,
-                                Boolean old_val, Boolean new_val) {
-                System.out.println(checkBox2.isSelected());
-                if (checkBox2.isSelected()) {
-                    button2.setDisable(false);
-                } else {
-                    button2.setDisable(true);
-                    internalBottomVBox.getChildren().clear();
-                }
-            }
-        });
-        button2.setOnMouseClicked((MouseEvent e)->{
-            internalBottomVBox.getChildren().add(new AccountEntryBox(1));
-        });
+    public void initialize(){
+        dateText.setText(transactionBox.getDateField().getText());
+        timeText.setText(transactionBox.getTimeField().getText());
 
-    }
+        AccountEntryBean accountEntryBean = new AccountEntryBean();
+        accountEntryBean.setDate(dateText.getText());
+        accountEntryBean.setTime(timeText.getText());
+        AccountEntryDao dao = new AccountEntryDao();
+        accountEntryBean=dao.getAccountEntry(accountEntryBean);
 
-    public boolean checkIsEmpty() {
-        boolean flag=true;
-        Iterator iterator1 = internalTopVBox.getChildren().iterator();
-        Iterator iterator2 = internalBottomVBox.getChildren().iterator();
-        AccountEntryBox abox,bbox;
-        while (iterator1.hasNext() && flag) {
-            abox = ((AccountEntryBox) iterator1.next());
-             flag = flag && abox.checkIsAboxEmpty();
+        AccountEntryBean expenseEntryBean = new AccountEntryBean();
+        expenseEntryBean.setDate(dateText.getText());
+        expenseEntryBean.setTime(timeText.getText());
+        expenseEntryBean=dao.getExpenseEntry(expenseEntryBean);
+
+        DataConversion dataConversion = new DataConversion();
+        if (accountEntryBean.getJson()!=null){
+            topVBox.getChildren().addAll(dataConversion.jsonToAccountEntryBoxList(accountEntryBean.getJson()));
+
         }
-        while (flag && iterator2.hasNext()){
-            bbox = ((AccountEntryBox) iterator2.next());
-            flag = flag && bbox.checkIsAboxEmpty();
+        if (expenseEntryBean.getJson()!=null){
+            bottomVBox.getChildren().addAll(dataConversion.jsonToAccountEntryBoxList(expenseEntryBean.getJson()));
         }
-        return flag;
+        addAccountEntriesButton.setOnMouseClicked((MouseEvent e)->{
+            topVBox.getChildren().add(new AccountEntryBox(0));
+        });
+        addExpensesButton.setOnMouseClicked((MouseEvent e)->{
+            bottomVBox.getChildren().add(new AccountEntryBox(1));
+        });
+
+
+        //TODO initialize edit entry 2 dialog
     }
 
-    public void OnClick_OKButton(){
+    public void OnClick_OKButton(TransactionBox transactionBox) {
         String USER_NAME = "Kiran";
 
-        String DATE= LocalDate.now().toString();
-        String TIME = formatter.format(LocalTime.now());
+        String DATE= transactionBox.getDateField().getText();
+        String TIME = transactionBox.getTimeField().getText();
         String ID;
-        Iterator iterator1 = internalTopVBox.getChildren().iterator();
-        Iterator iterator2 = internalBottomVBox.getChildren().iterator();
+        Iterator iterator1 = topVBox.getChildren().iterator();
+        Iterator iterator2 = bottomVBox.getChildren().iterator();
 
         int hbox_type=0;float amt;int cnt=0;
         AccountEntryBox abox=null;
@@ -118,7 +98,7 @@ public class NewEntryController2 {
         List<String> personMailList = new ArrayList<>();
         while(iterator1.hasNext())
         {
-             abox = (AccountEntryBox) iterator1.next();
+            abox = (AccountEntryBox) iterator1.next();
             pName = abox.getPersonName().getText();
             amt = Integer.parseInt(abox.getAmount().getText());
             desc = abox.getDesc().getText();
@@ -142,7 +122,7 @@ public class NewEntryController2 {
             accountEntryBean.setTime(TIME);
             accountEntryBean.setJson(finalJsonObject.toString());
             accountEntryBean.setUser(USER_NAME);
-            accountEntryDao.insertEntry(accountEntryBean,"account_log");
+            accountEntryDao.updateEntry(accountEntryBean,"account_log");
         }
 
 
@@ -172,7 +152,7 @@ public class NewEntryController2 {
             accountEntryBean2.setTime(TIME);
             accountEntryBean2.setJson(finalJsonObject2.toString());
             accountEntryBean2.setUser(USER_NAME);
-            accountEntryDao.insertEntry(accountEntryBean2,"expenses");
+            accountEntryDao.updateEntry(accountEntryBean2,"expenses");
         }
 
         Platform.runLater(()->{
@@ -184,12 +164,31 @@ public class NewEntryController2 {
                         statement.executeUpdate("INSERT into empty_mail (name) value ('"+name+"');");
                         Controller.mailRequiredList.add(name);
                     }
+                    //TODO condition when name without mail is replaced with one which has
+
                 }catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
         });
 
+        System.out.println("EditEntry2 Dialog closed with OK button");
+
+    }
+
+    public boolean checkIsEmpty() {
+        boolean flag=true;
+        Iterator iterator1 = topVBox.getChildren().iterator();
+        Iterator iterator2 = bottomVBox.getChildren().iterator();
+        AccountEntryBox abox,bbox;
+        while (iterator1.hasNext() && flag) {
+            abox = ((AccountEntryBox) iterator1.next());
+            flag = flag && abox.checkIsAboxEmpty();
+        }
+        while (flag && iterator2.hasNext()){
+            bbox = ((AccountEntryBox) iterator2.next());
+            flag = flag && bbox.checkIsAboxEmpty();
+        }
+        return flag;
     }
 }
-

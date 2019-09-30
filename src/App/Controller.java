@@ -40,6 +40,7 @@ public class Controller {
     public static ObservableMap<String,FeedBox> entriesMap;
     public static ObservableList<FeedBox> datewiseEntry;
     public static ObservableList<String> mailRequiredList;
+    public static ObservableList<TransactionBox> transactionBoxeList;
     public static LocalDate date;
 
     @FXML
@@ -71,6 +72,7 @@ public class Controller {
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
         mailRequiredList = FXCollections.observableArrayList();
+        transactionBoxeList = FXCollections.observableArrayList();
 
         initTimelineTab();
         Platform.runLater(()->initAccountLogsTab());
@@ -109,7 +111,7 @@ public class Controller {
             Dialog<ButtonType> newEntry2Window = new Dialog<>();
             newEntry2Window.initOwner(entriesList.getScene().getWindow());
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntry2Dialog.fxml"));
+            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntryDialog2.fxml"));
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.OK);
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
@@ -208,36 +210,35 @@ public class Controller {
     }
 
     public void initAccountLogsTab(){
+
+        transactionBoxeList.addListener((ListChangeListener.Change<? extends TransactionBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    accountsList.getChildren().add(0,change.getAddedSubList().get(0));
+                } else if (change.wasRemoved()) {
+                    accountsList.getChildren().remove(change.getRemoved().get(0));
+                } else if (change.wasUpdated()) {
+                    accountsList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                }
+            }
+        });
+
+
         try{
             Statement statement = ConnectionClass.getConnection().createStatement();
-            ResultSet res1 = statement.executeQuery("SELECT * FROM account_log where user='Kiran';");
-//            ResultSet res2 = statement.executeQuery("SELECT * FROM expenses where user='Kiran'");
-            List<AccountEntryBox> boxes1=new ArrayList<>();
-            List<AccountEntryBox> boxes2=new ArrayList<>();
-            int count;
-            JSONObject json;
-            JSONArray arr;
-            DataConversion dataConversion;
-            AccountEntryBox accountEntryBox;
+            ResultSet res1 = statement.executeQuery("SELECT account_log.date,account_log.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "LEFT JOIN expenses ON " +
+                    "account_log.date=expenses.date and account_log.time=expenses.time " +
+                    "UNION "+
+                    "SELECT expenses.date,expenses.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "RIGHT JOIN expenses ON "+
+                    "account_log.date=expenses.date and account_log.time=expenses.time;");
+
+
             while (res1.next()){
-                try {
-                    json=new JSONObject(res1.getString("data"));
-                    System.out.println("JASON:"+json);
-                    count= json.getInt("count");
-                    arr=json.getJSONArray("data");
-                    int i1=0;
-                    while (i1<count){
-                        dataConversion=new DataConversion(arr.getJSONObject(i1));
-                        accountEntryBox = new AccountEntryBox(dataConversion);
-                        accountEntryBox.disableAllFields();
-                        boxes1.add(accountEntryBox);
-                        i1+=1;
-                    }
-                    accountsList.getChildren().add(new TransactionBox(res1.getString("date"),res1.getString("time"),boxes1,boxes2));
-                    System.out.println(accountsList.getChildren());
-                }catch (JSONException e){
-                    e.printStackTrace();
-                }
+                makeAccount_logWidget(res1.getString("date"),res1.getString("time"),res1.getString("acc_data"),res1.getString("exp_data"));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -270,4 +271,47 @@ public class Controller {
         System.out.println("entriesList:" + entriesList.getChildren());
     }
 
+    public void makeAccount_logWidget(String date,String time,String accJsonString,String expJsonString){
+        List<AccountEntryBox> accountBoxes=new ArrayList<>();
+        List<AccountEntryBox> expenseBoxes= new ArrayList<>();
+        int count;
+        JSONObject json;
+        JSONArray arr;
+        DataConversion dataConversion;
+        AccountEntryBox accountEntryBox;
+        TransactionBox transactionBox;
+        try {
+            if (accJsonString!=null){
+                json=new JSONObject(accJsonString);
+                count= json.getInt("count");
+                arr=json.getJSONArray("data");
+                int i1=0;
+                while (i1<count){
+                    dataConversion=new DataConversion(arr.getJSONObject(i1));
+                    accountEntryBox = new AccountEntryBox(dataConversion);
+                    accountEntryBox.disableAllFields();
+                    accountBoxes.add(accountEntryBox);
+                    i1+=1;
+                }
+            }
+            if (expJsonString!=null){
+                json=new JSONObject(expJsonString);
+                count= json.getInt("count");
+                arr=json.getJSONArray("data");
+                int i1=0;
+                while (i1<count){
+                    dataConversion=new DataConversion(arr.getJSONObject(i1));
+                    accountEntryBox = new AccountEntryBox(dataConversion);
+                    accountEntryBox.disableAllFields();
+                    expenseBoxes.add(accountEntryBox);
+                    i1+=1;
+                }
+            }
+            transactionBox=new TransactionBox(date,time,accountBoxes,expenseBoxes);
+            transactionBoxeList.add(0,transactionBox);
+//            accountsList.getChildren().add(transactionBox);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+    }
 }

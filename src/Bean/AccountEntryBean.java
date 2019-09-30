@@ -5,11 +5,13 @@ import org.json.*;
 public class AccountEntryBean {
     int id;
     String user,date,time;
-    JSONObject json;
-    public JSONObject getJson() {
+    String json;
+
+    public String getJson() {
         return json;
     }
-    public void setJson(JSONObject json) {
+
+    public void setJson(String json) {
         this.json = json;
     }
 

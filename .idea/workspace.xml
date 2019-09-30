@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/App/Controller.java" line="142" />
+    <bookmark url="file://$PROJECT_DIR$/src/App/Controller.java" line="144" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a747582c-65be-44e4-9bd1-6a83dde2a0fa" name="Default Changelist" comment="">
@@ -52,48 +52,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Connectivity/AccountEntryDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-128">
+              <caret line="63" column="52" lean-forward="true" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
+        <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/account_log">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+              <column-attributes>
+                <column name="data" languageId="JSON" />
+              </column-attributes>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/expenses">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+              <column-attributes>
+                <column name="data" languageId="JSON" />
+              </column-attributes>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App/TransactionBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-126">
-              <caret line="150" column="28" lean-forward="true" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
+            <state relative-caret-position="114">
+              <caret line="108" column="102" selection-start-line="108" selection-start-column="102" selection-end-line="108" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#OnClick_newEntryButton#0;class#Controller#0" />
-                <element signature="method#onClick_NewEntryButton2#0;class#Controller#0" />
-                <element signature="method#loadCalendar#0;class#Controller#0" />
-                <element signature="method#loadMailList#0;class#Controller#0" />
-                <element signature="e#5783#6085#0" />
-                <element signature="e#7199#8143#0" />
-                <element signature="method#loadAccountLogs#0;class#Controller#0" />
-                <element signature="method#initTimelineTab#0;class#Controller#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/AccountEntryBox.java">
+        <entry file="file://$PROJECT_DIR$/src/App/EditEntryController2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
-              <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#AccountEntryBox#0;class#AccountEntryBox#0" />
-                <element signature="method#AccountEntryBox#1;class#AccountEntryBox#0" />
-                <element signature="method#checkIsAboxEmpty#0;class#AccountEntryBox#0" />
-                <element signature="method#disableAllFields#0;class#AccountEntryBox#0" />
-                <element signature="method#init#0;class#AccountEntryBox#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-272">
-              <caret line="114" column="41" lean-forward="true" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
+            <state relative-caret-position="167">
+              <caret line="153" column="49" lean-forward="true" selection-start-line="153" selection-start-column="49" selection-end-line="153" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,8 +117,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -127,11 +138,14 @@
       <find>iter</find>
       <find>collec</find>
       <find>cala</find>
+      <find>ac_type</find>
+      <find>2</find>
     </findStrings>
     <replaceStrings>
       <replace>datewiseEntry</replace>
       <replace>FeedBox</replace>
       <replace>typeChoiceBox</replace>
+      <replace>t_type</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -151,27 +165,36 @@
         <option value="$PROJECT_DIR$/src/Bean/TimelineBean.java" />
         <option value="$PROJECT_DIR$/src/Connectivity/TimelineDao.java" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml" />
-        <option value="$PROJECT_DIR$/src/Connectivity/AccountEntryDao.java" />
         <option value="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" />
         <option value="$PROJECT_DIR$/src/Connectivity/ConnectionClass.java" />
-        <option value="$PROJECT_DIR$/src/Bean/AccountEntryBean.java" />
-        <option value="$PROJECT_DIR$/src/Bean/DataConversion.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/src/App/TransactionBox.java" />
         <option value="$PROJECT_DIR$/src/App/AnchorPaneNode.java" />
         <option value="$PROJECT_DIR$/src/App/EditEntryController.java" />
         <option value="$PROJECT_DIR$/src/App/FullCalendarView.java" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController.java" />
         <option value="$PROJECT_DIR$/src/FXMLFiles/Main.fxml" />
-        <option value="$PROJECT_DIR$/src/App/AccountEntryBox.java" />
         <option value="$PROJECT_DIR$/src/App/Controller.java" />
+        <option value="$PROJECT_DIR$/src/FXMLFiles/EditEntryDialog2.fxml" />
+        <option value="$PROJECT_DIR$/src/Bean/AccountEntryBean.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/src/App/AccountEntryBox.java" />
+        <option value="$PROJECT_DIR$/src/Bean/DataConversion.java" />
         <option value="$PROJECT_DIR$/src/App/NewEntryController2.java" />
+        <option value="$PROJECT_DIR$/src/App/TransactionBox.java" />
+        <option value="$PROJECT_DIR$/src/Connectivity/AccountEntryDao.java" />
+        <option value="$PROJECT_DIR$/src/App/EditEntryController2.java" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
+    <option name="x" value="-305" />
+    <option name="y" value="60" />
+    <option name="width" value="1072" />
     <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -310,7 +333,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126577000" />
+    <option name="totallyTimeSpent" value="160404000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -325,15 +348,15 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Image Layers" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.08847185" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12868632" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="0" visible="true" weight="0.32952926" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.23903818" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Find" order="0" weight="0.32952926" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" visible="true" weight="0.31541726" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -345,7 +368,7 @@
       <window_info anchor="bottom" id="Profiler" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" weight="0.32956153" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32952926" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3281027" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32673267" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="16" weight="0.32956153" />
@@ -354,10 +377,10 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.122654155" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.122654155" />
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="Maven" order="7" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.3297587" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
@@ -365,10 +388,15 @@
       <window_info anchor="right" id="Codota" order="12" weight="0.3297587" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1767473" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12868632" />
       <window_info id="Structure" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="0" visible="true" weight="0.32952926" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.19543509" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Image Layers" order="6" />
+      <window_info anchor="bottom" id="Find" order="0" weight="0.32952926" />
+      <window_info active="true" anchor="bottom" id="Run" order="1" visible="true" weight="0.31541726" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -379,17 +407,17 @@
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info anchor="bottom" id="Profiler" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" weight="0.32956153" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.3281027" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="15" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32952926" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32673267" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Console" order="16" weight="0.32956153" />
       <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32956153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.12298387" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.122654155" />
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="right" id="Maven" order="7" />
@@ -445,7 +473,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/FeedBox.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/EditEntryDialog.fxml" />
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/fullcalendar.fxml" />
     <entry file="file://$PROJECT_DIR$/src/App/FeedBoxController.java" />
     <entry file="jar://C:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/util/List.java" />
@@ -517,51 +544,14 @@
     <entry file="file://$PROJECT_DIR$/src/Bean/Timeline.java" />
     <entry file="das://3347f4d8-9f36-4ee7-a05e-be7ef34da6e3/schema/journal_app/table/timeline" />
     <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/List.java" />
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/Optional.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/console.sql" />
-    <entry file="file://$PROJECT_DIR$/src/Bean/TimelineBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Connectivity/AccountEntryDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://E:/Softwares/JAVA libs/json-simple-1.1.jar!/org/json/simple/JSONObject.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-506">
           <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Bean/AccountEntryBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-302">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/empty_mail">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -570,68 +560,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Bean/DataConversion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1478#1479#0" expanded="true" />
-            <element signature="e#1505#1506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
-          <caret line="18" column="20" selection-start-line="18" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="76" column="44" lean-forward="true" selection-start-line="76" selection-start-column="44" selection-end-line="76" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/FullCalendarView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1738">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2385#2386#0" expanded="true" />
-            <element signature="method#OnClick_editEntry#0;class#FeedBox#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/TransactionBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-734">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -652,34 +584,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/account_log">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="data" languageId="JSON" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Connectivity/ConnectionClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntry2Dialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.base/javafx/collections/ObservableList.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -710,46 +614,201 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
+    <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="114" column="41" lean-forward="true" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
+        <state relative-caret-position="22">
+          <caret line="18" column="20" selection-start-line="18" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/AccountEntryBox.java">
+    <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.controls/javafx/scene/control/Dialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="153">
+          <caret line="327" column="29" selection-start-line="327" selection-start-column="29" selection-end-line="327" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/EditEntryDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="91" column="63" lean-forward="true" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
+          <folding>
+            <element signature="e#2343#2344#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bean/TimelineBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="41" column="51" lean-forward="true" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+          <folding>
+            <element signature="method#OnClick_OKButton#0;class#EditEntryController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/EditEntryDialog2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Connectivity/ConnectionClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#AccountEntryBox#0;class#AccountEntryBox#0" />
-            <element signature="method#AccountEntryBox#1;class#AccountEntryBox#0" />
-            <element signature="method#checkIsAboxEmpty#0;class#AccountEntryBox#0" />
-            <element signature="method#disableAllFields#0;class#AccountEntryBox#0" />
-            <element signature="method#init#0;class#AccountEntryBox#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bean/DataConversion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="111" column="44" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="150" column="28" lean-forward="true" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
+        <state relative-caret-position="373">
+          <caret line="131" column="15" lean-forward="true" selection-start-line="118" selection-start-column="12" selection-end-line="131" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#OnClick_newEntryButton#0;class#Controller#0" />
-            <element signature="method#onClick_NewEntryButton2#0;class#Controller#0" />
             <element signature="method#loadCalendar#0;class#Controller#0" />
-            <element signature="method#loadMailList#0;class#Controller#0" />
-            <element signature="e#5783#6085#0" />
-            <element signature="e#7199#8143#0" />
-            <element signature="method#loadAccountLogs#0;class#Controller#0" />
+            <element signature="method#OnSelectNewEnry#0;class#Controller#0" />
+            <element signature="method#initMailTab#0;class#Controller#0" />
             <element signature="method#initTimelineTab#0;class#Controller#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/AccountEntryBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#disableAllFields#0;class#AccountEntryBox#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bean/AccountEntryBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Connectivity/AccountEntryDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="63" column="52" lean-forward="true" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/TransactionBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="108" column="102" selection-start-line="108" selection-start-column="102" selection-end-line="108" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/EditEntryController2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="153" column="49" lean-forward="true" selection-start-line="153" selection-start-column="49" selection-end-line="153" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/expenses">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+          <column-attributes>
+            <column name="data" languageId="JSON" />
+          </column-attributes>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/account_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+          <column-attributes>
+            <column name="data" languageId="JSON" />
+          </column-attributes>
         </state>
       </provider>
     </entry>
@@ -818,6 +877,17 @@
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>org.json</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.32155907" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

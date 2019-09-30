@@ -12,47 +12,7 @@ public class AccountEntryBox extends HBox {
     private int hboxType;
     private int id;
     private TextField personName,amount,desc;
-    private ChoiceBox<String> type;
-
-    public ChoiceBox<String> getType() {
-        return type;
-    }
-
-    public void setType(ChoiceBox<String> type) {
-        this.type = type;
-    }
-
-    public int get_id() {
-        return id;
-    }
-
-    public void set_id(int id) {
-        this.id = id;
-    }
-
-    public TextField getPersonName() {
-        return personName;
-    }
-
-    public void setPersonName(TextField personName) {
-        this.personName = personName;
-    }
-
-    public TextField getAmount() {
-        return amount;
-    }
-
-    public void setAmount(TextField amount) {
-        this.amount = amount;
-    }
-
-    public TextField getDesc() {
-        return desc;
-    }
-
-    public void setDesc(TextField desc) {
-        this.desc = desc;
-    }
+    private ChoiceBox<String> t_type;
 
 
     public AccountEntryBox(int hboxType) {
@@ -63,14 +23,14 @@ public class AccountEntryBox extends HBox {
         this.amount = new TextField();
         this.desc = new TextField();
         this.hboxType=hboxType;
-        this.type = new ChoiceBox<>();
+        this.t_type = new ChoiceBox<>();
 
         if(this.hboxType==0) {
-            type.getItems().addAll("Give", "Take");
-            this.type.setValue(this.type.getItems().get(0));
-            this.type.setPrefSize(50,30);
+            t_type.getItems().addAll("Give", "Take");
+            this.t_type.setValue(this.t_type.getItems().get(0));
+            this.t_type.setPrefSize(50,30);
         }else{
-            type.setVisible(false);
+            t_type.setVisible(false);
         }
         initHBoxLayout();
     }
@@ -83,29 +43,29 @@ public class AccountEntryBox extends HBox {
         this.desc = new TextField(dataConversion.getDescription());
         this.setId(this.personName.getText());
         this.hboxType=dataConversion.getType();
+        this.t_type = new ChoiceBox<>();
 
         if(this.hboxType==0) {
-            this.type = new ChoiceBox<>();
-            this.type.getItems().addAll("Give", "Take");
+            this.t_type.getItems().addAll("Give", "Take");
+            this.t_type.setValue(dataConversion.getT_type()==0?"Give":"Take");
         }else{
-            this.type.setDisable(true);
+            this.t_type.setVisible(false);
         }
-        this.type.setValue(this.type.getItems().get(0));
-        this.type.setPrefSize(50,30);
+        this.t_type.setPrefSize(50,30);
 
         initHBoxLayout();
     }
 
 
     public boolean checkIsAboxEmpty(){
-        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && !amount.getText().matches("^-\\d?"));
+        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && amount.getText().matches("^[1-9]\\d*$"));
     }
 
     public void disableAllFields(){
         personName.setDisable(true);
         amount.setDisable(true);
         desc.setDisable(true);
-        type.setDisable(true);
+        t_type.setDisable(true);
     }
 
     public void initHBoxLayout(){
@@ -124,6 +84,59 @@ public class AccountEntryBox extends HBox {
 
         this.setSpacing(10);
 
-        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
+        getChildren().addAll(this.personName,this.amount,this.desc,this.t_type);
     }
+
+
+    //getters and setters
+
+    public ChoiceBox<String> getT_type() {
+        return t_type;
+    }
+
+    public void setT_type(String type) {
+        if (hboxType==0){
+            this.t_type.setValue(type);
+        }
+    }
+
+    public int getType(){
+        return this.hboxType;
+    }
+    public void setType(int type){
+        this.hboxType=type;
+    }
+
+    public int get_id() {
+        return id;
+    }
+
+    public void set_id(int id) {
+        this.id = id;
+    }
+
+    public TextField getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName.setText(personName);
+    }
+
+    public TextField getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount.setText(amount);
+    }
+
+    public TextField getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc.setText(desc);
+    }
+
 }

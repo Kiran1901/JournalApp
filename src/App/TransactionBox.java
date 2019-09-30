@@ -1,15 +1,23 @@
 package App;
 
 import Bean.DataConversion;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 
 public class TransactionBox extends VBox {
@@ -26,11 +34,17 @@ public class TransactionBox extends VBox {
         expenses=new Text("Expenses: ");
         editTransactionBox = new Button("Edit");
 
+        dateField.setFont(Font.font("Times New Roman Bold",14));
+        timeField.setFont(Font.font("Times New Roman Bold",14));
+        giveTake.setFont(Font.font("Times New Roman Italic",12));
+        expenses.setFont(Font.font("Times New Roman Italic",12));
+
         this.setPadding(new Insets(10,10,10,10));
         this.setPrefSize(700,150);
         this.addEventHandler(MouseEvent.MOUSE_ENTERED, e->setEditButtonVisibility(true));
         this.addEventHandler(MouseEvent.MOUSE_EXITED,e->setEditButtonVisibility(false));
 
+        editTransactionBox.setOnAction(e->onClickEditButton());
 
         HBox header = new HBox(15,editTransactionBox,dateField,timeField);
         header.setPadding(new Insets(5,15,5,10));
@@ -79,5 +93,39 @@ public class TransactionBox extends VBox {
 
     public void setEditButtonVisibility(boolean flag){
         editTransactionBox.setVisible(flag);
+    }
+
+    public void onClickEditButton() {
+        try {
+            Dialog<ButtonType> editEntryWindow2 = new Dialog<>();
+            editEntryWindow2.initOwner(this.getScene().getWindow());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/FXMLFiles/EditEntryDialog2.fxml"));
+            editEntryWindow2.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            editEntryWindow2.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            EditEntryController2 editEntryController2 = new EditEntryController2(this,editEntryWindow2);
+            loader.setController(editEntryController2);
+
+            Button okButton = ((Button) editEntryWindow2.getDialogPane().lookupButton(ButtonType.OK));
+            okButton.addEventFilter(ActionEvent.ACTION, e->{
+                if (!editEntryController2.checkIsEmpty()) {
+                    e.consume();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You forgot something!!!");
+                    alert.showAndWait();
+                }else {
+                    System.out.println("Everything good");
+                    editEntryController2.OnClick_OKButton(this);
+                }
+            });
+
+            editEntryWindow2.getDialogPane().setContent(loader.load());
+            Optional<ButtonType> res = editEntryWindow2.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
