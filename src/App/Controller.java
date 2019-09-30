@@ -145,6 +145,7 @@ public class Controller {
         calendarCount++;
         if(calendarCount==1) {
             System.out.println("onClick:Pane@Calendar");
+            SendMail.sendPlainMail();
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }

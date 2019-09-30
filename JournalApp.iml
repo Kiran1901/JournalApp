@@ -12,5 +12,7 @@
     <orderEntry type="library" exported="" name="javafx-swt1" level="project" />
     <orderEntry type="library" name="json-simple-1.1" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
+    <orderEntry type="library" name="org.json" level="project" />
+    <orderEntry type="library" name="sendgrid-java-latest" level="project" />
   </component>
 </module>
