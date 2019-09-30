@@ -20,10 +20,6 @@ public class FullCalendarView {
     private Text calendarTitle;
     private YearMonth currentYearMonth;
 
-    /**
-     * Create a calendar view
-     * @param yearMonth year month to create the calendar of
-     */
     public FullCalendarView(YearMonth yearMonth) {
         currentYearMonth = yearMonth;
         // Create the calendar grid pane
@@ -67,10 +63,7 @@ public class FullCalendarView {
         view = new VBox(titleBar, dayLabels, calendar);
     }
 
-    /**
-     * Set the days of the calendar to correspond to the appropriate date
-     * @param yearMonth year and month of month to render
-     */
+
     public void populateCalendar(YearMonth yearMonth) {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
@@ -94,17 +87,13 @@ public class FullCalendarView {
         calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
     }
 
-    /**
-     * Move the month back by one. Repopulate the calendar with the correct dates.
-     */
+
     private void previousMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
         populateCalendar(currentYearMonth);
     }
 
-    /**
-     * Move the month forward by one. Repopulate the calendar with the correct dates.
-     */
+
     private void nextMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
         populateCalendar(currentYearMonth);

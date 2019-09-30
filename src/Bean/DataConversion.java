@@ -1,8 +1,6 @@
 package Bean;
 
-import netscape.javascript.JSObject;
-import org.json.simple.JSONObject;
-
+import org.json.*;
 import java.util.List;
 
 public class DataConversion {
@@ -13,14 +11,26 @@ public class DataConversion {
     private int type;//type=0 => Account;type=1 => Expense
     private int ac_type;
 
-    public DataConversion(String pName, float amt, String desc, int type, int type2)
-    {
+    public DataConversion(String pName, float amt, String desc, int type, int ac_type) {
         personName=pName;
         amount=amt;
         description=desc;
         this.type=type;
-        ac_type=type2;
+        this.ac_type =ac_type;
     }
+
+    public DataConversion(JSONObject jsonObject) throws JSONException{
+        try {
+            personName=jsonObject.getString("name");
+            amount= ((float) jsonObject.getDouble("amount"));
+            description = jsonObject.getString("desc");
+            type=jsonObject.getInt("type");
+            if (type==0) ac_type=jsonObject.getInt("ac_type");
+        }catch (JSONException e){
+            System.out.println("Exception in conversion: json to object");
+        }
+    }
+
     public String getPersonName() {
         return personName;
     }
@@ -61,14 +71,18 @@ public class DataConversion {
         this.ac_type = ac_type;
     }
 
-    public JSONObject convertToJson()
-    {
+    public JSONObject convertToJson(){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name",personName);
-        jsonObject.put("amount",amount);
-        jsonObject.put("desc",description);
-        jsonObject.put("type",type);
-        if(type==0) jsonObject.put("ac_type",ac_type);
+        try {
+            jsonObject.put("name",personName);
+            jsonObject.put("amount",amount);
+            jsonObject.put("desc",description);
+            jsonObject.put("type",type);
+            if(type==0) jsonObject.put("ac_type",ac_type);
+            return jsonObject;
+        }catch (JSONException e){
+            System.out.println("Exception in conversion: object to json");
+        }
         return jsonObject;
     }
 }

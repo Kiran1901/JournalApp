@@ -62,7 +62,6 @@ public class NewEntryController {
         ID = Integer.toString(dao.getIdFromAll(timelineBean,TABLE_NAME));
         Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
         System.out.println(Controller.entries);
-        System.out.println("NewEntry Window closed with OK button");
 
     }
 

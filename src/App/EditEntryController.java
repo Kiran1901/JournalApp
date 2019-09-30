@@ -41,7 +41,6 @@ public class EditEntryController {
         TimelineDao dao = new TimelineDao();
         TimelineBean timelineBean = new TimelineBean();
         timelineBean = dao.selectEntryByNameId(Integer.parseInt(id));
-//            timelineBean.get(0);
         timeText.setText(timelineBean.getTime());
         dateText.setText(timelineBean.getDate());
         textArea.setText(timelineBean.getText());
