@@ -10,10 +10,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -100,21 +97,21 @@ public class NewEntryController2 {
             bbox = ((AccountEntryBox) iterator2.next());
             flag = flag && bbox.checkIsAboxEmpty();
         }
-        System.out.println("f value : "+flag);
         return flag;
     }
+
     public void OnClick_OKButton(){
-        String TABLE_NAME="timeline";
-        String USER_NAME="Kiran";
+        String USER_NAME = "Kiran";
+
         String DATE= LocalDate.now().toString();
         String TIME = formatter.format(LocalTime.now());
         String ID;
         Iterator iterator1 = internalTopVBox.getChildren().iterator();
         Iterator iterator2 = internalBottomVBox.getChildren().iterator();
 
-        int t_type=0;float amt;int cnt=0;
+        int hbox_type=0;float amt;int cnt=0;
         AccountEntryBox abox=null;
-        String pName,desc,type;
+        String pName,desc,t_type;
 
         JSONArray jsonArray = new JSONArray();
         JSONObject finalJsonObject = new JSONObject();
@@ -125,10 +122,10 @@ public class NewEntryController2 {
             pName = abox.getPersonName().getText();
             amt = Integer.parseInt(abox.getAmount().getText());
             desc = abox.getDesc().getText();
-            type = abox.getType().getValue();
-            t_type = type.equals("Give")?0:1;
+            t_type = abox.getT_type().getValue();
+            hbox_type = t_type.equals("Give")?0:1;
             personMailList.add(pName);
-            DataConversion dataConversion = new DataConversion(pName,amt,desc,0,t_type);
+            DataConversion dataConversion = new DataConversion(pName,amt,desc,0,hbox_type);
             cnt++;
             jsonArray.put(dataConversion.convertToJson());
         }
@@ -138,15 +135,45 @@ public class NewEntryController2 {
         }catch (JSONException e){
             System.out.println("exception in building elements of json object");
         }
-
-        System.out.println("yo we are in Onclick");
-        AccountEntryBean accountEntryBean = new AccountEntryBean();
-        accountEntryBean.setDate(DATE);
-        accountEntryBean.setTime(TIME);
-        accountEntryBean.setJson(finalJsonObject);
-        accountEntryBean.setUser(USER_NAME);
         AccountEntryDao accountEntryDao = new AccountEntryDao();
-        accountEntryDao.insertEntry(accountEntryBean);
+        if (cnt>0){
+            AccountEntryBean accountEntryBean = new AccountEntryBean();
+            accountEntryBean.setDate(DATE);
+            accountEntryBean.setTime(TIME);
+            accountEntryBean.setJson(finalJsonObject.toString());
+            accountEntryBean.setUser(USER_NAME);
+            accountEntryDao.insertEntry(accountEntryBean,"account_log");
+        }
+
+
+        JSONArray jsonArray2 = new JSONArray();
+        JSONObject finalJsonObject2 = new JSONObject();
+        AccountEntryBox bbox;
+        cnt=0;
+        while(iterator2.hasNext())
+        {
+            bbox = (AccountEntryBox) iterator2.next();
+            pName = bbox.getPersonName().getText();
+            amt = Integer.parseInt(bbox.getAmount().getText());
+            desc = bbox.getDesc().getText();
+            DataConversion dataConversion2 = new DataConversion(pName,amt,desc,1,-1);
+            cnt++;
+            jsonArray2.put(dataConversion2.convertToJson());
+        }
+        try {
+            finalJsonObject2.put("count",cnt);
+            finalJsonObject2.put("data",jsonArray2);
+        }catch (JSONException e){
+            System.out.println("exception in building elements of json object");
+        }
+        if(cnt>0){
+            AccountEntryBean accountEntryBean2 = new AccountEntryBean();
+            accountEntryBean2.setDate(DATE);
+            accountEntryBean2.setTime(TIME);
+            accountEntryBean2.setJson(finalJsonObject2.toString());
+            accountEntryBean2.setUser(USER_NAME);
+            accountEntryDao.insertEntry(accountEntryBean2,"expenses");
+        }
 
         Platform.runLater(()->{
             for(String name : personMailList){
@@ -162,13 +189,6 @@ public class NewEntryController2 {
                 }
             }
         });
-
-//        TimelineDao dao = new TimelineDao();
-//        dao.insertEntry(timelineBean,TABLE_NAME);
-//        ID = Integer.toString(dao.getIdFromAll(timelineBean,TABLE_NAME));
-//        Controller.entries.add(0,new FeedBox(ID,DATE,TIME,TEXT_DATA));
-//        System.out.println(Controller.entries);
-//        System.out.println("NewEntry Window closed with OK button");
 
     }
 }

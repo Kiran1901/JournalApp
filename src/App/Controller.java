@@ -46,6 +46,7 @@ public class Controller {
     public static ObservableMap<String,FeedBox> entriesMap;
     public static ObservableList<FeedBox> datewiseEntry;
     public static ObservableList<String> mailRequiredList;
+    public static ObservableList<TransactionBox> transactionBoxeList;
     public static LocalDate date;
     public Button sendMailButton;
     public VBox sendMailVBox;
@@ -84,6 +85,8 @@ public class Controller {
         mailRequiredList = FXCollections.observableArrayList();
 //        mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> sendMailToAll());
         mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> sendMailToAll());
+        transactionBoxeList = FXCollections.observableArrayList();
+
         initTimelineTab();
         Platform.runLater(()->initAccountLogsTab());
         Platform.runLater(()->initMailTab());
@@ -125,7 +128,7 @@ public class Controller {
             Dialog<ButtonType> newEntry2Window = new Dialog<>();
             newEntry2Window.initOwner(entriesList.getScene().getWindow());
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntry2Dialog.fxml"));
+            loader.setLocation(getClass().getResource("/FXMLFiles/NewEntryDialog2.fxml"));
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.OK);
             newEntry2Window.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             NewEntryController2 newEntryController2 = new NewEntryController2(newEntry2Window);
@@ -152,18 +155,6 @@ public class Controller {
     }
 
 
-    public void loadCalendar(Event event) {
-        datewiseEntry.clear();
-        calendarCount++;
-        if(calendarCount==1) {
-            System.out.println("onClick:Pane@Calendar");
-//            SendMail.sendMail();
-            VBox vb = new FullCalendarView(YearMonth.now()).getView();
-            calendarVBox.getChildren().add(vb);
-        }
-        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
-    }
-
 
     void OnSelectNewEnry() {
         if (typeChoiceBox.getSelectionModel().isSelected(0)) {
@@ -178,6 +169,83 @@ public class Controller {
             }
 
         }
+    }
+
+    public void initTimelineTab(){
+        TimelineDao dao = new TimelineDao();
+        List<TimelineBean> list = dao.selectEntryByName();
+        for (TimelineBean x : list) {
+            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
+
+        }
+        entriesList.getChildren().addAll(entries);
+        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
+                    System.out.println("Added");
+                } else if (change.wasRemoved()) {
+                    entriesList.getChildren().remove(change.getRemoved().get(0));
+                    System.out.println("Removed");
+                } else if (change.wasUpdated()) {
+                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("Updated");
+                }
+            }
+        });
+        System.out.println("entriesList:" + entriesList.getChildren());
+    }
+
+    public void initAccountLogsTab(){
+
+        transactionBoxeList.addListener((ListChangeListener.Change<? extends TransactionBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    accountsList.getChildren().add(0,change.getAddedSubList().get(0));
+//                    System.out.println("ACC ADD");
+                } else if (change.wasRemoved()) {
+                    accountsList.getChildren().remove(change.getRemoved().get(0));
+//                    System.out.println("ACC DELETE");
+                }
+              /*  else if (change.wasUpdated()) {
+//                    accountsList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("ACC UPDATE");
+                }       */
+            }
+        });
+
+
+        try{
+            Statement statement = ConnectionClass.getConnection().createStatement();
+            ResultSet res1 = statement.executeQuery("SELECT account_log.date,account_log.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "LEFT JOIN expenses ON " +
+                    "account_log.date=expenses.date and account_log.time=expenses.time " +
+                    "UNION "+
+                    "SELECT expenses.date,expenses.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "RIGHT JOIN expenses ON "+
+                    "account_log.date=expenses.date and account_log.time=expenses.time;");
+
+
+            while (res1.next()){
+                makeAccount_logWidget(res1.getString("date"),res1.getString("time"),res1.getString("acc_data"),res1.getString("exp_data"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        accountsList.getChildren().addAll();
+    }
+
+    public void loadCalendar(Event event) {
+        datewiseEntry.clear();
+        calendarCount++;
+        if(calendarCount==1) {
+            System.out.println("onClick:Pane@Calendar");
+            VBox vb = new FullCalendarView(YearMonth.now()).getView();
+            calendarVBox.getChildren().add(vb);
+        }
+        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
     }
 
     public void initMailTab(){
@@ -225,67 +293,48 @@ public class Controller {
         });
     }
 
-    public void initAccountLogsTab(){
-        try{
-            Statement statement = ConnectionClass.getConnection().createStatement();
-            ResultSet res1 = statement.executeQuery("SELECT * FROM account_log where user='Kiran';");
-//            ResultSet res2 = statement.executeQuery("SELECT * FROM expenses where user='Kiran'");
-            List<AccountEntryBox> boxes1=new ArrayList<>();
-            List<AccountEntryBox> boxes2=new ArrayList<>();
-            int count;
-            JSONObject json;
-            JSONArray arr;
-            DataConversion dataConversion;
-            AccountEntryBox accountEntryBox;
-            while (res1.next()){
-                try {
-                    json=new JSONObject(res1.getString("data"));
-                    System.out.println("JASON:"+json);
-                    count= json.getInt("count");
-                    arr=json.getJSONArray("data");
-                    int i1=0;
-                    while (i1<count){
-                        dataConversion=new DataConversion(arr.getJSONObject(i1));
-                        accountEntryBox = new AccountEntryBox(dataConversion);
-                        accountEntryBox.disableAllFields();
-                        boxes1.add(accountEntryBox);
-                        i1+=1;
-                    }
-                    accountsList.getChildren().add(new TransactionBox(res1.getString("date"),res1.getString("time"),boxes1,boxes2));
-                    System.out.println(accountsList.getChildren());
-                }catch (JSONException e){
-                    e.printStackTrace();
+    public void makeAccount_logWidget(String date,String time,String accJsonString,String expJsonString){
+        List<AccountEntryBox> accountBoxes=new ArrayList<>();
+        List<AccountEntryBox> expenseBoxes= new ArrayList<>();
+        int count;
+        JSONObject json;
+        JSONArray arr;
+        DataConversion dataConversion;
+        AccountEntryBox accountEntryBox;
+        TransactionBox transactionBox;
+        try {
+            if (accJsonString!=null){
+                json=new JSONObject(accJsonString);
+                count= json.getInt("count");
+                arr=json.getJSONArray("data");
+                int i1=0;
+                while (i1<count){
+                    dataConversion=new DataConversion(arr.getJSONObject(i1));
+                    accountEntryBox = new AccountEntryBox(dataConversion);
+                    accountEntryBox.disableAllFields();
+                    accountBoxes.add(accountEntryBox);
+                    i1+=1;
                 }
             }
-        }catch (SQLException e){
+            if (expJsonString!=null){
+                json=new JSONObject(expJsonString);
+                count= json.getInt("count");
+                arr=json.getJSONArray("data");
+                int i1=0;
+                while (i1<count){
+                    dataConversion=new DataConversion(arr.getJSONObject(i1));
+                    accountEntryBox = new AccountEntryBox(dataConversion);
+                    accountEntryBox.disableAllFields();
+                    expenseBoxes.add(accountEntryBox);
+                    i1+=1;
+                }
+            }
+            transactionBox=new TransactionBox(date,time,accountBoxes,expenseBoxes);
+            transactionBoxeList.add(0,transactionBox);
+//            accountsList.getChildren().add(transactionBox);
+        }catch (JSONException e){
             e.printStackTrace();
         }
-        accountsList.getChildren().addAll();
-    }
-
-    public void initTimelineTab(){
-        TimelineDao dao = new TimelineDao();
-        List<TimelineBean> list = dao.selectEntryByName();
-        for (TimelineBean x : list) {
-            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
-
-        }
-        entriesList.getChildren().addAll(entries);
-        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
-            while (change.next()) {
-                if (change.wasAdded()) {
-                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
-                    System.out.println("Added");
-                } else if (change.wasRemoved()) {
-                    entriesList.getChildren().remove(change.getRemoved().get(0));
-                    System.out.println("Removed");
-                } else if (change.wasUpdated()) {
-                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
-                    System.out.println("Updated");
-                }
-            }
-        });
-        System.out.println("entriesList:" + entriesList.getChildren());
     }
 
     public void loadCharts(Event event) {
