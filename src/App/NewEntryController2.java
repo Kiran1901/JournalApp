@@ -175,6 +175,11 @@ public class NewEntryController2 {
             accountEntryDao.insertEntry(accountEntryBean2,"expenses");
         }
 
+        DataConversion dc = new DataConversion();
+        TransactionBox transactionBox = new TransactionBox(DATE,TIME,dc.jsonToAccountEntryBoxList(finalJsonObject.toString()),dc.jsonToAccountEntryBoxList(finalJsonObject2.toString()));
+        transactionBox.setAllDisable();
+        Controller.transactionBoxeList.add(transactionBox);
+
         Platform.runLater(()->{
             for(String name : personMailList){
                 try {
