@@ -13,7 +13,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
+<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -110,6 +110,27 @@
                              </content></ScrollPane>
                     </content>
                 </Tab>
+            <Tab onSelectionChanged="#loadCharts" text="Add-ons">
+               <content>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox prefHeight="478.0" prefWidth="718.0">
+                           <children>
+                              <VBox fx:id="sendMailVBox">
+                                 <children>
+                                    <Button fx:id="sendMailButton" mnemonicParsing="false" text="Send Mail">
+                                       <VBox.margin>
+                                          <Insets left="300.0" />
+                                       </VBox.margin></Button>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="graphVBox" prefHeight="447.0" prefWidth="718.0">
+                                 </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content></Tab>
             </tabs>
         </TabPane>
         <ButtonBar fx:id="buttonbar" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D3D3D3;">
