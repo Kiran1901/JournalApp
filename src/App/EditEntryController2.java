@@ -2,19 +2,15 @@ package App;
 
 import Bean.AccountEntryBean;
 import Bean.DataConversion;
-import Bean.TimelineBean;
 import Connectivity.AccountEntryDao;
 import Connectivity.ConnectionClass;
-import Connectivity.TimelineDao;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import jdk.security.jarsigner.JarSignerException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,8 +18,6 @@ import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +31,8 @@ public class EditEntryController2 {
     public VBox topVBox,bottomVBox;
     @FXML
     Text dateText,timeText;
+    @FXML
+    Button clearAccountEntriesButton,clearExpensesButton;
 
 //    private Button okButton;
     private TransactionBox transactionBox;
@@ -89,6 +85,9 @@ public class EditEntryController2 {
         Iterator iterator1 = topVBox.getChildren().iterator();
         Iterator iterator2 = bottomVBox.getChildren().iterator();
 
+        int index=Controller.transactionBoxeList.indexOf(transactionBox);
+        DataConversion dc = new DataConversion();
+
         int hbox_type=0;float amt;int cnt=0;
         AccountEntryBox abox=null;
         String pName,desc,t_type;
@@ -124,7 +123,8 @@ public class EditEntryController2 {
             accountEntryBean.setUser(USER_NAME);
             accountEntryDao.updateEntry(accountEntryBean,"account_log");
         }
-
+        Controller.transactionBoxeList.get(index).clearAllChildren();
+        Controller.transactionBoxeList.get(index).setTopVBox(dc.jsonToAccountEntryBoxList(finalJsonObject.toString()));
 
         JSONArray jsonArray2 = new JSONArray();
         JSONObject finalJsonObject2 = new JSONObject();
@@ -154,6 +154,9 @@ public class EditEntryController2 {
             accountEntryBean2.setUser(USER_NAME);
             accountEntryDao.updateEntry(accountEntryBean2,"expenses");
         }
+        Controller.transactionBoxeList.get(index).setBottomVBox(dc.jsonToAccountEntryBoxList(finalJsonObject2.toString()));
+        Controller.transactionBoxeList.get(index).setAllDisable();
+        System.out.println(Controller.transactionBoxeList.get(index).getChildren());
 
         Platform.runLater(()->{
             for(String name : personMailList){
@@ -190,5 +193,14 @@ public class EditEntryController2 {
             flag = flag && bbox.checkIsAboxEmpty();
         }
         return flag;
+    }
+
+    @FXML
+    public void clearBottomVBox(){
+        bottomVBox.getChildren().clear();
+    }
+    @FXML
+    public void clearTopVBox(){
+        topVBox.getChildren().clear();
     }
 }

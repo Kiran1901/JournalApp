@@ -76,7 +76,6 @@ public class AccountEntryDao {
         try{
             con = ConnectionClass.getConnection();
             String sql = "UPDATE "+ table +" SET data=(CONVERT('"+new JSONObject(accountEntryBean.getJson())+"' USING UTF8MB4))"+ " WHERE date='"+ accountEntryBean.getDate()+"' AND time='" + accountEntryBean.getTime() + "';";
-            System.out.println(sql);
             Statement preparedStatement = con.createStatement();
             preparedStatement.executeUpdate(sql);
             preparedStatement.close();

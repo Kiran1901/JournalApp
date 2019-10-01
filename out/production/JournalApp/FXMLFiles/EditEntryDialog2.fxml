@@ -44,13 +44,18 @@
          <content>
             <VBox spacing="10.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="350.0">
+                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="30.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Entries:" wrappingWidth="98.280517578125">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Text>
+                        <Button fx:id="clearAccountEntriesButton" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearTopVBox" prefHeight="26.0" prefWidth="60.0" text="Clear All">
+                           <HBox.margin>
+                              <Insets left="230.0" />
+                           </HBox.margin>
+                        </Button>
                         <Button fx:id="addAccountEntriesButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="42.0" text="Add" />
                      </children>
                   </HBox>
@@ -61,15 +66,23 @@
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding></VBox>
-                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="350.0">
+                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="30.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses:" wrappingWidth="98.280517578125">
                            <font>
                               <Font size="13.0" />
                            </font>
                         </Text>
+                        <Button fx:id="clearExpensesButton" mnemonicParsing="false" onAction="#clearBottomVBox" prefHeight="26.0" prefWidth="60.0" text="Clear All">
+                           <HBox.margin>
+                              <Insets left="230.0" />
+                           </HBox.margin>
+                        </Button>
                         <Button fx:id="addExpensesButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="42.0" text="Add" />
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
                   <VBox fx:id="bottomVBox" spacing="5.0">
                      <padding>

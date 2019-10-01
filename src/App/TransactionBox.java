@@ -24,6 +24,7 @@ public class TransactionBox extends VBox {
 
     private int id;
     private Text dateField,timeField,giveTake,expenses;
+    private VBox topVBox,bottomVBox;
     private Button editTransactionBox;
 
     public TransactionBox(String date, String time, List<AccountEntryBox> accountEntryBoxList, List<AccountEntryBox> expenseList){
@@ -51,12 +52,12 @@ public class TransactionBox extends VBox {
         header.fillHeightProperty();
         header.setAlignment(Pos.TOP_RIGHT);
 
-        VBox topVBox = new VBox();
+        topVBox = new VBox();
         topVBox.setPadding(new Insets(10,10,10,10));
         topVBox.setSpacing(5);
         topVBox.getChildren().addAll(accountEntryBoxList);
 
-        VBox bottomVBox = new VBox();
+        bottomVBox = new VBox();
         bottomVBox.setPadding(new Insets(10,10,10,10));
         bottomVBox.setSpacing(5);
         bottomVBox.getChildren().addAll(expenseList);
@@ -89,6 +90,32 @@ public class TransactionBox extends VBox {
 
     public void set_id(int id) {
         this.id = id;
+    }
+
+    public VBox getTopVBox() {
+        return topVBox;
+    }
+
+    public void setTopVBox(List list) {
+        this.topVBox.getChildren().addAll(list);
+    }
+
+    public VBox getBottomVBox() {
+        return bottomVBox;
+    }
+
+    public void setAllDisable(){
+        topVBox.setDisable(true);
+        bottomVBox.setDisable(true);
+    }
+
+    public void clearAllChildren(){
+        topVBox.getChildren().clear();
+        bottomVBox.getChildren().clear();
+    }
+
+    public void setBottomVBox(List list) {
+        this.bottomVBox.getChildren().addAll(list);
     }
 
     public void setEditButtonVisibility(boolean flag){

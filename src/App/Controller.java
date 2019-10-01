@@ -138,17 +138,6 @@ public class Controller {
     }
 
 
-    public void loadCalendar(Event event) {
-        datewiseEntry.clear();
-        calendarCount++;
-        if(calendarCount==1) {
-            System.out.println("onClick:Pane@Calendar");
-            VBox vb = new FullCalendarView(YearMonth.now()).getView();
-            calendarVBox.getChildren().add(vb);
-        }
-        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
-    }
-
 
     void OnSelectNewEnry() {
         if (typeChoiceBox.getSelectionModel().isSelected(0)) {
@@ -163,6 +152,83 @@ public class Controller {
             }
 
         }
+    }
+
+    public void initTimelineTab(){
+        TimelineDao dao = new TimelineDao();
+        List<TimelineBean> list = dao.selectEntryByName();
+        for (TimelineBean x : list) {
+            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
+
+        }
+        entriesList.getChildren().addAll(entries);
+        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
+                    System.out.println("Added");
+                } else if (change.wasRemoved()) {
+                    entriesList.getChildren().remove(change.getRemoved().get(0));
+                    System.out.println("Removed");
+                } else if (change.wasUpdated()) {
+                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("Updated");
+                }
+            }
+        });
+        System.out.println("entriesList:" + entriesList.getChildren());
+    }
+
+    public void initAccountLogsTab(){
+
+        transactionBoxeList.addListener((ListChangeListener.Change<? extends TransactionBox> change) -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    accountsList.getChildren().add(0,change.getAddedSubList().get(0));
+//                    System.out.println("ACC ADD");
+                } else if (change.wasRemoved()) {
+                    accountsList.getChildren().remove(change.getRemoved().get(0));
+//                    System.out.println("ACC DELETE");
+                }
+              /*  else if (change.wasUpdated()) {
+//                    accountsList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
+                    System.out.println("ACC UPDATE");
+                }       */
+            }
+        });
+
+
+        try{
+            Statement statement = ConnectionClass.getConnection().createStatement();
+            ResultSet res1 = statement.executeQuery("SELECT account_log.date,account_log.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "LEFT JOIN expenses ON " +
+                    "account_log.date=expenses.date and account_log.time=expenses.time " +
+                    "UNION "+
+                    "SELECT expenses.date,expenses.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
+                    "FROM account_log " +
+                    "RIGHT JOIN expenses ON "+
+                    "account_log.date=expenses.date and account_log.time=expenses.time;");
+
+
+            while (res1.next()){
+                makeAccount_logWidget(res1.getString("date"),res1.getString("time"),res1.getString("acc_data"),res1.getString("exp_data"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        accountsList.getChildren().addAll();
+    }
+
+    public void loadCalendar(Event event) {
+        datewiseEntry.clear();
+        calendarCount++;
+        if(calendarCount==1) {
+            System.out.println("onClick:Pane@Calendar");
+            VBox vb = new FullCalendarView(YearMonth.now()).getView();
+            calendarVBox.getChildren().add(vb);
+        }
+        Bindings.bindContent(internalVBox.getChildren(),datewiseEntry);
     }
 
     public void initMailTab(){
@@ -207,68 +273,6 @@ public class Controller {
                 }
             }
         });
-    }
-
-    public void initAccountLogsTab(){
-
-        transactionBoxeList.addListener((ListChangeListener.Change<? extends TransactionBox> change) -> {
-            while (change.next()) {
-                if (change.wasAdded()) {
-                    accountsList.getChildren().add(0,change.getAddedSubList().get(0));
-                } else if (change.wasRemoved()) {
-                    accountsList.getChildren().remove(change.getRemoved().get(0));
-                } else if (change.wasUpdated()) {
-                    accountsList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
-                }
-            }
-        });
-
-
-        try{
-            Statement statement = ConnectionClass.getConnection().createStatement();
-            ResultSet res1 = statement.executeQuery("SELECT account_log.date,account_log.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
-                    "FROM account_log " +
-                    "LEFT JOIN expenses ON " +
-                    "account_log.date=expenses.date and account_log.time=expenses.time " +
-                    "UNION "+
-                    "SELECT expenses.date,expenses.time,account_log.data as 'acc_data',expenses.data as 'exp_data' " +
-                    "FROM account_log " +
-                    "RIGHT JOIN expenses ON "+
-                    "account_log.date=expenses.date and account_log.time=expenses.time;");
-
-
-            while (res1.next()){
-                makeAccount_logWidget(res1.getString("date"),res1.getString("time"),res1.getString("acc_data"),res1.getString("exp_data"));
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        accountsList.getChildren().addAll();
-    }
-
-    public void initTimelineTab(){
-        TimelineDao dao = new TimelineDao();
-        List<TimelineBean> list = dao.selectEntryByName();
-        for (TimelineBean x : list) {
-            entries.add(new FeedBox(Integer.toString(x.getId()), x.getDate(), x.getTime(), x.getText()));
-
-        }
-        entriesList.getChildren().addAll(entries);
-        entries.addListener((ListChangeListener.Change<? extends FeedBox> change) -> {
-            while (change.next()) {
-                if (change.wasAdded()) {
-                    entriesList.getChildren().add(0,change.getAddedSubList().get(0));
-                    System.out.println("Added");
-                } else if (change.wasRemoved()) {
-                    entriesList.getChildren().remove(change.getRemoved().get(0));
-                    System.out.println("Removed");
-                } else if (change.wasUpdated()) {
-                    entriesList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
-                    System.out.println("Updated");
-                }
-            }
-        });
-        System.out.println("entriesList:" + entriesList.getChildren());
     }
 
     public void makeAccount_logWidget(String date,String time,String accJsonString,String expJsonString){

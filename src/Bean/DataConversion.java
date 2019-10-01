@@ -109,7 +109,7 @@ public class DataConversion {
                     while (i<cnt) {
                         accountEntryBox = new AccountEntryBox(((JSONObject) jsonObject.getJSONArray("data").get(i)).getInt("type"));
                         if(accountEntryBox.getType()==0){
-                            accountEntryBox.setT_type(((JSONObject) jsonObject.getJSONArray("data").get(i)).getInt("t_type")==0?"Give":"TAKE");
+                            accountEntryBox.setT_type(((JSONObject) jsonObject.getJSONArray("data").get(i)).getInt("t_type")==0?"Give":"Take");
                         }
                         accountEntryBox.setPersonName(((JSONObject) jsonObject.getJSONArray("data").get(i)).getString("name"));
                         accountEntryBox.setAmount(((JSONObject) jsonObject.getJSONArray("data").get(i)).getString("amount"));
