@@ -16,11 +16,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.geometry.Insets;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import org.jfree.chart.JFreeChart;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +47,10 @@ public class Controller {
     public static ObservableList<FeedBox> datewiseEntry;
     public static ObservableList<String> mailRequiredList;
     public static LocalDate date;
+    public Button sendMailButton;
+    public VBox sendMailVBox;
+    public VBox graphVBox;
+//    public BarChart barChart;
 
     @FXML
     Pane calendarPane;
@@ -52,6 +62,7 @@ public class Controller {
     ChoiceBox typeChoiceBox;
 
     private int calendarCount;
+    private int chartCount;
 
     @FXML
     VBox entriesList;
@@ -71,10 +82,15 @@ public class Controller {
         entries = FXCollections.observableArrayList();
         datewiseEntry = FXCollections.observableArrayList();
         mailRequiredList = FXCollections.observableArrayList();
-
+//        mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> sendMailToAll());
+        mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> sendMailToAll());
         initTimelineTab();
         Platform.runLater(()->initAccountLogsTab());
         Platform.runLater(()->initMailTab());
+//        mailListVBox.getChildren().add(mailSubmitButton);
+    }
+    @FXML
+    public void sendMailToAll() {
 
     }
 
@@ -141,7 +157,7 @@ public class Controller {
         calendarCount++;
         if(calendarCount==1) {
             System.out.println("onClick:Pane@Calendar");
-            SendMail.sendPlainMail();
+//            SendMail.sendMail();
             VBox vb = new FullCalendarView(YearMonth.now()).getView();
             calendarVBox.getChildren().add(vb);
         }
@@ -169,6 +185,7 @@ public class Controller {
         mailRequiredList.addListener((ListChangeListener.Change<? extends String> change) -> {
             while (change.next()) {
                 if (change.wasAdded()) {
+
                     mailListVBox.getChildren().add((new HBox(15,new Text(change.getAddedSubList().get(0)),new TextField())));
                 }
             }
@@ -271,4 +288,39 @@ public class Controller {
         System.out.println("entriesList:" + entriesList.getChildren());
     }
 
+    public void loadCharts(Event event) {
+        chartCount++;
+        if(chartCount==1)
+        {
+            System.out.println("Hola loadCharts");
+//            JFreeCharts jFreeCharts = new JFreeCharts();
+////            JFreeCharts.initUI();
+//            JFreeChart chart = JFreeCharts.createChart(JFreeCharts.createDataset());
+////            ChartViewer viewer = new ChartViewer(chart);
+////            barChart.getChildrenUnmodifiable().add(chart);
+//            chart.setBorderVisible(true);
+//
+////            graphVBox.getChildren().add();
+//            CategoryAxis xAxis    = new CategoryAxis();
+//            xAxis.setLabel("Date");
+//
+//            NumberAxis yAxis = new NumberAxis();
+//            yAxis.setLabel("Amount");
+//
+            BarChart barChartl = JFreeCharts.createBarChart();
+
+//            XYChart.Series dataSeries1 = new XYChart.Series();
+//            dataSeries1.setName("Account");
+//
+//            dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
+//            dataSeries1.getData().add(new XYChart.Data("Desktop2", 128));
+//            dataSeries1.getData().add(new XYChart.Data("Desktop3", 173));
+//            dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
+//            dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
+            barChartl.getData().add(JFreeCharts.createData());
+            barChartl.autosize();
+            barChartl.setVisible(true);
+            graphVBox.getChildren().add(barChartl);
+        }
+    }
 }
