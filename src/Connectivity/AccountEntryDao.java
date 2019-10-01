@@ -103,7 +103,7 @@ public class AccountEntryDao {
                 bean.setDate(rs.getDate("date").toString());
                 bean.setTime(rs.getTime("time").toString());
                 bean.setUser(rs.getString("user"));
-                bean.setJson((JSONObject) rs.getObject("json"));
+                bean.setJson(rs.getString("data"));
                 list.add(bean);
             }
             statement.close();
