@@ -1,14 +1,11 @@
 package Connectivity;
 
 import Bean.AccountEntryBean;
-import org.json.JSONObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONString;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AccountEntryDao {
     private Connection con=null;
@@ -90,28 +87,5 @@ public class AccountEntryDao {
             e.printStackTrace();
         }
     }
-    public List<AccountEntryBean> selectEntryByName(){
-       List<AccountEntryBean> list = new ArrayList<>();
-        try{
-            con = ConnectionClass.getConnection();
-            String sql = "Select * from account_log where user='kiran'";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            while (rs.next()) {
-                AccountEntryBean bean = new AccountEntryBean();
-                bean.setId(rs.getInt("ID"));
-                bean.setDate(rs.getDate("date").toString());
-                bean.setTime(rs.getTime("time").toString());
-                bean.setUser(rs.getString("user"));
-                bean.setJson(rs.getString("data"));
-                list.add(bean);
-            }
-            statement.close();
-            con.close();
-        }catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        return list;
-    }
+
 }
