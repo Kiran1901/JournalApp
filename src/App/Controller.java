@@ -16,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -24,9 +23,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextFlow;
-import org.jfree.chart.JFreeChart;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,8 +46,6 @@ public class Controller {
     public static LocalDate date;
     public Button sendMailButton;
     public VBox sendMailVBox;
-    public VBox graphVBox;
-//    public BarChart barChart;
 
     @FXML
     Pane calendarPane;
@@ -63,7 +57,6 @@ public class Controller {
     ChoiceBox typeChoiceBox;
 
     private int calendarCount;
-    private int chartCount;
 
     @FXML
     VBox entriesList;
@@ -73,6 +66,12 @@ public class Controller {
     VBox mailListVBox;
     @FXML
     Button mailSubmitButton;
+    @FXML
+    DatePicker startDate1,endDate1,startDate2,endDate2;
+    @FXML
+    VBox accountEntriesChart,expensesChart;
+    @FXML
+    Button showAccountEntriesChart,showExpensesChart;
 
     @FXML
     public void initialize() {
@@ -121,7 +120,6 @@ public class Controller {
         }
         System.out.println("onClick:Button@newEntryButton");
     }
-
 
     public void onClick_NewEntryButton2() {
         try {
@@ -201,10 +199,10 @@ public class Controller {
             while (change.next()) {
                 if (change.wasAdded()) {
                     accountsList.getChildren().add(0, change.getAddedSubList().get(0));
-                    System.out.println("ACC ADD");
+//                    System.out.println("ACC ADD");
                 } else if (change.wasRemoved()) {
                     accountsList.getChildren().remove(change.getRemoved().get(0));
-                    System.out.println("ACC DELETE");
+//                    System.out.println("ACC DELETE");
                 }
               /*  else if (change.wasUpdated()) {
 //                    accountsList.getChildren().set(change.getFrom(), change.getList().get(change.getFrom()));
@@ -337,60 +335,36 @@ public class Controller {
     }
 
     public void loadCharts(Event event) {
-//        chartCount++;
-//        if(chartCount==1)
-//        {
-        System.out.println("Hola loadCharts");
-//            JFreeCharts jFreeCharts = new JFreeCharts();
-////            JFreeCharts.initUI();
-//            JFreeChart chart = JFreeCharts.createChart(JFreeCharts.createDataset());
-////            ChartViewer viewer = new ChartViewer(chart);
-////            barChart.getChildrenUnmodifiable().add(chart);
-//            chart.setBorderVisible(true);
-//
-////            graphVBox.getChildren().add();
-//            CategoryAxis xAxis    = new CategoryAxis();
-//            xAxis.setLabel("Date");
-//
-//            NumberAxis yAxis = new NumberAxis();
-//            yAxis.setLabel("Amount");
-//
-        JFreeCharts jFreeCharts = new JFreeCharts(new CategoryAxis(), new NumberAxis());
-
-
-//            XYChart.Series dataSeries1 = new XYChart.Series();
-//            dataSeries1.setName("Account");
-//
-//            dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
-//            dataSeries1.getData().add(new XYChart.Data("Desktop2", 128));
-//            dataSeries1.getData().add(new XYChart.Data("Desktop3", 173));
-//            dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
-//            dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
-        List<XYChart.Series> dataList = new ArrayList<>();
-        dataList = jFreeCharts.createData();
-        Map<Node, TextFlow> nodeMap = new HashMap<>();
-        int cnt=0;
-        for (XYChart.Series<String,Number> s : dataList) {
-            jFreeCharts.getData().add(s);
-            System.out.println("JFree chart's children " + (jFreeCharts.getChildrenUnmodifiable().get(1)));
-            for (XYChart.Data d : s.getData()) {
-                jFreeCharts.displayLabelForData(d);
-//                jFreeCharts.seriesAdded(s, cnt++);
-//                jFreeCharts.layoutPlotChildren();
+        accountEntriesChart.getChildren().clear();
+        showAccountEntriesChart.setOnAction(e -> {
+            accountEntriesChart.getChildren().clear();
+            if (startDate1.getValue() != null && endDate1.getValue() != null) {
+                System.out.println("Upper button worked");
+                JFreeCharts accountEntriesChart = new JFreeCharts(new CategoryAxis(), new NumberAxis());
+                List<XYChart.Series> dataList = accountEntriesChart.createData(startDate1.getValue().toString(), endDate1.getValue().toString());
+                for (XYChart.Series<String, Number> s : dataList) {
+                    accountEntriesChart.getData().add(s);
+                }
+                accountEntriesChart.autosize();
+                accountEntriesChart.setVisible(true);
+                this.accountEntriesChart.getChildren().add(accountEntriesChart);
             }
-        }
-        jFreeCharts.autosize();
-        jFreeCharts.setVisible(true);
-        chartCount++;
-        if (chartCount == 1) {
-            graphVBox.getChildren().add(jFreeCharts);
-        }
-//        for (XYChart.Series<String,Number> s : dataList) {
-////            jFreeCharts.getData().add(s);
-//            JFreeCharts jFreeCharts1 = (JFreeCharts) graphVBox.getChildren().get(0);
-//            jFreeCharts1.seriesAdded(s,cnt++);
-//            jFreeCharts.layoutPlotChildren();
-//        }
+        });
+
+        showExpensesChart.setOnAction(e-> {
+            if (startDate2.getValue() != null && endDate2.getValue() != null) {
+                System.out.println("Lower button worked");
+                expensesChart.getChildren().clear();
+                JFreeCharts expensesChart = new JFreeCharts(new CategoryAxis(), new NumberAxis());
+                XYChart.Series series = expensesChart.createExpenseSeries(startDate2.getValue().toString(), endDate2.getValue().toString());
+                expensesChart.getData().add(series);
+                expensesChart.autosize();
+                expensesChart.setVisible(true);
+                this.expensesChart.getChildren().add(expensesChart);
+            }
+        });
+
     }
+
 
 }

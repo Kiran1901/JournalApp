@@ -12,8 +12,7 @@
     <orderEntry type="library" exported="" name="javafx-swt1" level="project" />
     <orderEntry type="library" exported="" name="org.json" level="project" />
     <orderEntry type="library" exported="" name="sendgrid-java-latest" level="project" />
-    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.48" level="project" />
     <orderEntry type="library" exported="" name="javax.mail" level="project" />
-    <orderEntry type="library" name="jfreechart-1.5.0-javadoc" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.48-bin" level="project" />
   </component>
 </module>
