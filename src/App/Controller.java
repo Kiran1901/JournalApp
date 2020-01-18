@@ -16,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.chart.*;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -49,6 +51,7 @@ public class Controller {
     public static LocalDate date;
     public Button sendMailButton;
     public VBox sendMailVBox;
+    public VBox graphVBox;
 
     @FXML
     Pane calendarPane;
@@ -75,6 +78,8 @@ public class Controller {
     VBox accountEntriesChart,expensesChart;
     @FXML
     Button showAccountEntriesChart,showExpensesChart;
+
+    private int chartCount;
 
     @FXML
     public void initialize() {
@@ -343,14 +348,21 @@ public class Controller {
             accountEntriesChart.getChildren().clear();
             if (startDate1.getValue() != null && endDate1.getValue() != null) {
                 System.out.println("Upper button worked");
-                JFreeCharts accountEntriesChart = new JFreeCharts(new CategoryAxis(), new NumberAxis());
-                List<XYChart.Series> dataList = accountEntriesChart.createData(startDate1.getValue().toString(), endDate1.getValue().toString());
-                for (XYChart.Series<String, Number> s : dataList) {
-                    accountEntriesChart.getData().add(s);
+                JFreeCharts accEntriesChart = new JFreeCharts(new CategoryAxis(), new NumberAxis());
+                List<XYChart.Series> dataList;
+                dataList = accEntriesChart.createData(startDate1.getValue().toString(),endDate1.getValue().toString());   //TODO : insert date here
+                int cnt=0;
+                for (XYChart.Series<String,Number> s : dataList) {
+                    accEntriesChart.getData().add(s);
+                    System.out.println("JFree chart's children " + (accEntriesChart.getChildrenUnmodifiable().get(1)));
+                    for (XYChart.Data dt : s.getData()) {
+                        accEntriesChart.displayLabelForData(dt);
+                    }
                 }
-                accountEntriesChart.autosize();
-                accountEntriesChart.setVisible(true);
-                this.accountEntriesChart.getChildren().add(accountEntriesChart);
+                accEntriesChart.autosize();
+                accEntriesChart.setVisible(true);
+
+                this.accountEntriesChart.getChildren().add(accEntriesChart);
             }
         });
 
