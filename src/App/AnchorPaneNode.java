@@ -15,7 +15,6 @@ import java.util.List;
 
 public class AnchorPaneNode extends AnchorPane {
 
-    // Date associated with this pane
     private LocalDate date;
     Controller controller;
 
@@ -23,7 +22,6 @@ public class AnchorPaneNode extends AnchorPane {
         super(children);
 
         this.setOnMouseClicked(e -> {
-            System.out.println("This pane's date is: " + date);
             Controller.date = date;
                 TimelineDao dao = new TimelineDao();
                 List<TimelineBean> list = dao.selectEntryByNameDate(date);

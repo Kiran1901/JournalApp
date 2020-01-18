@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="editEntryDialog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" textAlignment="RIGHT" wrappingWidth="32.53654885292053">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date is here" wrappingWidth="93.33659327030182">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time: " textAlignment="JUSTIFY" wrappingWidth="37.33659791946411">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Time is here" wrappingWidth="102.93663758039474">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+      <ScrollPane prefHeight="363.0" prefWidth="579.0">
+         <content>
+            <VBox spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="30.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Entries:" wrappingWidth="98.280517578125">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="clearAccountEntriesButton" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearTopVBox" prefHeight="26.0" prefWidth="60.0" text="Clear All">
+                           <HBox.margin>
+                              <Insets left="230.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="addAccountEntriesButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="42.0" text="Add" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="topVBox" spacing="5.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding></VBox>
+                  <HBox alignment="CENTER_LEFT" scaleShape="false" spacing="30.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses:" wrappingWidth="98.280517578125">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="clearExpensesButton" mnemonicParsing="false" onAction="#clearBottomVBox" prefHeight="26.0" prefWidth="60.0" text="Clear All">
+                           <HBox.margin>
+                              <Insets left="230.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="addExpensesButton" mnemonicParsing="false" prefHeight="21.0" prefWidth="42.0" text="Add" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox fx:id="bottomVBox" spacing="5.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </content>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ScrollPane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+   </padding>
+</VBox>

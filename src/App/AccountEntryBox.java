@@ -1,5 +1,6 @@
 package App;
 
+import Bean.DataConversion;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
@@ -9,126 +10,133 @@ import javafx.scene.layout.HBox;
 public class AccountEntryBox extends HBox {
 
     private int hboxType;
-    private String ac_id;
+    private int id;
     private TextField personName,amount,desc;
+    private ChoiceBox<String> t_type;
 
-    public ChoiceBox<String> getType() {
-        return type;
+
+    public AccountEntryBox(int hboxType) {
+        this.setPadding(new Insets(0,10,0,10));
+
+        this.setSpacing(15);
+        this.personName = new TextField();
+        this.amount = new TextField();
+        this.desc = new TextField();
+        this.hboxType=hboxType;
+        this.t_type = new ChoiceBox<>();
+
+        if(this.hboxType==0) {
+            t_type.getItems().addAll("Give", "Take");
+            this.t_type.setValue(this.t_type.getItems().get(0));
+            this.t_type.setPrefSize(50,30);
+        }else{
+            t_type.setVisible(false);
+        }
+        initHBoxLayout();
     }
 
-    public void setType(ChoiceBox<String> type) {
-        this.type = type;
+    public AccountEntryBox(DataConversion dataConversion){
+        this.setPadding(new Insets(0,10,0,10));
+        this.id = id;
+        this.personName = new TextField(dataConversion.getPersonName());
+        this.amount = new TextField((String.valueOf(dataConversion.getAmount())));
+        this.desc = new TextField(dataConversion.getDescription());
+        this.setId(this.personName.getText());
+        this.hboxType=dataConversion.getType();
+        this.t_type = new ChoiceBox<>();
+
+        if(this.hboxType==0) {
+            this.t_type.getItems().addAll("Give", "Take");
+            this.t_type.setValue(dataConversion.getT_type()==0?"Give":"Take");
+        }else{
+            this.t_type.setVisible(false);
+        }
+        this.t_type.setPrefSize(50,30);
+
+        initHBoxLayout();
     }
 
-    private ChoiceBox<String> type;
-    public String getAc_id() {
-        return ac_id;
+
+    public boolean checkIsAboxEmpty(){
+        return (!personName.getText().isEmpty() && !amount.getText().isEmpty() && amount.getText().matches("^[1-9]\\d*$"));
     }
 
-    public void setAc_id(String ac_id) {
-        this.ac_id = ac_id;
+    public void disableAllFields(){
+        personName.setDisable(true);
+        amount.setDisable(true);
+        desc.setDisable(true);
+        t_type.setDisable(true);
+    }
+
+    public void initHBoxLayout(){
+        this.personName.setAlignment(Pos.BASELINE_LEFT);
+        this.personName.setPrefSize(150,30);
+        this.personName.setPromptText("-Name-");
+        this.personName.setEditable(true);
+
+        this.amount.setPrefSize(100,30);
+        this.amount.setPromptText("-Amount-");
+        this.amount.setEditable(true);
+
+        this.desc.setPrefSize(200,30);
+        this.desc.setPromptText("-Description-");
+        this.desc.setEditable(true);
+
+        this.setSpacing(10);
+
+        getChildren().addAll(this.personName,this.amount,this.desc,this.t_type);
+    }
+
+
+    //getters and setters
+
+    public ChoiceBox<String> getT_type() {
+        return t_type;
+    }
+
+    public void setT_type(String type) {
+        if (hboxType==0){
+            this.t_type.setValue(type);
+        }
+    }
+
+    public int getType(){
+        return this.hboxType;
+    }
+    public void setType(int type){
+        this.hboxType=type;
+    }
+
+    public int get_id() {
+        return id;
+    }
+
+    public void set_id(int id) {
+        this.id = id;
     }
 
     public TextField getPersonName() {
         return personName;
     }
 
-    public void setPersonName(TextField personName) {
-        this.personName = personName;
+    public void setPersonName(String personName) {
+        this.personName.setText(personName);
     }
 
     public TextField getAmount() {
         return amount;
     }
 
-    public void setAmount(TextField amount) {
-        this.amount = amount;
+    public void setAmount(String amount) {
+        this.amount.setText(amount);
     }
 
     public TextField getDesc() {
         return desc;
     }
 
-    public void setDesc(TextField desc) {
-        this.desc = desc;
-    }
-
-
-    public AccountEntryBox(int hboxType)
-    {
-//        this.ac_id = new String(id);
-        this.personName = new TextField();
-        this.amount = new TextField();
-        this.desc = new TextField();
-        this.hboxType=hboxType;
-
-        if(this.hboxType==0) {
-            this.type = new ChoiceBox<>();
-            type.getItems().addAll("Give", "Take");
-        }else{
-            type.setDisable(true);
-        }
-        this.personName.setPadding(new Insets(5,5,5,5));
-        this.personName.setAlignment(Pos.BASELINE_LEFT);
-        this.personName.setPrefSize(50,30);
-        this.personName.setEditable(true);
-
-//        this.amount.setAlignment(Pos.BASELINE_CENTER);
-        this.amount.setPadding(new Insets(5,5,5,5));
-        this.amount.setPrefSize(50,30);
-        this.amount.setEditable(true);
-
-//        this.desc.setAlignment(Pos.BASELINE_CENTER);
-        this.desc.setPadding(new Insets(5,5,5,5));
-        this.desc.setPrefSize(50,30);
-        this.desc.setEditable(true);
-
-//        this.type.setAlignment(Pos.BASELINE_CENTER);
-        this.type.setPadding(new Insets(5,5,5,5));
-        this.type.setPrefSize(50,30);
-//        this.type.setEditable(true);
-        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
-    }
-    public AccountEntryBox(int hboxType, String id,String personName,String amount, String desc,String type)
-    {
-        this.ac_id = new String(id);
-        this.personName = new TextField(personName);
-        this.amount = new TextField(amount);
-        this.desc = new TextField(type);
-
-        this.hboxType=hboxType;
-
-        if(this.hboxType==0) {
-            this.type = new ChoiceBox<>();
-            this.type.getItems().addAll("Give", "Take");
-        }else{
-            this.type.setDisable(true);
-        }
-
-        this.personName.setPadding(new Insets(5,5,5,5));
-        this.personName.setAlignment(Pos.BASELINE_LEFT);
-        this.personName.setPrefSize(50,30);
-        this.personName.setEditable(true);
-
-//        this.amount.setAlignment(Pos.BASELINE_CENTER);
-        this.amount.setPadding(new Insets(5,5,5,5));
-        this.amount.setPrefSize(50,30);
-        this.amount.setEditable(true);
-
-//        this.desc.setAlignment(Pos.BASELINE_CENTER);
-        this.desc.setPadding(new Insets(5,5,5,5));
-        this.desc.setPrefSize(50,30);
-        this.desc.setEditable(true);
-
-//        this.type.setAlignment(Pos.BASELINE_CENTER);
-        this.type.setPadding(new Insets(5,5,5,5));
-        this.type.setPrefSize(50,30);
-//        this.type.setEditable(true);
-        getChildren().addAll(this.personName,this.amount,this.desc,this.type);
-    }
-
-    public boolean checkIsAboxEmpty(){
-        return personName.getText().isEmpty() && amount.getText().isEmpty() && desc.getText().isEmpty();
+    public void setDesc(String desc) {
+        this.desc.setText(desc);
     }
 
 }
