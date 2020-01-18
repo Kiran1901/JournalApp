@@ -86,7 +86,7 @@ public class Controller {
 //        mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> sendMailToAll());
         mailSubmitButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> sendMailToAll());
         transactionBoxeList = FXCollections.observableArrayList();
-
+        sendMailButton.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> sendMailToAll());
         initTimelineTab();
         Platform.runLater(() -> initAccountLogsTab());
         Platform.runLater(() -> initMailTab());
@@ -95,7 +95,9 @@ public class Controller {
 
     @FXML
     public void sendMailToAll() {
-
+        System.out.println("hello");
+        System.out.println("send mail. to all");
+        SendMail.sendMail("Kuldeepsinh Jadeja","amit.rathod@vgecg.ac.in","Amit Rathod",40,"09/10/2019");
     }
 
     @FXML
@@ -357,10 +359,8 @@ public class Controller {
 //
         JFreeCharts jFreeCharts = new JFreeCharts(new CategoryAxis(), new NumberAxis());
 
-
 //            XYChart.Series dataSeries1 = new XYChart.Series();
 //            dataSeries1.setName("Account");
-//
 //            dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
 //            dataSeries1.getData().add(new XYChart.Data("Desktop2", 128));
 //            dataSeries1.getData().add(new XYChart.Data("Desktop3", 173));

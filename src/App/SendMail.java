@@ -21,7 +21,7 @@ public class SendMail {
         Email to = new Email(pEmail);
 //        String user = "Kiran Italiya";
 
-        Content content = new Content("text/html","<b>Hi , Mr. " + user + "</b>.<br> Greetings from Journal-App team .<br>Our user <b>"+user+"</b>has reported that you have to pay him <b>"+amount+" </b>as on "+date+", so return it as soon as possible. <br> Regards ,<br><b>Team Journal-App</b>");
+        Content content = new Content("text/html","<b>Hi , Mr. " + pName + "</b>.<br> Greetings from Journal-App team .<br>Our user <b>"+user+"</b> has reported that you have to pay him <b>"+amount+" </b>as on "+date+", so return it as soon as possible. <br> Regards ,<br><b>Team Journal-App</b>");
         Mail mail = new Mail(from, subject, to, content);
 //        String versiont = "d-0ffc3c3c50e743fc86e91dcec9ffdc84";
 //        String versionm = "81cac53e-c3f6-4ebe-9281-9d0a82995d80";
