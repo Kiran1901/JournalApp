@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
-import org.jfree.chart.JFreeChart;
+//import org.jfree.chart.JFreeChart;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
