@@ -50,66 +50,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/JFreeCharts.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1458">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-              <folding>
-                <element signature="class#2933:3242" />
-                <element signature="class#3418:3727" />
-                <element signature="method#createExpenseSeries#0;class#JFreeCharts#0" />
-                <element signature="method#displayLabelForData#0;class#JFreeCharts#0" />
-                <element signature="class#4433:4719" />
-                <element signature="class#4777:5361" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#initialize#0;class#Controller#0" />
-                <element signature="method#OnClick_newEntryButton#0;class#Controller#0" />
-                <element signature="method#onClick_NewEntryButton2#0;class#Controller#0" />
-                <element signature="method#OnSelectNewEnry#0;class#Controller#0" />
-                <element signature="method#initTimelineTab#0;class#Controller#0" />
-                <element signature="method#initAccountLogsTab#0;class#Controller#0" />
-                <element signature="method#loadCalendar#0;class#Controller#0" />
-                <element signature="method#initMailTab#0;class#Controller#0" />
-                <element signature="method#makeAccount_logWidget#0;class#Controller#0" />
-                <element signature="method#loadCharts#0;class#Controller#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/App/SendMail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" selection-start-line="4" selection-end-line="5" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="115" column="22" lean-forward="true" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -192,10 +133,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="951" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1615" />
+    <option name="height" value="880" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -203,6 +145,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -233,18 +176,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Connectivity" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="JournalApp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JournalApp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FXMLFiles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -253,14 +189,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="E:/Softwares/JAVA libs/mysql-connector-java-5.1.48/mysql-connector-java-5.1.48.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.32155907" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -332,11 +268,16 @@
       <workItem from="1569870059992" duration="2525000" />
       <workItem from="1569907251724" duration="5450000" />
       <workItem from="1569913492048" duration="15636000" />
+      <workItem from="1570213233557" duration="2418000" />
+      <workItem from="1570521246546" duration="2254000" />
+      <workItem from="1570524695102" duration="520000" />
+      <workItem from="1570526559856" duration="469000" />
+      <workItem from="1579319291141" duration="968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178296000" />
+    <option name="totallyTimeSpent" value="184925000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -348,10 +289,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.107908845" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1313673" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -359,7 +299,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Find" order="0" weight="0.32952926" />
-      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.3182461" />
+      <window_info anchor="bottom" id="Run" order="1" visible="true" weight="0.31683168" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
@@ -380,7 +320,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.107238606" />
+      <window_info anchor="right" id="Database" order="4" weight="0.051608577" />
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="right" id="Maven" order="7" weight="0.3297587" />
@@ -389,18 +329,19 @@
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="11" side_tool="true" weight="0.3297587" />
       <window_info anchor="right" id="Codota" order="12" weight="0.3297587" />
+      <window_info anchor="right" id="PlantUML" order="13" weight="0.3297587" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12868632" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1313673" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="UI Designer" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Find" order="0" weight="0.32952926" />
-      <window_info anchor="bottom" id="Run" order="1" weight="0.23965763" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="1" weight="0.31683168" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.39886847" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.20650637" />
@@ -409,26 +350,27 @@
       <window_info anchor="bottom" id="Problems" order="8" />
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info anchor="bottom" id="Profiler" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" weight="0.32952926" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.3281027" />
-      <window_info anchor="bottom" id="Terminal" order="15" weight="0.32952926" />
-      <window_info anchor="bottom" id="Database Console" order="16" weight="0.32952926" />
+      <window_info anchor="bottom" id="Event Log" order="11" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32952926" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32673267" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Console" order="16" weight="0.32956153" />
       <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32956153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="1" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="right" id="Database" order="4" weight="0.12298387" />
+      <window_info anchor="right" id="Database" order="4" weight="0.051608577" />
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="right" id="Maven" order="7" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.3297587" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="11" side_tool="true" weight="0.3297587" />
       <window_info anchor="right" id="Codota" order="12" weight="0.3297587" />
+      <window_info anchor="right" id="PlantUML" order="13" weight="0.3297587" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -442,27 +384,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.base/javafx/collections/ListChangeListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.base/javafx/collections/ListChangeBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="535" column="16" selection-start-line="535" selection-start-column="16" selection-end-line="535" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.base/javafx/collections/ModifiableObservableListBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="182" column="12" lean-forward="true" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PATH_TO_FX$/src.zip!/javafx.base/javafx/collections/ObservableListBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -501,6 +422,7 @@
     <entry file="das://3347f4d8-9f36-4ee7-a05e-be7ef34da6e3/schema/journal_app/table/timeline" />
     <entry file="jar://E:/Setups/jdk-12.0.1/lib/src.zip!/java.base/java/util/List.java" />
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
@@ -511,7 +433,6 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/AnchorPaneNode.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -535,18 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1738">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="e#2343#2344#0" expanded="true" />
-            <element signature="e#2385#2386#0" expanded="true" />
-            <element signature="method#OnClick_editEntry#0;class#FeedBox#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -589,20 +498,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App/NewEntryController.java">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
           <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FXMLFiles/EditEntryDialog.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-527">
           <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$USER_HOME$/Downloads/sendgrid-java-latest.jar!/com/fasterxml/jackson/databind/ObjectMapper.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -676,14 +585,6 @@
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/Downloads/org.json.jar!/org/json/JSONObject.class" />
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog2.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="60" column="23" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Connectivity/TimelineDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1815">
@@ -709,27 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/TransactionBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-565">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setAllDisable#0;class#TransactionBox#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3700">
-          <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/EditEntryController2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -752,13 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
           <caret line="16" column="81" selection-start-line="16" selection-start-column="81" selection-end-line="16" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
@@ -804,14 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="115" column="22" lean-forward="true" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="das://20d4cacd-657e-4ec0-87d3-2c7b9939ae6b/schema/journal_app/table/account_log">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -822,9 +687,219 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://JAVA/java.util.List">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>java.util.List</OriginalElement>
+          <nodes>
+            <node x="" y="">java.util.List</node>
+            <node x="" y="">java.util.Collection</node>
+            <node x="" y="">java.lang.Iterable</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="71.0" y="98.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/App">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>App</OriginalElement>
+          <nodes>
+            <node x="585.55" y="1636.0">App.FeedBox</node>
+            <node x="1485.35" y="0.0">App.SendMail</node>
+            <node x="433.49999999999994" y="551.0">App.TransactionBox</node>
+            <node x="578.8" y="1121.0">App.Controller</node>
+            <node x="83.0" y="639.5">App.AnchorPaneNode</node>
+            <node x="617.55" y="336.0">App.EditEntryController2</node>
+            <node x="670.05" y="1455.0">App.EditEntryController</node>
+            <node x="954.3499999999999" y="887.5">App.JFreeCharts</node>
+            <node x="337.49999999999994" y="887.5">App.NewEntryController2</node>
+            <node x="556.6854529616721" y="-37.14285714285714">App.AccountEntryBox</node>
+            <node x="1300.35" y="0.0">App.Main</node>
+            <node x="46.5" y="865.0">App.FullCalendarView</node>
+            <node x="704.8" y="1918.0">App.NewEntryController</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="App.EditEntryController2" target="App.AccountEntryBox">
+              <point x="70.5" y="-82.5" />
+              <point x="829.05" y="316.0" />
+              <point x="699.4711672473865" y="316.0" />
+              <point x="33.0" y="138.0" />
+            </edge>
+            <edge source="App.TransactionBox" target="App.AccountEntryBox">
+              <point x="-185.60000000000014" y="-127.0" />
+              <point x="479.8999999999998" y="526.0" />
+              <point x="557.4455574912892" y="526.0" />
+              <point x="557.4455574912892" y="316.0" />
+              <point x="633.4711672473865" y="316.0" />
+              <point x="-33.0" y="138.0" />
+            </edge>
+            <edge source="App.TransactionBox" target="App.EditEntryController2">
+              <point x="-92.80000000000007" y="-127.0" />
+              <point x="572.6999999999998" y="526.0" />
+              <point x="645.75" y="526.0" />
+              <point x="-112.79999999999995" y="82.5" />
+            </edge>
+            <edge source="App.Controller" target="App.TransactionBox">
+              <point x="12.428571428571445" y="-137.0" />
+              <point x="765.2285714285715" y="1091.0" />
+              <point x="795.2455574912892" y="1091.0" />
+              <point x="795.2455574912892" y="845.0" />
+              <point x="758.3" y="845.0" />
+              <point x="92.80000000000007" y="127.0" />
+            </edge>
+            <edge source="App.FeedBox" target="App.EditEntryController">
+              <point x="35.0" y="-116.0" />
+              <point x="743.05" y="1596.0" />
+              <point x="784.05" y="1596.0" />
+              <point x="0.0" y="60.5" />
+            </edge>
+            <edge source="App.NewEntryController" target="App.Controller">
+              <point x="27.25" y="-60.5" />
+              <point x="841.05" y="1888.0" />
+              <point x="919.55" y="1888.0" />
+              <point x="919.55" y="1425.0" />
+              <point x="852.2285714285713" y="1425.0" />
+              <point x="99.42857142857133" y="137.0" />
+            </edge>
+            <edge source="App.EditEntryController" target="App.Controller">
+              <point x="0.0" y="-60.5" />
+              <point x="784.05" y="1435.0" />
+              <point x="752.8" y="1435.0" />
+              <point x="0.0" y="137.0" />
+            </edge>
+            <edge source="App.FullCalendarView" target="App.AnchorPaneNode">
+              <point x="90.0" y="-83.0" />
+              <point x="271.5" y="845.0" />
+              <point x="222.5" y="845.0" />
+              <point x="46.5" y="38.5" />
+            </edge>
+            <edge source="App.AnchorPaneNode" target="App.FeedBox">
+              <point x="-77.5" y="38.5" />
+              <point x="98.5" y="825.0" />
+              <point x="25.0" y="825.0" />
+              <point x="25.0" y="1616.0" />
+              <point x="603.05" y="1616.0" />
+              <point x="-105.0" y="-116.0" />
+            </edge>
+            <edge source="App.NewEntryController" target="App.FeedBox">
+              <point x="-27.25" y="-60.5" />
+              <point x="786.55" y="1888.0" />
+              <point x="708.05" y="1888.0" />
+              <point x="0.0" y="116.0" />
+            </edge>
+            <edge source="App.Controller" target="App.NewEntryController">
+              <point x="-149.1428571428571" y="137.0" />
+              <point x="603.6571428571428" y="1435.0" />
+              <point x="575.05" y="1435.0" />
+              <point x="575.05" y="1898.0" />
+              <point x="732.05" y="1898.0" />
+              <point x="-81.75" y="-60.5" />
+            </edge>
+            <edge source="App.Controller" target="App.FeedBox">
+              <point x="-99.42857142857144" y="137.0" />
+              <point x="653.3714285714286" y="1425.0" />
+              <point x="617.3" y="1425.0" />
+              <point x="617.3" y="1616.0" />
+              <point x="638.05" y="1616.0" />
+              <point x="-70.0" y="-116.0" />
+            </edge>
+            <edge source="App.Controller" target="App.FullCalendarView">
+              <point x="-136.71428571428567" y="-137.0" />
+              <point x="616.0857142857144" y="1091.0" />
+              <point x="181.5" y="1091.0" />
+              <point x="0.0" y="83.0" />
+            </edge>
+            <edge source="App.AnchorPaneNode" target="App.Controller">
+              <point x="-46.5" y="38.5" />
+              <point x="129.5" y="835.0" />
+              <point x="36.0" y="835.0" />
+              <point x="36.0" y="1101.0" />
+              <point x="591.2285714285715" y="1101.0" />
+              <point x="-161.57142857142844" y="-137.0" />
+            </edge>
+            <edge source="App.NewEntryController2" target="App.AccountEntryBox">
+              <point x="-28.5" y="-60.5" />
+              <point x="422.99999999999994" y="306.0" />
+              <point x="600.4711672473865" y="306.0" />
+              <point x="-66.0" y="138.0" />
+            </edge>
+            <edge source="App.Controller" target="App.AccountEntryBox">
+              <point x="87.0" y="-137.0" />
+              <point x="839.8" y="1071.0" />
+              <point x="932.8499999999999" y="1071.0" />
+              <point x="932.8499999999999" y="306.0" />
+              <point x="732.4711672473865" y="306.0" />
+              <point x="66.0" y="138.0" />
+            </edge>
+            <edge source="App.EditEntryController2" target="App.TransactionBox">
+              <point x="0.0" y="82.5" />
+              <point x="92.79999999999995" y="-127.0" />
+            </edge>
+            <edge source="App.Controller" target="App.NewEntryController2">
+              <point x="-62.14285714285711" y="-137.0" />
+              <point x="690.6571428571428" y="1061.0" />
+              <point x="451.49999999999994" y="1061.0" />
+              <point x="0.0" y="60.5" />
+            </edge>
+            <edge source="App.Controller" target="App.JFreeCharts">
+              <point x="136.71428571428578" y="-137.0" />
+              <point x="889.5142857142857" y="1091.0" />
+              <point x="1029.6" y="1091.0" />
+              <point x="-75.25" y="60.5" />
+            </edge>
+            <edge source="App.NewEntryController2" target="App.Controller">
+              <point x="76.0" y="60.5" />
+              <point x="527.5" y="1051.0" />
+              <point x="715.5142857142857" y="1051.0" />
+              <point x="-37.28571428571422" y="-137.0" />
+            </edge>
+            <edge source="App.EditEntryController" target="App.FeedBox">
+              <point x="76.0" y="60.5" />
+              <point x="860.05" y="1606.0" />
+              <point x="778.05" y="1606.0" />
+              <point x="70.0" y="-116.0" />
+            </edge>
+            <edge source="App.EditEntryController2" target="App.Controller">
+              <point x="112.79999999999995" y="82.5" />
+              <point x="871.3499999999999" y="526.0" />
+              <point x="908.0" y="526.0" />
+              <point x="908.0" y="1061.0" />
+              <point x="814.9428571428571" y="1061.0" />
+              <point x="62.14285714285711" y="-137.0" />
+            </edge>
+            <edge source="App.NewEntryController2" target="App.TransactionBox">
+              <point x="28.5" y="-60.5" />
+              <point x="-185.60000000000002" y="127.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="778.0" y="1591.0" />
+          <SelectedNodes>
+            <node>App.AccountEntryBox</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
+        <state relative-caret-position="748">
           <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -842,17 +917,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App/JFreeCharts.java">
+    <entry file="file://$PROJECT_DIR$/src/App/TransactionBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1458">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="242">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
-            <element signature="class#2933:3242" />
-            <element signature="class#3418:3727" />
-            <element signature="method#createExpenseSeries#0;class#JFreeCharts#0" />
-            <element signature="method#displayLabelForData#0;class#JFreeCharts#0" />
-            <element signature="class#4433:4719" />
-            <element signature="class#4777:5361" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#setAllDisable#0;class#TransactionBox#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/NewEntryController2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/FeedBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="e#2343#2344#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+            <element signature="method#OnClick_editEntry#0;class#FeedBox#0" />
           </folding>
         </state>
       </provider>
@@ -861,6 +951,56 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" selection-start-line="4" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/NewEntryDialog2.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FXMLFiles/Main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2530">
+          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/FXMLFiles">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>FXMLFiles</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="240.0" y="240.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App/JFreeCharts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="method#createExpenseSeries#0;class#JFreeCharts#0" />
+            <element signature="method#displayLabelForData#0;class#JFreeCharts#0" />
+          </folding>
         </state>
       </provider>
     </entry>
