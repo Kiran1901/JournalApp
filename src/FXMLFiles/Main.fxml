@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
+<VBox prefHeight="600.0" prefWidth="720" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="App.Controller">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -58,7 +63,7 @@
                <content>
                   <ScrollPane prefHeight="550.0" prefWidth="720.0">
                      <content>
-                        <VBox fx:id="AccountsList" />
+                        <VBox fx:id="accountsList" />
                      </content>
                   </ScrollPane>
                </content>
@@ -86,11 +91,94 @@
                     </content>
                 </Tab>
 
-                <Tab text="Filters">
+                <Tab text="Mail">
                     <content>
-                        <ScrollPane prefHeight="550.0" prefWidth="720.0" />
+                        <ScrollPane prefHeight="550.0" prefWidth="720.0">
+                             <content>
+                                <VBox>
+                           <children>
+                              <VBox fx:id="mailListVBox" />
+                              <VBox>
+                                 <children>
+                                    <ButtonBar>
+                                      <buttons>
+                                        <Button fx:id="mailSubmitButton" mnemonicParsing="false" text="Submit" />
+                                      </buttons>
+                                       <padding>
+                                          <Insets bottom="10.0" right="20.0" top="10.0" />
+                                       </padding>
+                                    </ButtonBar>
+                                 </children>
+                              </VBox>
+                           </children></VBox>
+                             </content></ScrollPane>
                     </content>
                 </Tab>
+            <Tab onSelectionChanged="#loadCharts" text="Add-ons">
+               <content>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox scaleShape="false" spacing="20.0">
+                           <children>
+                              <VBox fx:id="sendMailVBox">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Press button to send mails" />
+                                    <Button fx:id="sendMailButton" mnemonicParsing="false" text="Send Mail">
+                                       <VBox.margin>
+                                          <Insets left="300.0" />
+                                       </VBox.margin></Button>
+                                    <Separator prefHeight="80.0" prefWidth="689.0" scaleShape="false">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                 </children>
+                              </VBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Entries Chart" />
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
+                                    <DatePicker fx:id="startDate1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+                                    <DatePicker fx:id="endDate1" />
+                                    <Button fx:id="showAccountEntriesChart" mnemonicParsing="false" text="Show">
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox fx:id="accountEntriesChart">
+                                 </VBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses Chart" />
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
+                                    <DatePicker fx:id="startDate2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+                                    <DatePicker fx:id="endDate2" />
+                                    <Button fx:id="showExpensesChart" mnemonicParsing="false" text="Show">
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <VBox fx:id="expensesChart" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content></Tab>
             </tabs>
         </TabPane>
         <ButtonBar fx:id="buttonbar" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D3D3D3;">
@@ -98,7 +186,7 @@
                 <Insets bottom="10.0" right="10.0" top="10.0" />
             </padding>
          <buttons>
-             <ComboBox fx:id="typeComboBox" prefWidth="150.0"> </ComboBox>
+             <ChoiceBox fx:id="typeChoiceBox" prefWidth="150.0"> </ChoiceBox>
          </buttons>
         </ButtonBar>
     </children>
