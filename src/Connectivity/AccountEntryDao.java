@@ -90,11 +90,12 @@ public class AccountEntryDao {
             e.printStackTrace();
         }
     }
-    public List<AccountEntryBean> selectEntryByName(){
+
+    public List<AccountEntryBean> selectEntryByDate(String startDate,String endDate,String table){
        List<AccountEntryBean> list = new ArrayList<>();
         try{
             con = ConnectionClass.getConnection();
-            String sql = "Select * from account_log where user='kiran'";
+            String sql = "Select * from "+table+" where date>='"+startDate+"' and date<='"+endDate+"' ORDER BY date DESC";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
