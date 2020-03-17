@@ -97,7 +97,7 @@ public class Controller {
     public void sendMailToAll() {
         System.out.println("hello");
         System.out.println("send mail. to all");
-        SendMail.sendMail("Kuldeepsinh Jadeja","amit.rathod@vgecg.ac.in","Amit Rathod",40,"09/10/2019");
+        SendMail.sendMail("Kuldeepsinh Jadeja","kuldeepjadeja459@gmail.com","Amit Rathod",40,"09/10/2019");
     }
 
     @FXML
