@@ -28,7 +28,7 @@ public class SendMail {
 //        mail.setTemplateId(versiont);
 //        SendGrid sg = new SendGrid("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");
 //        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
-        SendGrid sg = new SendGrid("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");
+//         SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
